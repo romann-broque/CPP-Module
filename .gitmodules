@@ -1,0 +1,3 @@
+[submodule "cpp-linter-hooks"]
+	path = cpp-linter-hooks
+	url = git@github.com:cpp-linter/cpp-linter-hooks.git
