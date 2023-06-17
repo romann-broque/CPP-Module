@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:59:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:36:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:41:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ class	Contact
 			std::string lastName, std::string nickName,
 			std::string phoneNumber, std::string darkestSecret);
 		~Contact();
-		void display() const;
 		void set();
+		void display() const;
+		bool isComplete() const;
 		std::string	getFirstName() const;
 		std::string	getLastName() const;
 		std::string	getNickName() const;

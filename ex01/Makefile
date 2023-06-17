@@ -16,6 +16,7 @@ SRCS		+= Contact.cpp
 SRCS		+= PhoneBook.cpp
 SRCS		+= Prompt.cpp
 SRCS		+= main.cpp
+SRCS		+= utils.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -37,6 +38,7 @@ INCLUDES	+= includes/
 HEADERS		+= Contact.hpp
 HEADERS		+= PhoneBook.hpp
 HEADERS		+= Prompt.hpp
+HEADERS		+= utils.hpp
 
 vpath %.hpp $(INCLUDES)
 

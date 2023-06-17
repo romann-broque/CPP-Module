@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Prompt.hpp                                         :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 15:34:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/18 00:37:42 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/18 00:39:53 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/18 00:40:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROMPT_HPP
-# define PROMPT_HPP
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
-# include "PhoneBook.hpp"
-
-# ifndef PRINT_DEBUG
-#  define PRINT_DEBUG	false
-# endif
-# define PROMPT_MESSAGE	"Please enter a command: "
-
-class Prompt
-{
-	public:
-		Prompt();
-		~Prompt();
-		void	start();
-	private:
-		PhoneBook	phoneBook;
-		void		addContact();
-		void		searchContact() const;
-};
+size_t	getSizeTFromStr(std::string &str);
 
 #endif

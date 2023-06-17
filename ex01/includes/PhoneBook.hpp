@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:18:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 17:15:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:41:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
-# include <string>
-# include <iostream>
+# include "utils.hpp"
 # include <iomanip>
-# include <cstdlib>
+# include <sstream>
 
 # ifndef PRINT_DEBUG
 #  define PRINT_DEBUG	false
@@ -35,12 +34,15 @@ class	PhoneBook
 		PhoneBook();
 		~PhoneBook();
 		void addContact(Contact contact);
-		void display_contact_list() const;
+		void displayContact(const size_t index) const;
+		void displayContactList() const;
+		bool isEmpty() const;
 	
 	private:
 
 		Contact	l_contactList[CONTACT_MAX];
 		size_t	l_contactCount;
+		size_t	l_contactLastIndex;
 		void	rowFormat(std::string str)const ;
 
 };

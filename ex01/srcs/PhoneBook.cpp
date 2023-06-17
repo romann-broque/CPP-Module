@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:01:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 17:21:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:58:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(): l_contactCount(0)
+PhoneBook::PhoneBook(): l_contactCount(0), l_contactLastIndex(0)
 {
 	if (PRINT_DEBUG)
 		std::cout << "PhoneBook constructor called" << std::endl;
@@ -26,13 +26,20 @@ PhoneBook::~PhoneBook()
 
 void	PhoneBook::addContact(Contact contact)
 {
-	if (this->l_contactCount < CONTACT_MAX)
+	if (contact.isComplete() == false)
 	{
-		this->l_contactList[this->l_contactCount] = contact;
-		this->l_contactCount++;
+		std::cout << "Contact is incomplete" << std::endl;
+		return ;
 	}
 	else
-		std::cout << "PhoneBook is full" << std::endl;
+	{
+		if (this->l_contactCount < CONTACT_MAX)
+			this->l_contactCount++;
+		if (this->l_contactLastIndex >= CONTACT_MAX)
+			l_contactLastIndex = 0;
+		this->l_contactList[l_contactLastIndex] = contact;
+		l_contactLastIndex++;
+	}
 }
 
 void	PhoneBook::rowFormat(std::string str) const
@@ -55,7 +62,17 @@ void	PhoneBook::rowFormat(std::string str) const
 	}
 }
 
-void	PhoneBook::display_contact_list() const
+void	PhoneBook::displayContact(const size_t index) const
+{
+	if (index >= l_contactCount)
+	{
+		std::cout << "Invalid index" << std::endl;
+		return ;
+	}
+	l_contactList[index].display();
+}
+
+void	PhoneBook::displayContactList() const
 {
 	if (l_contactCount == 0)
 	{
@@ -69,9 +86,14 @@ void	PhoneBook::display_contact_list() const
 		<< std::setw(WIDTH) << "Nickname" << std::endl;
 	for (size_t i(0); i < l_contactCount; ++i)
 	{
-		std::cout << std::left << std::setw(WIDTH) << i + 1 << ROW_SEP;
+		std::cout << std::left << std::setw(WIDTH) << i << ROW_SEP;
 		rowFormat(l_contactList[i].getFirstName());
 		rowFormat(l_contactList[i].getLastName());
 		rowFormat(l_contactList[i].getNickName());
 	}
+}
+
+bool	PhoneBook::isEmpty() const
+{
+	return (l_contactCount == 0);
 }

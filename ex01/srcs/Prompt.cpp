@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:36:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:30:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:39:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ void	Prompt::start()
 {
 	std::string	command;
 
-	while (command != "EXIT")
+	while (1)
 	{
 		std::cout << PROMPT_MESSAGE;
 		std::getline(std::cin, command);
-		if (command == "ADD")
+		if (command == "EXIT")
+			break ;
+		else if (command == "ADD")
 			addContact();
 		else if (command == "SEARCH")
 			searchContact();
@@ -49,5 +51,25 @@ void	Prompt::addContact()
 
 void	Prompt::searchContact() const
 {
-	phoneBook.display_contact_list();
+	std::string	indexStr;
+
+	if (phoneBook.isEmpty())
+	{
+		std::cout << "Phonebook is empty" << std::endl;
+		return ;
+	}
+	else
+	{
+		phoneBook.displayContactList();
+		std::cout << "Contact index: ";
+		std::getline(std::cin, indexStr);
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Invalid input" << std::endl;
+			return ;
+		}
+		phoneBook.displayContact(getSizeTFromStr(indexStr));
+	}
 }

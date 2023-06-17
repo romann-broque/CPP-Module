@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:09:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:27:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:57:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,22 @@ std::string	Contact::getFirstName() const
 {
 	return (this->l_firstName);
 }
+
 std::string	Contact::getLastName() const
 {
 	return (this->l_lastName);
 }
+
 std::string	Contact::getNickName() const
 {
 	return (this->l_nickName);
+}
+
+bool	Contact::isComplete() const
+{
+	if (this->l_firstName.empty() || this->l_lastName.empty() ||
+		this->l_nickName.empty() || this->l_phoneNumber.empty() ||
+		this->l_darkestSecret.empty())
+		return (false);
+	return (true);
 }
