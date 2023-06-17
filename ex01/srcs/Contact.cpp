@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:09:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 15:58:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:27:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,17 @@ void	Contact::set()
 	std::getline(std::cin, this->l_phoneNumber);
 	std::cout << "Darkest secret: ";
 	std::getline(std::cin, this->l_darkestSecret);
+}
+
+std::string	Contact::getFirstName() const
+{
+	return (this->l_firstName);
+}
+std::string	Contact::getLastName() const
+{
+	return (this->l_lastName);
+}
+std::string	Contact::getNickName() const
+{
+	return (this->l_nickName);
 }

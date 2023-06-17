@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:34:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:00:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:36:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # ifndef PRINT_DEBUG
 #  define PRINT_DEBUG	false
 # endif
+# define PROMPT_MESSAGE	"Please enter a command: "
 
 class Prompt
 {

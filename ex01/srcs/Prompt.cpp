@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:36:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:00:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:30:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ void	Prompt::start()
 {
 	std::string	command;
 
-	while (1)
+	while (command != "EXIT")
 	{
-		std::cout << "Please enter a command: ";
+		std::cout << PROMPT_MESSAGE;
 		std::getline(std::cin, command);
-		if (command == "EXIT")
-			break ;
-		else if (command == "ADD")
+		if (command == "ADD")
 			addContact();
 		else if (command == "SEARCH")
 			searchContact();
