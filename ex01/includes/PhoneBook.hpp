@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:18:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/18 00:41:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:58:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
-# include "utils.hpp"
 # include <iomanip>
 # include <sstream>
 
@@ -43,7 +42,7 @@ class	PhoneBook
 		Contact	l_contactList[CONTACT_MAX];
 		size_t	l_contactCount;
 		size_t	l_contactLastIndex;
-		void	rowFormat(std::string str)const ;
+		void	printField(std::string str)const ;
 
 };
 

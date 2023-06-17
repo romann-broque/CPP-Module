@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:36:16 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/18 00:39:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:57:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ void	Prompt::searchContact() const
 		phoneBook.displayContactList();
 		std::cout << "Contact index: ";
 		std::getline(std::cin, indexStr);
-		if (std::cin.fail())
+		if (isStringDigits(indexStr) == false)
 		{
-			std::cin.clear();
-			std::cin.ignore();
-			std::cout << "Invalid input" << std::endl;
+			std::cout << RED << "Invalid input" << NC << std::endl;
 			return ;
 		}
 		phoneBook.displayContact(getSizeTFromStr(indexStr));

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:09:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 23:57:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:59:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ Contact::~Contact()
 
 void	Contact::display() const
 {
+	std::cout << GREEN << LIMIT_LINE << NC << std::endl;
 	std::cout << "First Name: " << l_firstName << std::endl;
 	std::cout << "Last Name: " << l_lastName << std::endl;
 	std::cout << "Nickname: " << l_nickName << std::endl;
 	std::cout << "Phone number: " << l_phoneNumber << std::endl;
 	std::cout << "Darkest Secret: " << l_darkestSecret << std::endl;
+	std::cout << GREEN << LIMIT_LINE << NC << std::endl;
 }
 
 void	Contact::set()

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:01:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 23:58:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:48:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	PhoneBook::addContact(Contact contact)
 {
 	if (contact.isComplete() == false)
 	{
-		std::cout << "Contact is incomplete" << std::endl;
+		std::cout << RED << "Contact is incomplete" << NC << std::endl;
 		return ;
 	}
 	else
@@ -42,7 +42,7 @@ void	PhoneBook::addContact(Contact contact)
 	}
 }
 
-void	PhoneBook::rowFormat(std::string str) const
+void	PhoneBook::printField(std::string str) const
 {
 	static size_t	index = 1;
 
@@ -66,7 +66,7 @@ void	PhoneBook::displayContact(const size_t index) const
 {
 	if (index >= l_contactCount)
 	{
-		std::cout << "Invalid index" << std::endl;
+		std::cout << RED << "Invalid index" << NC << std::endl;
 		return ;
 	}
 	l_contactList[index].display();
@@ -80,16 +80,16 @@ void	PhoneBook::displayContactList() const
 		return ;
 	}
 	std::cout << std::left
-		<< std::setw(WIDTH) << "Index" << ROW_SEP
-		<< std::setw(WIDTH) << "First Name" << ROW_SEP
-		<< std::setw(WIDTH) << "Last Name" << ROW_SEP
-		<< std::setw(WIDTH) << "Nickname" << std::endl;
+		<< BLUE << std::setw(WIDTH) << "Index" << NC << ROW_SEP
+		<< BLUE << std::setw(WIDTH) << "First Name" << NC << ROW_SEP
+		<< BLUE << std::setw(WIDTH) << "Last Name" << NC << ROW_SEP
+		<< BLUE << std::setw(WIDTH) << "Nickname" << NC << std::endl;
 	for (size_t i(0); i < l_contactCount; ++i)
 	{
 		std::cout << std::left << std::setw(WIDTH) << i << ROW_SEP;
-		rowFormat(l_contactList[i].getFirstName());
-		rowFormat(l_contactList[i].getLastName());
-		rowFormat(l_contactList[i].getNickName());
+		printField(l_contactList[i].getFirstName());
+		printField(l_contactList[i].getLastName());
+		printField(l_contactList[i].getNickName());
 	}
 }
 
