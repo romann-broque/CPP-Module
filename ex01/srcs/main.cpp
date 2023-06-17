@@ -6,16 +6,16 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:43:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 15:28:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 16:00:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Prompt.hpp"
 
 int main()
 {
-	Contact	person1("Keanu", "Reeves", "John Wick", "010203040506", "He loves puppies");
+	Prompt	prompt;
 
-	person1.display();
+	prompt.start();
 	return (EXIT_SUCCESS);
 }

@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Prompt.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 00:18:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 16:02:18 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/17 15:34:54 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/17 16:00:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef PROMPT_HPP
+# define PROMPT_HPP
 
-# include "Contact.hpp"
-# include <string>
-# include <iostream>
+# include "PhoneBook.hpp"
 
 # ifndef PRINT_DEBUG
 #  define PRINT_DEBUG	false
 # endif
 
-# define CONTACT_MAX	8
-
-class	PhoneBook
+class Prompt
 {
 	public:
-		
-		PhoneBook();
-		~PhoneBook();
-		void addContact(Contact contact);
-		void	display_contact_list() const;
-	
+		Prompt();
+		~Prompt();
+		void	start();
 	private:
-
-		Contact	l_contactList[CONTACT_MAX];
-		size_t	l_contactCount;
-
+		PhoneBook	phoneBook;
+		void		addContact();
+		void		searchContact() const;
 };
 
 #endif

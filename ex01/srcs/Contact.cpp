@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:09:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/17 15:28:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/17 15:58:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,18 @@ void	Contact::display() const
 	std::cout << "Nickname: " << l_nickName << std::endl;
 	std::cout << "Phone number: " << l_phoneNumber << std::endl;
 	std::cout << "Darkest Secret: " << l_darkestSecret << std::endl;
+}
+
+void	Contact::set()
+{
+	std::cout << "First Name: ";
+	std::getline(std::cin, this->l_firstName);
+	std::cout << "Last Name: ";
+	std::getline(std::cin, this->l_lastName);
+	std::cout << "Nickname: ";
+	std::getline(std::cin, this->l_nickName);
+	std::cout << "Phone number: ";
+	std::getline(std::cin, this->l_phoneNumber);
+	std::cout << "Darkest secret: ";
+	std::getline(std::cin, this->l_darkestSecret);
 }
