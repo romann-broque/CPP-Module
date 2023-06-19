@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:43:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/19 14:56:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/19 14:54:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@
 class	Zombie
 {
 	public:
+		Zombie();
 		Zombie(std::string name);
-		~Zombie(void);
-		void	announce(void) const;
+		~Zombie();
+		void announce() const;
+		void setName(std::string name);
 	private:
 		std::string	name;
 };
