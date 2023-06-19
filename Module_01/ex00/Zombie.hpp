@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:43:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/19 14:56:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/19 15:05:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <cstdlib>
 
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
