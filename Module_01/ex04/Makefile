@@ -44,7 +44,7 @@ CC			=	g++
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
-# CFLAGS		+=	-std=c++98
+CFLAGS		+=	-std=c++98
 
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
