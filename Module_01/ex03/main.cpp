@@ -6,11 +6,10 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 00:50:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/20 13:57:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/20 13:58:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
@@ -31,4 +30,6 @@ int	main()
 	zaphod.attack();
 	weapon2.setType("Zapper");
 	zaphod.attack();
+
+	return (EXIT_SUCCESS);
 }
