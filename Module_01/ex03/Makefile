@@ -11,6 +11,8 @@ SHELL		= /usr/bin/bash
 ### srcs/
 
 SRCS		+= main.cpp
+SRCS		+= HumanA.cpp
+SRCS		+= HumanB.cpp
 SRCS		+= Weapon.cpp
 
 ##############
@@ -24,6 +26,8 @@ OBJS		+= $(patsubst %.cpp, $(PATH_OBJS)/%.o, $(SRCS))
 #### INCLUDES ####
 ##################
 
+INCLUDES	+= HumanA.hpp
+INCLUDES	+= HumanB.hpp
 INCLUDES	+= Weapon.hpp
 
 #####################
