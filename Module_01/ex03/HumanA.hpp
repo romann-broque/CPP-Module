@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:26:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/20 13:38:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/20 13:47:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class HumanA
 		void attack() const;
 	private:
 		std::string	_name;
-		Weapon		_weapon;
+		Weapon		*_weapon;
 };
 
 #endif
