@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:55:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/21 10:05:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/21 00:19:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	Harl::complain(std::string level)
 	static std::string	levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	static LvlFunction	level_fct[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
-	for (size_t i(0); i < LEVEL_COUNT; ++i)
+	for (size_t i(0); i < 4; ++i)
 	{
 		if (level == levels[i])
 		{

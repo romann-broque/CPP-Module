@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:54:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/21 10:05:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/21 10:26:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <cstdlib>
 
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
@@ -27,6 +28,7 @@
 # define WARNING_MESSAGE	"This is a warning"
 # define ERROR_MESSAGE		"This is an error"
 # define LEVEL_COUNT		4
+# define EXPECT_ARG_COUNT	2
 
 # ifndef PRINT_DEBUG
 #  define PRINT_DEBUG true
