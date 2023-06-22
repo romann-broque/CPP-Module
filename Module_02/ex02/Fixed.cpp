@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 14:47:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 14:54:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,24 @@ float	Fixed::operator-(const Fixed &nb) const
 			<< NC << " called" << std::endl;
 	return (this->toFloat() - nb.toFloat());
 }
+
+float	Fixed::operator*(const Fixed &nb) const
+{
+	if (PRINT_DEBUG)
+		std::cout << BLUE << "Multiplication operator"
+			<< NC << " called" << std::endl;
+	return (this->toFloat() * nb.toFloat());
+}
+
+float	Fixed::operator/(const Fixed &nb) const
+{
+	if (PRINT_DEBUG)
+		std::cout << BLUE << "Division operator"
+			<< NC << " called" << std::endl;
+	return (this->toFloat() / nb.toFloat());
+}
+
+// Overload flux operator
 
 std::ostream &operator<<(std::ostream &flux, Fixed const& fixed)
 {

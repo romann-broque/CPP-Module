@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 14:47:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 14:53:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ class	Fixed
 	// Overload arithmetic operator
 		float	operator+(const Fixed &nb) const;
 		float	operator-(const Fixed &nb) const;
+		float	operator*(const Fixed &nb) const;
+		float	operator/(const Fixed &nb) const;
 	// Member functions
 		int		getRawBits() const;
 		void	setRawBits(int const raw);
