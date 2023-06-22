@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 15:15:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:48:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ class	Fixed
 		float	operator-(const Fixed &nb) const;
 		float	operator*(const Fixed &nb) const;
 		float	operator/(const Fixed &nb) const;
+	// Overload pre-increment operator
+		Fixed&	operator++();
+		Fixed&	operator--();
+	// Overload post-increment operator
+		Fixed	operator++(const int);
+		Fixed	operator--(const int);
 	// Overload comparaison operator
 		bool	operator==(const Fixed &nb) const;
 		bool	operator!=(const Fixed &nb) const;

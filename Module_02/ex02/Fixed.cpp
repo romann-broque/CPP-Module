@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 15:16:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:48:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,36 @@ float	Fixed::operator*(const Fixed &nb) const
 float	Fixed::operator/(const Fixed &nb) const
 {
 	return (this->toFloat() / nb.toFloat());
+}
+
+// Overload pre-increment operators
+
+Fixed&	Fixed::operator++()
+{
+	++_nb;
+	return (*this);
+}
+
+Fixed&	Fixed::operator--()
+{
+	--_nb;
+	return (*this);
+}
+
+// Overload post-increment operators
+
+Fixed	Fixed::operator++(const int)
+{
+	Fixed tmp(*this);
+	++_nb;
+	return (tmp);
+}
+
+Fixed	Fixed::operator--(const int)
+{
+	Fixed tmp(*this);
+	--_nb;
+	return (tmp);
 }
 
 // Overload comparaison operators
