@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 15:48:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 16:03:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ class	Fixed
 		void	setRawBits(int const raw);
 		int		toInt() const;
 		float	toFloat() const;
+		static Fixed& min(Fixed &nb1, Fixed &nb2);
+		static const Fixed& min(const Fixed &nb1, const Fixed &nb2);
+		static Fixed& max(Fixed &nb1, Fixed &nb2);
+		static const Fixed& max(const Fixed &nb1, const Fixed &nb2);
 	private:
 		static const size_t	_fractPartSize = 8;
 		int					_nb;

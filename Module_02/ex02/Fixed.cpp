@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 15:48:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 16:03:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,4 +184,32 @@ int	Fixed::toInt() const
 float	Fixed::toFloat() const
 {
 	return (static_cast<float>(_nb) / static_cast<float>(1 << _fractPartSize));
+}
+
+Fixed&	Fixed::min(Fixed &nb1, Fixed &nb2)
+{
+	if (nb1 < nb2)
+		return (nb1);
+	return (nb2);
+}
+
+const Fixed&	Fixed::min(const Fixed &nb1, const Fixed &nb2)
+{
+	if (nb1 < nb2)
+		return (nb1);
+	return (nb2);
+}
+
+Fixed&	Fixed::max(Fixed &nb1, Fixed &nb2)
+{
+	if (nb1 > nb2)
+		return (nb1);
+	return (nb2);
+}
+
+const Fixed&	Fixed::max(const Fixed &nb1, const Fixed &nb2)
+{
+	if (nb1 > nb2)
+		return (nb1);
+	return (nb2);
 }
