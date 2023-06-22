@@ -6,16 +6,17 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/21 15:56:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:36:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include <iostream>
 # include <string>
 # include <cstdlib>
-# include <iostream>
+# include <cmath>
 
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
@@ -31,15 +32,20 @@ class	Fixed
 {
 	public:
 
+	// Constructors
 		Fixed();
 		Fixed(int const nb);
 		Fixed(float const nb);
-		Fixed(Fixed &fixed);
+		Fixed(const Fixed &fixed);
+	// Destructor
 		~Fixed();
-		Fixed&	operator=(Fixed &fixed);
-		void	display(std::ostream &flux) const;
+	// Overload operator
+		Fixed&	operator=(const Fixed &fixed);
+	// Member functions
 		int		getRawBits() const;
 		void	setRawBits(int const raw);
+		int		toInt() const;
+		float	toFloat() const;
 	private:
 		static const size_t	_fractPartSize = 8;
 		int					_nb;

@@ -6,11 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/21 16:00:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 13:33:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+// Constructors
 
 Fixed::Fixed(): _nb(0)
 {
@@ -19,7 +21,7 @@ Fixed::Fixed(): _nb(0)
 			<< NC << " called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &fixed)
+Fixed::Fixed(const Fixed &fixed)
 {
 	if (PRINT_DEBUG)
 		std::cout << GREEN << "Copy constructor"
@@ -27,19 +29,23 @@ Fixed::Fixed(Fixed &fixed)
 	*this = fixed;
 }
 
-Fixed::Fixed(int const nb): _nb(nb)
+Fixed::Fixed(int const nb)
 {
 	if (PRINT_DEBUG)
 		std::cout << GREEN << "Int constructor"
 			<< NC << " called" << std::endl;
+	_nb = nb << _fractPartSize;		
 }
 
-Fixed::Fixed(float const nb): _nb(nb)
+Fixed::Fixed(float const nb)
 {
 	if (PRINT_DEBUG)
 		std::cout << GREEN << "Float constructor"
 			<< NC << " called" << std::endl;
+	_nb = roundf(nb * (1 << _fractPartSize));
 }
+
+// Destructor
 
 Fixed::~Fixed()
 {
@@ -48,7 +54,9 @@ Fixed::~Fixed()
 			<< NC << " called" << std::endl;
 }
 
-Fixed&	Fixed::operator=(Fixed &fixed)
+// Overload operators
+
+Fixed&	Fixed::operator=(const Fixed &fixed)
 {
 	if (PRINT_DEBUG)
 		std::cout << BLUE << "Copy assignment operator"
@@ -58,19 +66,13 @@ Fixed&	Fixed::operator=(Fixed &fixed)
 	return (*this);
 }
 
-void Fixed::display(std::ostream &flux) const
-{
-	int	float_part = _nb & 16;
-	int	nb = _nb >> _fractPartSize;
-
-	flux << nb << "." << float_part;
-}
-
 std::ostream &operator<<(std::ostream &flux, Fixed const& fixed)
 {
-	fixed.display(flux);
+	flux << fixed.toFloat();
 	return (flux);
 }
+
+// Member functions
 
 int	Fixed::getRawBits() const
 {
@@ -85,5 +87,15 @@ void	Fixed::setRawBits(int const raw)
 	if (PRINT_DEBUG)
 		std::cout << YELLOW << "setRawBits"
 			<< NC << " member function called" << std::endl;
-	this->_nb = raw;
+	_nb = raw;
+}
+
+int	Fixed::toInt() const
+{
+	return (_nb >> _fractPartSize);
+}
+
+float	Fixed::toFloat() const
+{
+	return (static_cast<float>(_nb) / static_cast<float>(1 << _fractPartSize));
 }
