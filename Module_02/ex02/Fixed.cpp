@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 14:54:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:16:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,34 +70,54 @@ Fixed&	Fixed::operator=(const Fixed &fixed)
 
 float	Fixed::operator+(const Fixed &nb) const
 {
-	if (PRINT_DEBUG)
-		std::cout << BLUE << "Addition operator"
-			<< NC << " called" << std::endl;
 	return (this->toFloat() + nb.toFloat());
 }
 
 float	Fixed::operator-(const Fixed &nb) const
 {
-	if (PRINT_DEBUG)
-		std::cout << BLUE << "Substraction operator"
-			<< NC << " called" << std::endl;
 	return (this->toFloat() - nb.toFloat());
 }
 
 float	Fixed::operator*(const Fixed &nb) const
 {
-	if (PRINT_DEBUG)
-		std::cout << BLUE << "Multiplication operator"
-			<< NC << " called" << std::endl;
 	return (this->toFloat() * nb.toFloat());
 }
 
 float	Fixed::operator/(const Fixed &nb) const
 {
-	if (PRINT_DEBUG)
-		std::cout << BLUE << "Division operator"
-			<< NC << " called" << std::endl;
 	return (this->toFloat() / nb.toFloat());
+}
+
+// Overload comparaison operators
+
+bool	Fixed::operator==(const Fixed &nb) const
+{
+	return (this->toFloat() == nb.toFloat());
+}
+
+bool	Fixed::operator!=(const Fixed &nb) const
+{
+	return (this->toFloat() != nb.toFloat());
+}
+
+bool	Fixed::operator<(const Fixed &nb) const
+{
+	return (this->toFloat() < nb.toFloat());
+}
+
+bool	Fixed::operator<=(const Fixed &nb) const
+{
+	return (*this < nb || *this == nb);
+}
+
+bool	Fixed::operator>(const Fixed &nb) const
+{
+	return (this->toFloat() > nb.toFloat());
+}
+
+bool	Fixed::operator>=(const Fixed &nb) const
+{
+	return (*this > nb || *this == nb);
 }
 
 // Overload flux operator
