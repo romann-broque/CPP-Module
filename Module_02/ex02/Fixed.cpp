@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 16:03:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:44:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,32 @@ Fixed&	Fixed::operator=(const Fixed &fixed)
 
 // Overload arithmetic operators
 
-float	Fixed::operator+(const Fixed &nb) const
+Fixed	Fixed::operator+(const Fixed &nb) const
 {
-	return (this->toFloat() + nb.toFloat());
+	Fixed	newNb(this->toFloat() + nb.toFloat());
+
+	return (newNb);
 }
 
-float	Fixed::operator-(const Fixed &nb) const
+Fixed	Fixed::operator-(const Fixed &nb) const
 {
-	return (this->toFloat() - nb.toFloat());
+	Fixed	newNb(this->toFloat() - nb.toFloat());
+
+	return (newNb);
 }
 
-float	Fixed::operator*(const Fixed &nb) const
+Fixed	Fixed::operator*(const Fixed &nb) const
 {
-	return (this->toFloat() * nb.toFloat());
+	Fixed	newNb(this->toFloat() * nb.toFloat());
+
+	return (newNb);
 }
 
-float	Fixed::operator/(const Fixed &nb) const
+Fixed	Fixed::operator/(const Fixed &nb) const
 {
-	return (this->toFloat() / nb.toFloat());
+	Fixed	newNb(this->toFloat() / nb.toFloat());
+
+	return (newNb);
 }
 
 // Overload pre-increment operators

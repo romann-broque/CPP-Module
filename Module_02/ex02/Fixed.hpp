@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:04:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/22 16:03:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:46:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ class	Fixed
 	// Overload operator
 		Fixed&	operator=(const Fixed &fixed);
 	// Overload arithmetic operator
-		float	operator+(const Fixed &nb) const;
-		float	operator-(const Fixed &nb) const;
-		float	operator*(const Fixed &nb) const;
-		float	operator/(const Fixed &nb) const;
+		Fixed	operator+(const Fixed &nb) const;
+		Fixed	operator-(const Fixed &nb) const;
+		Fixed	operator*(const Fixed &nb) const;
+		Fixed	operator/(const Fixed &nb) const;
 	// Overload pre-increment operator
 		Fixed&	operator++();
 		Fixed&	operator--();

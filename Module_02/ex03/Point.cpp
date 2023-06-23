@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:59:15 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/23 14:55:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:52:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ Point&	Point::operator=(__attribute__((unused))const Point &point)
 
 float	Point::getDeltaX(const Point &p1, const Point &p2)
 {
-	return (p1.x - p2.x);
+	return ((p1.x - p2.x).toFloat());
 }
 
 float	Point::getDeltaY(const Point &p1, const Point &p2)
 {
-	return (p1.y - p2.y);
+	return ((p1.y - p2.y).toFloat());
 }
 
 // Destructor
