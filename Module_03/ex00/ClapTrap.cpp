@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/24 16:58:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:21:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ClapTrap::attack(const std::string& target)
 			<< RED << " can't attack because has no more energy" << NC << std::endl;
 	else
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< MAGENTA << " attacks " << NC << YELLOW << target << NC << ", causing "
 			<< RED << _attackDamage << NC << " points of damage!" << std::endl;
 		--_energyPoints;
@@ -72,7 +72,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints > 0)
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< " has been attacked and loses "
 			<< RED << amount << NC
 			<< " hit points!";
@@ -100,7 +100,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< RED << "no more energy " << NC << "to repair" << std::endl;
 	else
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< BLUE " repairs " << NC << "and gains "
 			<< GREEN << amount << NC
 			<< " hit points!" << std::endl;
