@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 11:06:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:19:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,6 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &claptrap)
 
 void	ClapTrap::attack(const std::string& target)
 {
-	std::cout << "ClapTrap ";
-	attackAction(target);
-}
-
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "ClapTrap ";
-	takeDamageAction(amount);
-}
-
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	std::cout << "ClapTrap ";
-	beRepairedAction(amount);
-}
-
-// Protected member functions
-
-void	ClapTrap::attackAction(const std::string& target)
-{
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "
 		<< RED << "dead" << NC << " and can't attack" << std::endl;
@@ -88,7 +68,7 @@ void	ClapTrap::attackAction(const std::string& target)
 	}
 }
 
-void	ClapTrap::takeDamageAction(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints > 0)
 	{
@@ -109,7 +89,7 @@ void	ClapTrap::takeDamageAction(unsigned int amount)
 		_hitPoints -= amount;
 }
 
-void	ClapTrap::beRepairedAction(unsigned int amount)
+void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "

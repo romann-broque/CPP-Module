@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:33:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 11:16:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:15:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ class	ClapTrap
 			size_t		_hitPoints;
 			size_t		_energyPoints;
 			size_t		_attackDamage;
-		// Protected member functions
-			void	attackAction(const std::string& target);
-			void	takeDamageAction(unsigned int amount);
-			void	beRepairedAction(unsigned int amount);
 };
 
 #endif
