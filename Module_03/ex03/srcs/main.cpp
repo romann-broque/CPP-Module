@@ -6,39 +6,27 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 15:34:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 15:34:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int	main()
 {
-	ScavTrap	scavbot("ScavBot");
-	FragTrap	fragbot("FragBot");
+	DiamondTrap	dbot0;
+	DiamondTrap	dbot1("Dbot");
+	DiamondTrap	dbot2(dbot1);
+	DiamondTrap	dbot3("Great Giga Chad");
 
-	fragbot.attack("Scavbot");
-	scavbot.takeDamage(30);
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-	fragbot.attack("Scavbot");
-	scavbot.takeDamage(30);
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-	fragbot.attack("Scavbot");
-	scavbot.takeDamage(30);
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-	scavbot.guardGate();
-	scavbot.beRepaired(240);
-	fragbot.highFivesGuys();
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-	scavbot.attack("Fragbot");
-	fragbot.takeDamage(20);
-
+	dbot0.whoAmI();
+	dbot0.attack("Gorogu");
+	dbot1.whoAmI();
+	dbot1.attack("Gorogu");
+	dbot2.whoAmI();
+	dbot2.attack("Gorogu");
+	dbot0.whoAmI();
+	dbot0.attack("Gorogu");
+	
 	return (EXIT_SUCCESS);
 }
