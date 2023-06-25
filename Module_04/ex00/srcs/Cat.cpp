@@ -1,57 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 16:01:52 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 16:30:03 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/25 16:23:38 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/25 16:29:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Cat.hpp"
 
 // Constructors
 
-Animal::Animal(): _type("UNKNOWN")
+Cat::Cat()
 {
+	_type = "Cat";
 	if (PRINT_DEBUG)
-		std::cout << "Animal has been "
+		std::cout << "Cat has been "
 		<< GREEN <<  "created (default)" << NC
 		<< std::endl;
 }
 
-Animal::Animal(const Animal &animal)
+Cat::Cat(const Cat &cat): Animal(cat)
 {
-	*this = animal;
+	*this = cat;
 	if (PRINT_DEBUG)
-		std::cout << "Animal has been "
+		std::cout << "Cat has been "
 		<< GREEN <<  "created (copy)" << NC
 		<< std::endl;
 }
 
 // Overload assignment operator
 
-Animal&	Animal::operator=(const Animal &animal)
+Cat&	Cat::operator=(const Cat &cat)
 {
-	_type = animal._type;
+	_type = cat._type;
 	return (*this);
 }
 
 // Member functions
 
-void	Animal::makeSound() const
+void	Cat::makeSound() const
 {
-	std::cout << GREY << "*%!&$?#" << NC << std::endl;
+	std::cout << GREY << "Miaaaaouh" << NC << std::endl;
 }
 
 // Destructor
 
-Animal::~Animal()
+Cat::~Cat()
 {
 	if (PRINT_DEBUG)
-		std::cout << "Animal has been "
+		std::cout << "Cat has been "
 		<< RED <<  "destroyed" << NC
 		<< std::endl;
 }

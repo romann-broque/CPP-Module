@@ -14,6 +14,7 @@ PATH_SRCS	+= srcs/
 
 SRCS		+= main.cpp
 SRCS		+= Animal.cpp
+SRCS		+= Cat.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -31,6 +32,7 @@ OBJS		+= $(patsubst %.cpp, $(PATH_OBJS)/%.o, $(SRCS))
 PATH_INC	+= includes/
 
 HEADERS		+= Animal.hpp
+HEADERS		+= Cat.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 

@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 15:57:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 16:27:32 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/25 16:21:21 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/25 16:29:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-int	main()
+# include "Animal.hpp"
+
+class	Cat: public Animal
 {
-	Animal	creature;
-	Cat		cat;
+	public:
 
-	creature.makeSound();
-	cat.makeSound();
-}
+		// Constructors
+			Cat();
+			Cat(const Cat &cat);
+		// Overload assignment operator
+			Cat& operator=(const Cat &cat);
+		// Member functions
+			void	makeSound() const;
+		// Destructor
+			~Cat();
+
+};
+
+#endif

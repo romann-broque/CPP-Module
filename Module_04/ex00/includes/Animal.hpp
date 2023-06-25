@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 15:58:56 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 16:19:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 16:29:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ class	Animal
 		// Overload assignment operator
 			Animal& operator=(const Animal &animal);
 		// Member functions
-			void	makeSound();
+			void	makeSound() const;
+		// Getter
+			std::string	getType() const;
 		// Destructor
 			~Animal();
 
 	protected:
-		std::string	_type;
+
+		// Attributes
+			std::string	_type;
 };
 
 #endif
