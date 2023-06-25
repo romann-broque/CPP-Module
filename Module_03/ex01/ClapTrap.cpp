@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 11:06:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/24 16:58:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ClapTrap::ClapTrap():
 	_name("Empty"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	if (PRINT_DEBUG)
-		std::cout << "ClapTrap " << _name << " has been "
+		std::cout << _name << " has been "
 			<< GREEN << "created (default)" << NC << std::endl;
 }
 
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap(std::string name):
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	if (PRINT_DEBUG)
-		std::cout << "ClapTrap " << _name << " has been "
+		std::cout << _name << " has been "
 			<< GREEN << "created (nameset)" << NC << std::endl;
 }
 
@@ -34,7 +34,7 @@ ClapTrap::ClapTrap(const ClapTrap &claptrap)
 {
 	*this = claptrap;
 	if (PRINT_DEBUG)
-		std::cout << "ClapTrap " << _name << " has been "
+		std::cout << _name << " has been "
 			<< GREEN << "created (copy)" << NC << std::endl;
 }
 
@@ -53,26 +53,6 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &claptrap)
 
 void	ClapTrap::attack(const std::string& target)
 {
-	std::cout << "ClapTrap ";
-	attackAction(target);
-}
-
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "ClapTrap ";
-	takeDamageAction(amount);
-}
-
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	std::cout << "ClapTrap ";
-	beRepairedAction(amount);
-}
-
-// Protected member functions
-
-void	ClapTrap::attackAction(const std::string& target)
-{
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "
 		<< RED << "dead" << NC << " and can't attack" << std::endl;
@@ -81,18 +61,18 @@ void	ClapTrap::attackAction(const std::string& target)
 			<< RED << " can't attack because has no more energy" << NC << std::endl;
 	else
 	{
-		std::cout << YELLOW << _name << NC
+		std::cout << "ClapTrap " << YELLOW << _name << NC
 			<< MAGENTA << " attacks " << NC << YELLOW << target << NC << ", causing "
 			<< RED << _attackDamage << NC << " points of damage!" << std::endl;
 		--_energyPoints;
 	}
 }
 
-void	ClapTrap::takeDamageAction(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints > 0)
 	{
-		std::cout << YELLOW << _name << NC
+		std::cout << "ClapTrap " << YELLOW << _name << NC
 			<< " has been attacked and loses "
 			<< RED << amount << NC
 			<< " hit points!";
@@ -101,15 +81,16 @@ void	ClapTrap::takeDamageAction(unsigned int amount)
 		std::cout << std::endl;
 	}
 	else
-		std::cout << YELLOW << _name << NC 
-			<< RED << " is already dead" << NC << "! Calm down" << std::endl;
+		std::cout << "Wouah! Calm down! "
+			<< YELLOW << _name << NC 
+			<< RED << " is already dead" << NC << std::endl;
 	if (_hitPoints <= amount)
 		_hitPoints = 0;
 	else
 		_hitPoints -= amount;
 }
 
-void	ClapTrap::beRepairedAction(unsigned int amount)
+void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "
@@ -119,7 +100,7 @@ void	ClapTrap::beRepairedAction(unsigned int amount)
 			<< RED << "no more energy " << NC << "to repair" << std::endl;
 	else
 	{
-		std::cout << YELLOW << _name << NC
+		std::cout << "ClapTrap " << YELLOW << _name << NC
 			<< BLUE " repairs " << NC << "and gains "
 			<< GREEN << amount << NC
 			<< " hit points!" << std::endl;
@@ -132,6 +113,6 @@ void	ClapTrap::beRepairedAction(unsigned int amount)
 ClapTrap::~ClapTrap()
 {
 	if (PRINT_DEBUG)
-		std::cout << "ClapTrap " << _name << " has been "
+		std::cout << _name << " has been "
 			<< RED << "destroyed" << NC << std::endl;
 }

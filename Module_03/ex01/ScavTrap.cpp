@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:13:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 11:20:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:05:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,19 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &scavtrap)
 
 void	ScavTrap::attack(const std::string& target)
 {
-	std::cout << "ScavTrap ";
-	attackAction(target);
-}
-
-void	ScavTrap::takeDamage(unsigned int amount)
-{
-	std::cout << "ScavTrap ";
-	takeDamageAction(amount);
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	std::cout << "ScavTrap ";
-	beRepairedAction(amount);
+	if (_hitPoints == 0)
+		std::cout << YELLOW << _name << NC << " is "
+		<< RED << "dead" << NC << " and can't attack" << std::endl;
+	else if (_energyPoints == 0)
+		std::cout << YELLOW << _name << NC
+			<< RED << " can't shoot because has no more energy" << NC << std::endl;
+	else
+	{
+		std::cout << YELLOW << _name << NC
+			<< MAGENTA << " shoots " << NC << YELLOW << target << NC << ", causing "
+			<< RED << _attackDamage << NC << " points of damage!" << std::endl;
+		--_energyPoints;
+	}
 }
 
 void	ScavTrap::guardGate()

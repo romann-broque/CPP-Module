@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:00:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 11:12:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 12:02:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ class	ScavTrap: public ClapTrap
 			ScavTrap& operator=(const ScavTrap &scavtrap);
 		// Member functions
 			void	attack(const std::string& target);
-			void	takeDamage(unsigned int amount);
-			void	beRepaired(unsigned int amount);
 			void	guardGate();
 		// Destructor
 			~ScavTrap();
