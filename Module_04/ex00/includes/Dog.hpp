@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 16:21:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 16:35:02 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/25 16:33:49 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/25 16:35:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
 # include "Animal.hpp"
 
-class	Cat: public Animal
+class	Dog: public Animal
 {
 	public:
 
 		// Constructors
-			Cat();
-			Cat(const Cat &cat);
+			Dog();
+			Dog(const Dog &dog);
 		// Overload assignment operator
-			Cat& operator=(const Cat &cat);
+			Dog& operator=(const Dog &dog);
 		// Member functions
 			void	makeSound() const;
 		// Destructor
-			~Cat();
+			~Dog();
+
+
 };
 
 #endif

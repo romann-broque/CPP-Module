@@ -15,6 +15,7 @@ PATH_SRCS	+= srcs/
 SRCS		+= main.cpp
 SRCS		+= Animal.cpp
 SRCS		+= Cat.cpp
+SRCS		+= Dog.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -33,6 +34,7 @@ PATH_INC	+= includes/
 
 HEADERS		+= Animal.hpp
 HEADERS		+= Cat.hpp
+HEADERS		+= Dog.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
