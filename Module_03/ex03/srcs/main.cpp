@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 15:34:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 15:48:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main()
 	dbot1.attack("Gorogu");
 	dbot2.whoAmI();
 	dbot2.attack("Gorogu");
+	dbot0 = dbot3;
 	dbot0.whoAmI();
 	dbot0.attack("Gorogu");
 	

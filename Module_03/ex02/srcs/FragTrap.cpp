@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:33:53 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 13:32:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 15:44:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ FragTrap::FragTrap(const FragTrap &FragTrap): ClapTrap(FragTrap)
 
 //Overload assignment operator
 
-FragTrap& FragTrap::operator=(const FragTrap &FragTrap)
+FragTrap& FragTrap::operator=(const FragTrap &fragTrap)
 {
-	*this = FragTrap;
+	_name = fragTrap._name;
+	_hitPoints = fragTrap._hitPoints;
+	_energyPoints = fragTrap._energyPoints;
+	_attackDamage = fragTrap._attackDamage;
 	return (*this);
 }
 

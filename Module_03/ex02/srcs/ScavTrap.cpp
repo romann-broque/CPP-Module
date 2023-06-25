@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:13:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 12:40:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 15:41:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ ScavTrap::ScavTrap(const ScavTrap &scavtrap): ClapTrap(scavtrap)
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &scavtrap)
 {
-	*this = scavtrap;
+	_name = scavtrap._name;
+	_hitPoints = scavtrap._hitPoints;
+	_energyPoints = scavtrap._energyPoints;
+	_attackDamage = scavtrap._attackDamage;
 	return (*this);
 }
 

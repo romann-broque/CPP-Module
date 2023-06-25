@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/24 17:03:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 15:37:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int	main()
 	bot.beRepaired(5);
 	bot.beRepaired(5);
 	bot.attack("void");
-
+	
 	return (EXIT_SUCCESS);
 }
