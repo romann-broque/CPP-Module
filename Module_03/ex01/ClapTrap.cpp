@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:32:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 10:19:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:06:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,26 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &claptrap)
 
 void	ClapTrap::attack(const std::string& target)
 {
+	std::cout << "ClapTrap ";
+	attackAction(target);
+}
+
+void	ClapTrap::takeDamage(unsigned int amount)
+{
+	std::cout << "ClapTrap ";
+	takeDamageAction(amount);
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	std::cout << "ClapTrap ";
+	beRepairedAction(amount);
+}
+
+// Protected member functions
+
+void	ClapTrap::attackAction(const std::string& target)
+{
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "
 		<< RED << "dead" << NC << " and can't attack" << std::endl;
@@ -61,18 +81,18 @@ void	ClapTrap::attack(const std::string& target)
 			<< RED << " can't attack because has no more energy" << NC << std::endl;
 	else
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< MAGENTA << " attacks " << NC << YELLOW << target << NC << ", causing "
 			<< RED << _attackDamage << NC << " points of damage!" << std::endl;
 		--_energyPoints;
 	}
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
+void	ClapTrap::takeDamageAction(unsigned int amount)
 {
 	if (_hitPoints > 0)
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< " has been attacked and loses "
 			<< RED << amount << NC
 			<< " hit points!";
@@ -81,16 +101,15 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		std::cout << std::endl;
 	}
 	else
-		std::cout << "Wouah! Calm down! "
-			<< YELLOW << _name << NC 
-			<< RED << " is already dead" << NC << std::endl;
+		std::cout << YELLOW << _name << NC 
+			<< RED << " is already dead" << NC << "! Calm down" << std::endl;
 	if (_hitPoints <= amount)
 		_hitPoints = 0;
 	else
 		_hitPoints -= amount;
 }
 
-void	ClapTrap::beRepaired(unsigned int amount)
+void	ClapTrap::beRepairedAction(unsigned int amount)
 {
 	if (_hitPoints == 0)
 		std::cout << YELLOW << _name << NC << " is "
@@ -100,7 +119,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			<< RED << "no more energy " << NC << "to repair" << std::endl;
 	else
 	{
-		std::cout << "ClapTrap " << YELLOW << _name << NC
+		std::cout << YELLOW << _name << NC
 			<< BLUE " repairs " << NC << "and gains "
 			<< GREEN << amount << NC
 			<< " hit points!" << std::endl;

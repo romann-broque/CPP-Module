@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:13:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 10:57:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:20:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,35 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &scavtrap)
 {
 	*this = scavtrap;
 	return (*this);
+}
+
+// Member functions
+
+void	ScavTrap::attack(const std::string& target)
+{
+	std::cout << "ScavTrap ";
+	attackAction(target);
+}
+
+void	ScavTrap::takeDamage(unsigned int amount)
+{
+	std::cout << "ScavTrap ";
+	takeDamageAction(amount);
+}
+
+void	ScavTrap::beRepaired(unsigned int amount)
+{
+	std::cout << "ScavTrap ";
+	beRepairedAction(amount);
+}
+
+void	ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap "
+		<< YELLOW << _name << NC
+		<< " is now in"
+		<< CYAN << " Gate Keeper" << NC
+		<< " mode" << std::endl;
 }
 
 // Destructor
