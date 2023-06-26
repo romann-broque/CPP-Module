@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 15:57:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 17:35:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/26 14:56:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ int	main()
 	dog.makeSound();
 	wrongCreature.makeSound();
 	wrongCat.makeSound();
+
+	return (EXIT_SUCCESS);
 }
