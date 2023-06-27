@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:02:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 14:18:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:25:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ICE_HPP
 
 # include "AMateria.hpp"
+# include "ICharacter.hpp"
 
 class Ice: public AMateria
 {
@@ -29,7 +30,7 @@ class Ice: public AMateria
 			std::string const &getType() const;
 		// Member functions
 			Ice* clone() const;
-			// virtual void use(ICharacter &target);
+			void use(ICharacter &target);
 		// Destructor
 			~Ice();
 };

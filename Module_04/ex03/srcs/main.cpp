@@ -6,25 +6,20 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:23:52 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 14:31:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 17:27:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "Character.hpp"
 
 int	main()
 {
-	Ice icecube;
-	Ice *iceball = icecube.clone();
-	Cure drugs;
-	Cure *lsd = drugs.clone();
+	Character	joe("Joe");
+	AMateria	*snowspell = new Ice;
 
-	std::cout << icecube.getType() << std::endl;
-	std::cout << iceball->getType() << std::endl;
-	std::cout << drugs.getType() << std::endl;
-	std::cout << lsd->getType() << std::endl;
-	delete lsd;
-	delete iceball;
+	joe.equip(snowspell);
+	// joe.equip(snowspell);
 	return (EXIT_SUCCESS);
 }

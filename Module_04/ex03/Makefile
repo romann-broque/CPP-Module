@@ -16,6 +16,7 @@ SRCS		+= main.cpp
 SRCS		+= AMateria.cpp
 SRCS		+= Ice.cpp
 SRCS		+= Cure.cpp
+SRCS		+= Character.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -36,6 +37,7 @@ HEADERS		+= AMateria.hpp
 HEADERS		+= Ice.hpp
 HEADERS		+= Cure.hpp
 HEADERS		+= ICharacter.hpp
+HEADERS		+= Character.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 

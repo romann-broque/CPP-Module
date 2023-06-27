@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:29:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 14:30:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:24:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ Cure* Cure::clone() const
 	Cure	*newCure = new Cure(*this);
 
 	return (newCure);
+}
+
+void	Cure::use(ICharacter &target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *";
 }
 
 // Destructor

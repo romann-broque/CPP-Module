@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:04:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 14:20:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:25:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ Ice* Ice::clone() const
 	Ice	*newIce = new Ice(*this);
 
 	return (newIce);
+}
+
+void	Ice::use(ICharacter &target)
+{
+	std::cout << "* shoots an ice bolt at "
+		<< target.getName() << "*" << std::endl;
 }
 
 // Destructor

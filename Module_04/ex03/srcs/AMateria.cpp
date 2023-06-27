@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:10:45 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/26 17:25:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:59:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ std::string const &AMateria::getType() const
 }
 
 // Member functions
+
+void	AMateria::use(ICharacter &target)
+{
+	(void)target;
+}
 
 // Destructor
 

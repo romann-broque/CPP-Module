@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 14:28:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 16:25:42 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/27 15:54:21 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/27 17:15:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
-# include "AMateria.hpp"
 # include "ICharacter.hpp"
+# include "AMateria.hpp"
 
-class Cure: public AMateria
+# define INVENTORY_SIZE	4
+
+class Character: public ICharacter
 {
+	private:
+
+		// Attributes
+			std::string _name;
+			AMateria	*_inventory[INVENTORY_SIZE];
+
 	public:
 
 		// Constructors
-			Cure();
-			Cure(const Cure &ice);
-			Cure(std::string const &type);
+			Character();
+			Character(const std::string &name);
+			Character(const Character &character);
 		// Overload assignment operator
-			Cure& operator=(const Cure &ice);
+			Character& operator=(const Character &character);
 		// Getter
-			std::string const &getType() const;
+			std::string const & getName() const;
 		// Member functions
-			Cure* clone() const;
-			void use(ICharacter &target);
+			void equip(AMateria* m);
+			void unequip(int idx);
+			void use(int idx, ICharacter& target);
 		// Destructor
-			~Cure();
+			~Character();
 };
 
 #endif

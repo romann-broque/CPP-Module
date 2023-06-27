@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:04:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/26 17:23:29 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:26:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <cstdlib>
 # include <string>
 # include <iostream>
+# include "ICharacter.hpp"
 
 # define GREY		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -47,7 +48,7 @@ class	AMateria
 			std::string const &getType() const;
 		// Member functions
 			virtual AMateria* clone() const = 0;
-			// virtual void use(ICharacter &target);
+			virtual void use(ICharacter &target);
 		// Destructor
 			virtual ~AMateria();
 };
