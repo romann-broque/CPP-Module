@@ -35,6 +35,7 @@ PATH_INC	+= includes/
 HEADERS		+= AMateria.hpp
 HEADERS		+= Ice.hpp
 HEADERS		+= Cure.hpp
+HEADERS		+= ICharacter.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
