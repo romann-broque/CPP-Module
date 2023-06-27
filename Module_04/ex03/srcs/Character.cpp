@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:00:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 17:34:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/27 17:44:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,13 @@ Character& Character::operator=(const Character &character)
 {
 	_name = character._name;
 	for (size_t i(0); i < INVENTORY_SIZE; ++i)
-		_inventory[i] = character._inventory[i]->clone();
+	{
+		delete _inventory[i];
+		if (character._inventory[i])
+			_inventory[i] = character._inventory[i]->clone();
+		else
+			_inventory[i] = NULL;
+	}
 	return (*this);
 }
 
