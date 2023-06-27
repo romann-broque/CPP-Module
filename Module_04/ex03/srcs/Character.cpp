@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:00:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 17:44:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 00:27:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < INVENTORY_SIZE)
 		_inventory[idx] = NULL;
-	// NEED: to manage dropped items
 }
 
 
