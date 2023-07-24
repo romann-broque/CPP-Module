@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 09:46:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 12:06:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+# include <stdexcept>
 
 # define GREY		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -45,9 +46,21 @@ class Bureaucrat {
 		// Overload assignment operator
 			Bureaucrat& operator=(const Bureaucrat &bureaucrat);
 		// Getter
-			// std::string const & getName() const;
+			std::string const &getName() const;
+			size_t getGrade() const;
 		// Destructor
 			~Bureaucrat();
+		// Exceptions
+
+		class GradeTooHighException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 #endif
