@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 12:08:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 13:14:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Constructors
 
-Bureaucrat::Bureaucrat() {
+Bureaucrat::Bureaucrat(): name(DEFAULT_NAME), grade(DEFAULT_GRADE) {
 
 	if (PRINT_DEBUG)
 	{
@@ -32,12 +32,13 @@ Bureaucrat::Bureaucrat(const std::string &name, const size_t grade) {
 		<< GREEN << "created (set)" << NC
 		<< std::endl;
 	}
+	this->name = name;
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	this->name = name;
-	this->grade = grade;
+	else
+		this->grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &bureaucrat) {

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 12:06:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 13:14:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <string>
 # include <iostream>
 # include <stdexcept>
+
+# define DEFAULT_NAME	"Random bureaucrat"
+# define DEFAULT_GRADE	150
 
 # define GREY		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -51,12 +54,10 @@ class Bureaucrat {
 		// Destructor
 			~Bureaucrat();
 		// Exceptions
-
 		class GradeTooHighException: public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
-
 		class GradeTooLowException: public std::exception {
 			public:
 				virtual const char* what() const throw();
