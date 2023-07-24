@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 15:05:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:35:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Constructors
 
 Form::Form():
-	_name(DEFAULT_NAME),
+	_name(DEFAULT_FORM_NAME),
 	_isSigned(false),
 	_signGrade(DEFAULT_SIGN_GRADE),
 	_execGrade(DEFAULT_EXEC_GRADE) {
@@ -64,6 +64,15 @@ Form& Form::operator=(const Form &bureaucrat) {
 	assignGrade(this->_execGrade, bureaucrat._execGrade);
 	this->_isSigned = bureaucrat._isSigned;
 	return *this;
+}
+
+// Member
+
+void Form::beSigned(const Bureaucrat &bureaucrat) {
+	if (bureaucrat.getGrade() <= this->_signGrade)
+		this->_isSigned = true;
+	else
+		throw GradeTooLowException();
 }
 
 // Getter

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:25:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:34:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,19 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &bureaucrat) {
 	this->name = bureaucrat.name;
 	this->grade = bureaucrat.grade;
 	return (*this);
+}
+
+// Member
+
+void Bureaucrat::signForm(Form &form) {
+	try {
+		form.beSigned(*this);
+		std::cout << this->name << " signed " << form.getName() << std::endl;
+	}	
+	catch (std::exception & e) {
+		std::cout << this->name << " couldn't sign " << form.getName()
+		<< " because " << std::endl;
+	}
 }
 
 // Getter

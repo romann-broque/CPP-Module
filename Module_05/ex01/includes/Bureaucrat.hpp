@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:26:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:27:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <iostream>
 # include <stdexcept>
+# include "Form.hpp"
 
 # define DEFAULT_NAME	"Random"
 # define DEFAULT_GRADE	150
@@ -33,6 +34,8 @@
 #  define PRINT_DEBUG true
 # endif
 
+class Form;
+
 class Bureaucrat {
 
 	private:
@@ -48,6 +51,8 @@ class Bureaucrat {
 			Bureaucrat(const Bureaucrat &bureaucrat);
 		// Overload assignment operator
 			Bureaucrat& operator=(const Bureaucrat &bureaucrat);
+		// Member
+			void signForm(Form &form);
 		// Getter
 			std::string const &getName() const;
 			size_t getGrade() const;
