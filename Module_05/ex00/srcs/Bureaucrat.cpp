@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:14:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 13:25:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,12 @@ const char *Bureaucrat::GradeTooHighException::what() const throw (){
 
 const char *Bureaucrat::GradeTooLowException::what() const throw (){
 	return "Grade too low (must be superior or equal to 150)";
+}
+
+// Overload outstream operator
+
+std::ostream& operator<<(std::ostream& outStream, Bureaucrat &bureaucrat){
+
+	outStream << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return (outStream);
 }

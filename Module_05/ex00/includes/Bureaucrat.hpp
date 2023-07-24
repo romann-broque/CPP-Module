@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:14:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 13:26:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <iostream>
 # include <stdexcept>
 
-# define DEFAULT_NAME	"Random bureaucrat"
+# define DEFAULT_NAME	"Random"
 # define DEFAULT_GRADE	150
 
 # define GREY		"\033[0;30m"
@@ -63,5 +63,8 @@ class Bureaucrat {
 				virtual const char* what() const throw();
 		};
 };
+
+// Overload outstream operator
+std::ostream& operator<<(std::ostream& outStream, Bureaucrat &bureaucrat);
 
 #endif
