@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:48:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:07:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:21:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 // Private
 
 void ShrubberyCreationForm::startExecution() {
-	std::cout << "Action by ShrubberyCreationForm" << std::endl;
+	std::cout << "Action by ShrubberyCreationForm on " << _target << std::endl;
 }
