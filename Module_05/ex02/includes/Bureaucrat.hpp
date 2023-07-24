@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:36:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 21:25:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 #  define PRINT_DEBUG true
 # endif
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 

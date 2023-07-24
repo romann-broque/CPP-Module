@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:04:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:56:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void Bureaucrat::decreaseGrade() {
 	assignGrade(this->_grade, this->_grade + 1);
 }
 
-void Bureaucrat::signForm(Form &form) {
+void Bureaucrat::signForm(AForm &form) {
 
 	try {
 		form.beSigned(*this);

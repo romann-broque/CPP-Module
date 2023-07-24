@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:36:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 20:56:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ class AForm {
 			AForm(const std::string &name, const size_t signGrade, const size_t execGrade);
 			AForm(const AForm &AForm);
 		// Overload assignment operator
-			AForm& operator=(const AForm &AForm);
+			AForm& operator=(const AForm &aForm);
 		// Member
 			void beSigned(const Bureaucrat &bureaucrat);
 		// Getter

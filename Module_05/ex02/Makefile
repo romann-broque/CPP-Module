@@ -15,6 +15,7 @@ PATH_SRCS	+= srcs/
 SRCS		+= main.cpp
 SRCS		+= Bureaucrat.cpp
 SRCS		+= AForm.cpp
+SRCS		+= ShrubberyCreationForm.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -33,6 +34,7 @@ PATH_INC	+= includes/
 
 HEADERS		+= Bureaucrat.hpp
 HEADERS		+= AForm.hpp
+HEADERS		+= ShrubberyCreationForm.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
