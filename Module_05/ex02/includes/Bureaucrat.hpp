@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 21:25:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:13:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ class Bureaucrat {
 			void increaseGrade();
 			void decreaseGrade();
 			void signForm(AForm &form);
+			void executeForm(AForm &form);
 		// Getter
 			std::string const &getName() const;
 			size_t getGrade() const;

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:08:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:09:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ class AForm {
 			AForm& operator=(const AForm &aForm);
 		// Member
 			void beSigned(const Bureaucrat &bureaucrat);
+			void execute(const Bureaucrat &bureaucrat);
 		// Getter
 			std::string const &getName() const;
 			size_t getSignGrade() const;

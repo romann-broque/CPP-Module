@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 22:47:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:12:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ AForm& AForm::operator=(const AForm &bureaucrat) {
 void AForm::beSigned(const Bureaucrat &bureaucrat) {
 	if (bureaucrat.getGrade() <= this->_signGrade)
 		this->_isSigned = true;
+	else
+		throw GradeTooLowException();
+}
+
+void AForm::execute(const Bureaucrat &executor)
+{
+	if (_isSigned && executor.getGrade() <= _execGrade)
+		startExecution();
 	else
 		throw GradeTooLowException();
 }
