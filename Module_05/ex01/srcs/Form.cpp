@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 15:35:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 16:04:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ Form::~Form(){
 // Exceptions
 
 const char *Form::GradeTooHighException::what() const throw (){
-	return "Grade too high (must be inferior or equal to 1)";
+	return "Grade is too high";
 }
 
 const char *Form::GradeTooLowException::what() const throw (){
-	return "Grade too low (must be superior or equal to 150)";
+	return "Grade is too low";
 }
 
 // Utils
