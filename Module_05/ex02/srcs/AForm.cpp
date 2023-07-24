@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:32:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 22:47:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ AForm::AForm():
 	}
 }
 
-AForm::AForm(const std::string &name, const size_t signGrade, const size_t execGrade) {
+AForm::AForm(
+	const std::string &name,
+	const size_t signGrade,
+	const size_t execGrade) {
 
 	this->_name = name;
 	this->_isSigned = false;
@@ -59,9 +62,9 @@ AForm::AForm(const AForm &form) {
 
 AForm& AForm::operator=(const AForm &bureaucrat) {
 	
-	this->_name = bureaucrat._name;
 	assignGrade(this->_signGrade, bureaucrat._signGrade);
 	assignGrade(this->_execGrade, bureaucrat._execGrade);
+	this->_name = bureaucrat._name;
 	this->_isSigned = bureaucrat._isSigned;
 	return *this;
 }

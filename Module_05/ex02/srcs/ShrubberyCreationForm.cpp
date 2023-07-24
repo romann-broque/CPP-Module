@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:48:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 21:34:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:07:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 // Constructors
 
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm(DEFAULT_FORM_NAME, 145, 137) {
+ShrubberyCreationForm::ShrubberyCreationForm():
+	AForm(SHRUBBERY_NAME, 145, 137),
+	_target(DEFAULT_TARGET) {
 
 	if (PRINT_DEBUG)
 	{
@@ -23,7 +25,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(): AForm(DEFAULT_FORM_NAME, 145, 13
 	}
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name): AForm(name, 145, 137) {
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target):
+	AForm(SHRUBBERY_NAME, 145, 137), _target(target) {
 
 	if (PRINT_DEBUG)
 	{
@@ -34,6 +37,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &name): AForm(nam
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &shrubberyCreationForm): AForm(shrubberyCreationForm) {
 
+	*this = shrubberyCreationForm;
 	if (PRINT_DEBUG)
 	{
 		std::cout << "ShrubberyCreationForm has been " <<
@@ -41,15 +45,12 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &shrubb
 	}
 }
 
-// Overload assignement operator
+// Overload assignment operator
 
-// ShrubberyCreationForm& operator=(const ShrubberyCreationForm &shrubberyCreationForm) {
-// 	this->_name = shrubberyCreationForm._name;
-// 	this->_signGrade = shrubberyCreationForm._signGrade;
-// 	this->_execGrade = shrubberyCreationForm._execGrade;
-// 	this->_isSigned = shrubberyCreationForm._isSigned;
-// 	return *this;
-// }
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &shrubberyCreationForm) {
+	(void)shrubberyCreationForm;
+	return *this;
+}
 
 // Destructor
 
@@ -61,19 +62,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 		RED << "deleted" << NC << std::endl;
 	}
 }
-
-// Overload outstream operator
-
-// std::ostream& operator<<(std::ostream& outStream, ShrubberyCreationForm &shrubberyCreationForm) {
-// 	outStream << form.getName();
-// 	if (form.isSigned())
-// 		outStream << " has been signed";
-// 	else
-// 		outStream << " is not signed";
-// 	outStream << " (SignGrade:" << form.getSignGrade()
-// 	<< ", ExecGrade:" << form.getExecGrade() << ") ";
-// 	return outStream;
-// }
 
 // Private
 

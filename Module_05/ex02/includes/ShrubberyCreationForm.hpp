@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:49:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 21:34:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 23:08:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 
 # include "AForm.hpp"
 
+# define SHRUBBERY_NAME	"ShrubberryCreationForm"
+# define DEFAULT_TARGET	"Default_Target"
+
 class ShrubberyCreationForm: public virtual AForm {
 
 	private:
 
+		std::string _target;
 		void startExecution();
+		ShrubberyCreationForm();
 
 	public:
 
 		// Constructors
-			ShrubberyCreationForm();
-			ShrubberyCreationForm(const std::string &name);
+			ShrubberyCreationForm(const std::string &target);
 			ShrubberyCreationForm(const ShrubberyCreationForm &AForm);
 		// Overload assignment operator
-			// ShrubberyCreationForm& operator=(const ShrubberyCreationForm &shrubberyCreationForm);
+			ShrubberyCreationForm& operator=(const ShrubberyCreationForm &shrubberyCreationForm);
 		// Destructor
 			~ShrubberyCreationForm();
 };
-
-// std::ostream& operator<<(std::ostream& outStream, ShrubberyCreationForm &shrubberyCreationForm);
 
 #endif
