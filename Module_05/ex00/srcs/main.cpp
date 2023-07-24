@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:41:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:31:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:51:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ int	main()
 	std::cout << b5 << std::endl;
 	std::cout << b6 << std::endl;
 	std::cout << b7 << std::endl;
+
+	try {
+		b7.increaseGrade();
+		std::cout << b7 << std::endl;
+	}
+	catch (std::exception & ex) {
+		std::cout << ex.what() << std::endl;
+	}
+	try {
+		b7.decreaseGrade();
+		std::cout << b7 << std::endl;
+	}
+	catch (std::exception & ex) {
+		std::cout << ex.what() << std::endl;
+	}
 }

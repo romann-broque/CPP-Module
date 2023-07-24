@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 13:26:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:52:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ class Bureaucrat {
 
 	private:
 
-		std::string name;
-		size_t		grade;
+		std::string _name;
+		size_t		_grade;
+		
+	// Utils
+		void assignGrade(size_t &dest, const size_t src);
 
 	public:
 
@@ -48,6 +51,9 @@ class Bureaucrat {
 			Bureaucrat(const Bureaucrat &bureaucrat);
 		// Overload assignment operator
 			Bureaucrat& operator=(const Bureaucrat &bureaucrat);
+		// Member
+			void increaseGrade();
+			void decreaseGrade();
 		// Getter
 			std::string const &getName() const;
 			size_t getGrade() const;
