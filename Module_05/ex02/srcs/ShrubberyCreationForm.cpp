@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:48:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 08:18:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 08:30:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 // Constructors
 
 ShrubberyCreationForm::ShrubberyCreationForm():
-	AForm(SHRUBBERY_NAME, 145, 137),
-	_target(DEFAULT_TARGET) {
+	AForm(SHRUBBERY_NAME, SHRUBBERY_SIGN_GRADE, SHRUBBERY_EXEC_GRADE),
+	_target(DEFAULT_SHRUBBERY_TARGET) {
 
 	if (PRINT_DEBUG)
 	{
@@ -26,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm():
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target):
-	AForm(SHRUBBERY_NAME, 145, 137), _target(target) {
+	AForm(SHRUBBERY_NAME, SHRUBBERY_SIGN_GRADE, SHRUBBERY_EXEC_GRADE), _target(target) {
 
 	if (PRINT_DEBUG)
 	{
