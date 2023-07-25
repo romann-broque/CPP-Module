@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:41:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:24:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 13:52:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main()
 	// std::cout << b1 << std::endl;	
 	// b1.executeForm(f1);
 
-
 	// ROBOTOMY
 
 	// Bureaucrat jack("Jack", 36);
@@ -53,6 +52,16 @@ int	main()
 	// PresidentialPardonForm pardon1("Marvin");
 
 	// b1.signForm(pardon1);
+	// b2.signForm(pardon1);
+	// b2.signForm(pardon1);
+	// b2.executeForm(pardon1);
+
+	// Some random tests
+
+	// PresidentialPardonForm pardon1("Marvin");
+
+	// b1.signForm(pardon1);
+	// b2.executeForm(pardon1);
 	// b2.signForm(pardon1);
 	// b2.signForm(pardon1);
 	// b2.executeForm(pardon1);
