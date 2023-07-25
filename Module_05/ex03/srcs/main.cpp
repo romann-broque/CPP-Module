@@ -6,54 +6,54 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:41:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:24:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 13:49:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
-	Bureaucrat b1("Stanley", 138);
-	Bureaucrat b2("CEO", 1);
+	Bureaucrat	b1("Stanley", 138);
+	Bureaucrat	b2("CEO", 1);
 
-	// SHRUBBERY
+	/// SHRUBBERY ///
 
-	// ShrubberyCreationForm f1("target3");
-	// ShrubberyCreationForm f2(f1);
+	// Intern		slave;
+	// AForm		*formPtr;
+	
+	// formPtr = slave.makeForm("shrubbery creation", "garden");
+	// b2.executeForm(*formPtr);
+	// b1.signForm(*formPtr);
+	// b2.executeForm(*formPtr);
+	// b2.executeForm(*formPtr);
+	// delete formPtr;
+	
+	/// ROBOTOMY ///
+	
+	// Intern		slave;
+	// AForm		*formPtr;
+	
+	// formPtr = slave.makeForm("robotomy request", "Clank");
+	// b2.executeForm(*formPtr);
+	// b1.signForm(*formPtr);
+	// b2.signForm(*formPtr);
+	// b2.executeForm(*formPtr);
+	// b2.executeForm(*formPtr);
+	// std::cout << *formPtr << std::endl;
+	// std::cout << b2 << std::endl;
+	// delete formPtr;
+	
+	/// UNKNOWN FORM ///
 
-	// std::cout << f1 << std::endl;
-	// std::cout << f2 << std::endl;
-	// f1 = f2;
-	// std::cout << f1 << std::endl;
-
-	// b1.signForm(f1);
-	// b1.executeForm(f1);
-	// std::cout << b1 << std::endl;	
-	// b1.increaseGrade();
-	// std::cout << b1 << std::endl;	
-	// b1.executeForm(f1);
-
-
-	// ROBOTOMY
-
-	// Bureaucrat jack("Jack", 36);
-	// RobotomyRequestForm bot1("Clap trap");
-
-	// b1.signForm(bot1);
-	// std::cout << b1 << std::endl;
-	// b2.signForm(bot1);
-	// jack.executeForm(bot1);
-
-	// PRESIDENT
-
-	// PresidentialPardonForm pardon1("Marvin");
-
-	// b1.signForm(pardon1);
-	// b2.signForm(pardon1);
-	// b2.signForm(pardon1);
-	// b2.executeForm(pardon1);
+	// Intern		slave;
+	// AForm		*formPtr;
+	
+	// formPtr = slave.makeForm("weird stuff form", "what?");
+	// delete formPtr;
 }

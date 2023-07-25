@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:33:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 10:00:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 13:22:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,31 @@ Intern &Intern::operator=(Intern const &intern) {
 	return (*this);
 }
 
+struct FormKind {
+	std::string name;
+	AForm *(Intern::*makeForm)(const std::string &target);
+};
+
 // Member
 
-AForm *Intern::makeForm(const std::string const &name, const std::string const &target) {
+AForm *Intern::makeForm(const std::string &name, const std::string &target) {
 
-	AForm *form;
+	FormKind formKind[FORM_KIND_COUNT] = {
+		{ "robotomy request", &Intern::makeRobotomyRequestForm },
+		{ "presidential pardon", &Intern::makePresidentialPardonForm },
+		{ "shrubbery creation", &Intern::makeShrubberyCreationForm }
+	};
 
-	if (name == "robotomy request")
-	{
-		form = new RobotomyRequestForm(target);
+	for (int i = 0; i < FORM_KIND_COUNT; i++) {
+		if (name == formKind[i].name) {
+			std::cout << "Intern creates " << formKind[i].name << std::endl;
+			return (this->*(formKind[i].makeForm))(target);
+		}
 	}
-	else if (name == "presidential pardon")
-	{
-		form = new PresidentialPardonForm(target);
-	}
-	else if (name == "shrubbery creation")
-	{
-		form = new ShrubberyCreationForm(target);
-	}
-	else
-	{
-		std::cout << "Intern can't create form with name: "
-		RED << name << NC << std::endl;
-		return (NULL);
-	}
-	std::cout << "Intern creates " << form->getName() << std::endl;
-	return (form);	
+
+	std::cout << "Intern can't create form with name: "
+		<< RED << name << NC << std::endl;
+	return NULL;
 }
 
 // Destructor
@@ -80,19 +79,19 @@ Intern::~Intern() {
 	}
 }
 
-// Private methods
+// Private
 
-AForm *Intern::makeRobotomyRequestForm(const std::string const &target) {
+AForm *Intern::makeRobotomyRequestForm(const std::string &target) {
 
-	return (new RobotomyRequestForm(target));
+	return new RobotomyRequestForm(target);
 }
 
-AForm *Intern::makePresidentialPardonForm(const std::string const &target) {
+AForm *Intern::makePresidentialPardonForm(const std::string &target) {
 
-	return (new PresidentialPardonForm(target));
+	return new PresidentialPardonForm(target);
 }
 
-AForm *Intern::makeShrubberyCreationForm(const std::string const &target) {
+AForm *Intern::makeShrubberyCreationForm(const std::string &target) {
 
-	return (new ShrubberyCreationForm(target));
+	return new ShrubberyCreationForm(target);
 }

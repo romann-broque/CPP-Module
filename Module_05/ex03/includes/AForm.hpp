@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:23:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 13:46:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,17 @@ class AForm {
 			size_t getExecGrade() const;
 			bool isSigned() const;
 		// Destructor
-			~AForm();
+			virtual ~AForm();
 		// Exceptions
 		class GradeTooHighException: public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};
 		class GradeTooLowException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		class NotSignedException: public std::exception {
 			public:
 				virtual const char* what() const throw();
 		};

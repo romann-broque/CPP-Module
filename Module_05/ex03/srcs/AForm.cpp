@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:22:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 13:47:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,12 @@ void AForm::beSigned(const Bureaucrat &bureaucrat) {
 
 void AForm::execute(const Bureaucrat &executor) const
 {
-	if (_isSigned && executor.getGrade() <= _execGrade)
-		startExecution();
-	else
+	if (_isSigned == false)
+		throw NotSignedException();
+	else if (executor.getGrade() > _execGrade)
 		throw GradeTooLowException();
+	else
+		startExecution();
 }
 
 // Getter
@@ -124,6 +126,10 @@ const char *AForm::GradeTooHighException::what() const throw (){
 
 const char *AForm::GradeTooLowException::what() const throw (){
 	return "Grade is too low";
+}
+
+const char *AForm::NotSignedException::what() const throw (){
+	return "Form is not signed";
 }
 
 // Utils
