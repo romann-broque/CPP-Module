@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 08:21:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:06:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 // Private
 
-void RobotomyRequestForm::startExecution() {
+void RobotomyRequestForm::startExecution() const {
 	
 	std::cout << "Drrrrrrr...... Bzzzzzzz..... Krrrrrr!" << std::endl;
 	std::srand(static_cast<unsigned>(std::time(0)));

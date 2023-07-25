@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:12:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:16:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 // Private
 
-void PresidentialPardonForm::startExecution() {
+void PresidentialPardonForm::startExecution() const {
 	
 	std::cout << _target << " has been forgiven by Zaphod Beeblebrox" << std::endl;
 }

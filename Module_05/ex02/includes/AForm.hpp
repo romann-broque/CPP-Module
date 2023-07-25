@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 13:37:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:09:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class AForm {
 			size_t		_execGrade;
 		// Utils
 			void assignGrade(size_t &dest, const size_t src);
-			virtual void startExecution() = 0;
+			virtual void startExecution() const = 0;
 
 	public:
 
@@ -60,7 +60,7 @@ class AForm {
 			AForm& operator=(const AForm &aForm);
 		// Member
 			void beSigned(const Bureaucrat &bureaucrat);
-			void execute(const Bureaucrat &bureaucrat);
+			void execute(const Bureaucrat &bureaucrat) const;
 		// Getter
 			std::string const &getName() const;
 			size_t getSignGrade() const;

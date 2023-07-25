@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:49:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 08:29:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ShrubberyCreationForm: public virtual AForm {
 	private:
 
 		std::string _target;
-		void startExecution();
+		void startExecution() const;
 		ShrubberyCreationForm();
 
 	public:

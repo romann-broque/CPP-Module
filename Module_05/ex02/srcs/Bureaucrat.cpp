@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:14:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:21:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void Bureaucrat::signForm(AForm &form) {
 	}
 }
 
-void Bureaucrat::executeForm(AForm &form) {
+void Bureaucrat::executeForm(AForm const &form) {
 
 	try {
 		form.execute(*this);

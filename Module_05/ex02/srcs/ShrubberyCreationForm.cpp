@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:48:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 08:30:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:24:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 // Private
 
-void ShrubberyCreationForm::startExecution() {
+void ShrubberyCreationForm::startExecution() const {
 	
 	// Create new file
 	std::string fileName = _target + "_shrubbery";

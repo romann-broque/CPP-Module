@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:09:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:12:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:23:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class PresidentialPardonForm: public virtual AForm {
 	private:
 
 		std::string _target;
-		void startExecution();
+		void startExecution() const;
 		PresidentialPardonForm();
 
 	public:

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:12:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:22:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void AForm::beSigned(const Bureaucrat &bureaucrat) {
 		throw GradeTooLowException();
 }
 
-void AForm::execute(const Bureaucrat &executor)
+void AForm::execute(const Bureaucrat &executor) const
 {
 	if (_isSigned && executor.getGrade() <= _execGrade)
 		startExecution();
