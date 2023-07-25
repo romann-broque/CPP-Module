@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 09:13:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:04:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 09:21:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,32 @@ void Bureaucrat::increaseGrade() {
 
 void Bureaucrat::decreaseGrade() {
 	assignGrade(this->_grade, this->_grade + 1);
+}
+
+void Bureaucrat::signForm(AForm &form) {
+
+	try {
+		form.beSigned(*this);
+		std::cout << this->_name << " signed "
+		<< form.getName() << std::endl;
+	}
+	catch (std::exception &ex) {
+		std::cout << this->_name << " couldn't sign "
+		<< form.getName() << " because " << ex.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form) {
+
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed "
+		<< form.getName() << std::endl;
+	}
+	catch (std::exception &ex) {
+		std::cout << this->_name << " couldn't execute "
+		<< form.getName() << " because " << ex.what() << std::endl;
+	}
 }
 
 // Getter

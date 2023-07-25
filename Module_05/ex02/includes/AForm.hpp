@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 09:13:23 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 16:04:29 by rbroque          ###   ########.fr       */
+/*   Created: 2023/07/24 13:37:48 by rbroque           #+#    #+#             */
+/*   Updated: 2023/07/25 13:50:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <string>
 # include <iostream>
 # include <stdexcept>
+# include "Bureaucrat.hpp"
 
-# define DEFAULT_NAME	"Random"
-# define DEFAULT_GRADE	150
+# define DEFAULT_FORM_NAME	"Random"
+# define DEFAULT_SIGN_GRADE	150
+# define DEFAULT_EXEC_GRADE	150
 
 # define GREY		"\033[0;30m"
 # define RED		"\033[0;31m"
@@ -33,32 +35,39 @@
 #  define PRINT_DEBUG true
 # endif
 
-class Bureaucrat {
+class Bureaucrat;
+
+class AForm {
 
 	private:
 
-		std::string _name;
-		size_t		_grade;
-		
-	// Utils
-		void assignGrade(size_t &dest, const size_t src);
+		//Attributes
+			std::string _name;
+			size_t		_isSigned;
+			size_t		_signGrade;
+			size_t		_execGrade;
+		// Utils
+			void assignGrade(size_t &dest, const size_t src);
+			virtual void startExecution() const = 0;
 
 	public:
 
 		// Constructors
-			Bureaucrat();
-			Bureaucrat(const std::string &name, const size_t grade);
-			Bureaucrat(const Bureaucrat &bureaucrat);
+			AForm();
+			AForm(const std::string &name, const size_t signGrade, const size_t execGrade);
+			AForm(const AForm &AForm);
 		// Overload assignment operator
-			Bureaucrat& operator=(const Bureaucrat &bureaucrat);
+			AForm& operator=(const AForm &aForm);
 		// Member
-			void increaseGrade();
-			void decreaseGrade();
+			void beSigned(const Bureaucrat &bureaucrat);
+			void execute(const Bureaucrat &bureaucrat) const;
 		// Getter
 			std::string const &getName() const;
-			size_t getGrade() const;
+			size_t getSignGrade() const;
+			size_t getExecGrade() const;
+			bool isSigned() const;
 		// Destructor
-			~Bureaucrat();
+			~AForm();
 		// Exceptions
 		class GradeTooHighException: public std::exception {
 			public:
@@ -68,9 +77,13 @@ class Bureaucrat {
 			public:
 				virtual const char* what() const throw();
 		};
+		class NotSignedException: public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
 };
 
 // Overload outstream operator
-std::ostream& operator<<(std::ostream& outStream, Bureaucrat &bureaucrat);
+std::ostream& operator<<(std::ostream& outStream, AForm &AForm);
 
 #endif
