@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:49:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/24 23:08:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 07:51:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
+# include <fstream>
 
 # define SHRUBBERY_NAME	"ShrubberryCreationForm"
 # define DEFAULT_TARGET	"Default_Target"
