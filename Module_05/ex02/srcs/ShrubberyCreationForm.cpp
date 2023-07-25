@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:48:42 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 08:15:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 08:18:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,27 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 void ShrubberyCreationForm::startExecution() {
 	
+	// Create new file
 	std::string fileName = _target + "_shrubbery";
-	std::ofstream newFile(fileName.c_str());
+	std::ofstream newFile(fileName.c_str(), std::ios_base::app);
 
-	// Write to the file
-	newFile << "   ccee88oo" << std::endl
-			<< " C8O8O8Q8PoOb o8oo" << std::endl
-			<< " dOB69QO8PdUOpugoO9bD" << std::endl
-			<< "CgggbU8OU qOp qOdoUOdcb" << std::endl
-			<< "    6OuU  /p u gcoUodpP" << std::endl
-			<< "      \\\\//  /douUP" << std::endl
-			<< "        \\\\////" << std::endl
-			<< "         |||/\\" << std::endl
-			<< "         |||\\/" << std::endl
-			<< "         |||||" << std::endl
-			<< "   .....//||||\\...." << std::endl
-
-	// Close the file
-	newFile.close();
+	if (newFile.is_open()) {
+		// Write to the file
+		newFile << "   ccee88oo" << std::endl
+				<< " C8O8O8Q8PoOb o8oo" << std::endl
+				<< " dOB69QO8PdUOpugoO9bD" << std::endl
+				<< "CgggbU8OU qOp qOdoUOdcb" << std::endl
+				<< "    6OuU  /p u gcoUodpP" << std::endl
+				<< "      \\\\//  /douUP" << std::endl
+				<< "        \\\\////" << std::endl
+				<< "         |||/\\" << std::endl
+				<< "         |||\\/" << std::endl
+				<< "         |||||" << std::endl
+				<< "   .....//||||\\...." << std::endl;
+		// Close the file
+		newFile.close();
+	} else {
+		// Handle the case when the file couldn't be opened.
+		std::cerr << "Error opening the file: " << fileName << std::endl;
+	}
 }
