@@ -17,6 +17,7 @@ SRCS		+= Bureaucrat.cpp
 SRCS		+= AForm.cpp
 SRCS		+= ShrubberyCreationForm.cpp
 SRCS		+= RobotomyRequestForm.cpp
+SRCS		+= PresidentialPardonForm.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -37,6 +38,7 @@ HEADERS		+= Bureaucrat.hpp
 HEADERS		+= AForm.hpp
 HEADERS		+= ShrubberyCreationForm.hpp
 HEADERS		+= RobotomyRequestForm.hpp
+HEADERS		+= PresidentialPardonForm.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
