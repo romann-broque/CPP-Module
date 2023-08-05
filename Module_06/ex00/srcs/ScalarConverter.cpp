@@ -5,52 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 13:27:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/04 14:00:14 by rbroque          ###   ########.fr       */
+/*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
+/*   Updated: 2023/08/05 09:20:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-		
-// Constructors
-			
-ScalarConverter::ScalarConverter(): _char(0), _int(0), _float(0), _double(0) {
+#include <iostream>
 
-	if (PRINT_DEBUG)
+template char ScalarConverter::convert(const std::string&);
+template int ScalarConverter::convert(const std::string&);
+template float ScalarConverter::convert(const std::string&);
+template double ScalarConverter::convert(const std::string&);
+
+static bool	isChar(const std::string &str) {
+	return (str.length() == 1 && isdigit(str[0]) == false);
+}
+
+static bool	isInt(const std::string &str) {
+
+	if (str.length() == 0)
+		return (false);
+	for (size_t i = 0; i < str.length(); ++i)	
 	{
-		std::cout << "ScalarConverter has been " <<
-		GREEN << "created (default)" << NC << std::endl;
+		if (!isdigit(str[i]))
+			return (false);
 	}
+	return (true);
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter &scalarConverter) {
+template<typename T>T ScalarConverter::convert(const std::string &str)
+{
+	T result;
 
-	*this = scalarConverter;
-	if (PRINT_DEBUG)
+	if (isChar(str))
 	{
-		std::cout << "ScalarConverter has been " <<
-		GREEN << "created (copy)" << NC << std::endl;
+		try {
+			result = str[0];
+			return (result);
+		}
+		catch(const std::exception& e) { return (-1); }
 	}
-}
-
-// Overload assignement operator
-
-ScalarConverter &ScalarConverter::operator=(ScalarConverter &scalarConverter) {
-	
-	this->_char = scalarConverter._char;
-	this->_int = scalarConverter._int;
-	this->_float = scalarConverter._float;
-	this->_double = scalarConverter._double;
-	return *this;
-}
-
-// Destructor
-
-ScalarConverter::~ScalarConverter() {
-
-	if (PRINT_DEBUG)
+	if (isInt(str))
 	{
-		std::cout << "ScalarConverter has been " <<
-		RED << "deleted" << NC << std::endl;
+		try { result = atoi(str.c_str()); }
+		catch(const std::exception& e) { return (-1); }
+		return (result);
 	}
+	// if (std::is_same<T, float>::value)
+	// {
+	// 	float r;
+	// 	try { r = std::stof(str); }
+	// 	catch(const std::exception& e) { return (-1); }
+	// 	return (r);
+	// }
+	// if (std::is_same<T, double>::value)
+	// {
+	// 	double r;
+	// 	try { r = std::stod(str); }
+	// 	catch(const std::exception& e) { return (-1); }
+	// 	return (r);
+	// }
+	result = -1;
+	return result;
 }
+

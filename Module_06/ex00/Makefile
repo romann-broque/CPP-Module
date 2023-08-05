@@ -40,18 +40,18 @@ vpath %.hpp $(PATH_INC)
 #### COMPILATION ####
 #####################
 
-CC			=	g++
+CC			=	c++
 
+CFLAGS		+=	-std=c++98
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
-CFLAGS		+=	-std=c++98
 
 ifneq ($(no_error), true)
 	CFLAGS		+=	-Werror
 endif
 
 ifeq ($(debug), true)
-	CFLAGS	+= -fsanitize=undefined,thread
+	CFLAGS	+= -fsanitize=undefined
 endif
 
 ifeq ($(print_debug), false)
