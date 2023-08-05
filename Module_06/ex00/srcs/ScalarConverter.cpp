@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/05 09:20:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/05 09:27:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ static bool	isChar(const std::string &str) {
 	return (str.length() == 1 && isdigit(str[0]) == false);
 }
 
+static bool	isSigned(const char c)
+{
+	return (c == '+' || c == '-');
+}
+
 static bool	isInt(const std::string &str) {
 
 	if (str.length() == 0)
 		return (false);
-	for (size_t i = 0; i < str.length(); ++i)	
+	for (size_t i = isSigned(str[0]); i < str.length(); ++i)	
 	{
 		if (!isdigit(str[i]))
 			return (false);
