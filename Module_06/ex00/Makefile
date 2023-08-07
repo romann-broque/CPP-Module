@@ -62,7 +62,7 @@ endif
 #### NAME ####
 ##############
 
-NAME		+= Scalar
+NAME		+= convert
 
 #################
 #### DISPLAY ####

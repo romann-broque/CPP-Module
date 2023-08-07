@@ -6,18 +6,20 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/07 08:15:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 08:31:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <cstdlib>
+#include <cmath>
 #include <iostream>
 #include <string>
 #include <stdexcept>
 #include <sstream>
 #include <typeinfo>
+#include <iomanip>
 
 #define EXPECTED_ARG_COUNT	2
 

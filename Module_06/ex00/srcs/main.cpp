@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/06 12:01:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 08:47:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 // PRINT_THIS
 
 void	printthis(const char c) {
-	if (c > 127)
-		std::cout << " Impossible";
-	else if (c < 32 || c > 126)
+	
+	if (c < 32 || c > 126)
 		std::cout << " Non displayable";
 	else
 		std::cout << "'" << c << "'";
@@ -29,13 +28,16 @@ void	printthis(const int nb) {
 }
 
 void	printthis(const float nb) {
-	std::cout << nb << std::endl;
+
+	std::cout << nb;
+	(nb - floor(nb)) > 0.0f ? std::cout << "f" : std::cout << ".0f";
+	std::cout << std::endl;
 }
 
 // PRINT_TYPE
 
 void	printChar(const std::string &str) {
-	std::cout << "Char: ";
+	std::cout << "char: ";
 	try {
 		printthis(ScalarConverter::convert<char>(str));
 	}
@@ -45,7 +47,7 @@ void	printChar(const std::string &str) {
 }
 
 void	printInt(const std::string &str) {
-	std::cout << "Int: ";
+	std::cout << "int: ";
 	try {
 		printthis(ScalarConverter::convert<int>(str));
 	}
@@ -55,7 +57,7 @@ void	printInt(const std::string &str) {
 }
 
 void	printFloat(const std::string &str) {
-	std::cout << "Float: ";
+	std::cout << "float: ";
 	try {
 		printthis(ScalarConverter::convert<float>(str));
 	}
