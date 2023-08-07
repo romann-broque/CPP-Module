@@ -6,54 +6,106 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/05 09:27:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/06 12:57:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <iostream>
+#include <typeinfo>
 
 template char ScalarConverter::convert(const std::string&);
 template int ScalarConverter::convert(const std::string&);
 template float ScalarConverter::convert(const std::string&);
 template double ScalarConverter::convert(const std::string&);
 
-static bool	isChar(const std::string &str) {
+//		PRIVATE		//
+
+// Check types
+
+bool	ScalarConverter::isChar(const std::string &str) {
 	return (str.length() == 1 && isdigit(str[0]) == false);
 }
 
-static bool	isSigned(const char c)
+bool	ScalarConverter::isSigned(const char c)
 {
 	return (c == '+' || c == '-');
 }
 
-static bool	isInt(const std::string &str) {
+bool	ScalarConverter::isInt(const std::string &str) {
 
 	if (str.length() == 0)
-		return (false);
+		return false;
 	for (size_t i = isSigned(str[0]); i < str.length(); ++i)	
 	{
 		if (!isdigit(str[i]))
-			return (false);
+			return false;
 	}
-	return (true);
+	return true;
 }
 
-template<typename T>T ScalarConverter::convert(const std::string &str)
+bool	ScalarConverter::isFloat(const std::string &str) {
+
+	size_t	i;
+
+	i = 0;
+	while (str[i] && isdigit(str[i])){++i;}
+	if (str[i] != '.')
+		return false;
+	++i;
+	while (str[i])
+	{
+		if (!isdigit(str[i]))
+			return false;
+		++i;
+	}
+	return true;
+}
+
+template<typename T>T ScalarConverter::FromString(const std::string& str)
+{
+	std::istringstream ss(str);
+	T ret;
+	ss >> ret;
+	return ret;
+}
+
+template<typename T, typename U>
+U getConversion(const std::string &str) {
+
+	U	result;
+
+	result = FromString<U>(str);
+	if (typeid(T) == typeid(char))
+	{
+		if (result < 0 || result > 127)
+			throw ScalarConverter::ImpossibleConversionException();
+	}	
+	return (result);
+}
+
+//		PUBLIC		//
+
+// Convert
+
+template<typename T>
+T ScalarConverter::convert(const std::string &str)
 {
 	T result;
 
 	if (isChar(str))
 	{
-		try {
-			result = str[0];
-			return (result);
-		}
+		try {result = getConversion<T, char>(str);}
 		catch(const std::exception& e) { return (-1); }
 	}
 	if (isInt(str))
 	{
-		try { result = atoi(str.c_str()); }
+		try {result = getConversion<T, int>(str);}
+		catch(const std::exception& e) { return (-1); }
+		return (result);
+	}
+	if (isFloat(str))
+	{
+		try {result = getConversion<T, float>(str);}
 		catch(const std::exception& e) { return (-1); }
 		return (result);
 	}
@@ -71,7 +123,13 @@ template<typename T>T ScalarConverter::convert(const std::string &str)
 	// 	catch(const std::exception& e) { return (-1); }
 	// 	return (r);
 	// }
+	throw ImpossibleConversionException();
 	result = -1;
 	return result;
 }
 
+// Exceptions
+
+const char *ScalarConverter::ImpossibleConversionException::what() const throw () {
+	return "Impossible";
+}
