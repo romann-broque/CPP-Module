@@ -6,12 +6,11 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/07 00:16:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 08:21:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <typeinfo>
 
 template char ScalarConverter::convert(const std::string&);
 template int ScalarConverter::convert(const std::string&);
@@ -65,7 +64,11 @@ template<typename T>T ScalarConverter::FromString(const std::string& str)
 {
 	std::istringstream ss(str);
 	T ret;
+	
 	ss >> ret;
+	if (ss.fail()) {
+		throw ImpossibleConversionException();
+	}
 	return ret;
 }
 
@@ -95,27 +98,21 @@ T ScalarConverter::convert(const std::string &str)
 	if (isChar(str))
 	{
 		try {result = getConversion<T, char>(str);}
-		catch(const std::exception& e) { return (-1); }
+		catch(const std::exception& e) { throw ImpossibleConversionException(); }
+		return (result);
 	}
 	if (isInt(str))
 	{
 		try {result = getConversion<T, int>(str);}
-		catch(const std::exception& e) { return (-1); }
+		catch(const std::exception& e) { throw ImpossibleConversionException(); }
 		return (result);
 	}
 	if (isFloat(str))
 	{
 		try {result = getConversion<T, float>(str);}
-		catch(const std::exception& e) { return (-1); }
+		catch(const std::exception& e) { throw ImpossibleConversionException(); }
 		return (result);
 	}
-	// if (std::is_same<T, float>::value)
-	// {
-	// 	float r;
-	// 	try { r = std::stof(str); }
-	// 	catch(const std::exception& e) { return (-1); }
-	// 	return (r);
-	// }
 	// if (std::is_same<T, double>::value)
 	// {
 	// 	double r;

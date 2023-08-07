@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/07 00:17:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 08:15:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <stdexcept>
 #include <sstream>
+#include <typeinfo>
 
 #define EXPECTED_ARG_COUNT	2
 
