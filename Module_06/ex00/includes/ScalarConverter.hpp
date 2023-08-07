@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/06 12:56:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:17:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class ScalarConverter{
 	// Type Getter
 		template<typename T>
 		static T FromString(const std::string& str);
+		template<typename T, typename U>
+		static U getConversion(const std::string &str);
 
 	public:
 		template<typename T>

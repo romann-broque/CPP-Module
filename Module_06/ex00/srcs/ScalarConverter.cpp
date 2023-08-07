@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/06 12:57:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:16:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ template<typename T>T ScalarConverter::FromString(const std::string& str)
 }
 
 template<typename T, typename U>
-U getConversion(const std::string &str) {
+U ScalarConverter::getConversion(const std::string &str) {
 
 	U	result;
 
