@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/07 08:55:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:22:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <iomanip>
 #include <limits>
 
+#define	WHITESPACES			" \t\r\n"
 #define EXPECTED_ARG_COUNT	2
 
 class ScalarConverter{

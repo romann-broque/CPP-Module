@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/07 08:47:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:22:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,27 @@ void	printFloat(const std::string &str) {
 	}
 }
 
+std::string	trimSpaces(const std::string& str) {
+
+	size_t start = str.find_first_not_of(WHITESPACES);
+	if (start == std::string::npos) {return "";}
+
+	size_t end = str.find_last_not_of(WHITESPACES);
+	return str.substr(start, end - start + 1);
+}
+
 int	main(int ac, char **av)
 {
 	int	ret_val;
+	std::string arg;
 
 	ret_val = EXIT_FAILURE;
 	if (ac == EXPECTED_ARG_COUNT)
 	{
-		printChar(av[1]);
-		printInt(av[1]);
-		printFloat(av[1]);
+		arg = trimSpaces(av[1]);
+		printChar(arg);
+		printInt(arg);
+		printFloat(arg);
 		ret_val = EXIT_SUCCESS;
 	}
 	return (ret_val);
