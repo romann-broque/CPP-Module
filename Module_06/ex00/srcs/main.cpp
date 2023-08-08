@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/08 12:23:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:54:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	printthis(const float nb) {
 
 	std::cout << nb;
 	(nb - floor(nb)) > 0.0f ? std::cout << "f" : std::cout << ".0f";
+	std::cout << std::endl;
+}
+
+void	printthis(const double nb) {
+
+	std::cout << nb;
+	if ((nb - floor(nb)) <= 0.0f)
+		std::cout << ".0";
 	std::cout << std::endl;
 }
 
@@ -66,6 +74,16 @@ void	printFloat(const std::string &str) {
 	}
 }
 
+void	printDouble(const std::string &str) {
+	std::cout << "double: ";
+	try {
+		printthis(ScalarConverter::convert<double>(str));
+	}
+	catch (const std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+}
+
 std::string	trimSpaces(const std::string& str) {
 
 	size_t start = str.find_first_not_of(WHITESPACES);
@@ -87,7 +105,7 @@ int	main(int ac, char **av)
 		printChar(arg);
 		printInt(arg);
 		printFloat(arg);
-		// printDouble(arg);
+		printDouble(arg);
 		ret_val = EXIT_SUCCESS;
 	}
 	return (ret_val);
