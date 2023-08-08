@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/08 15:08:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:30:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ bool	ScalarConverter::isInt(const std::string &str) {
 
 bool	ScalarConverter::isFloat(const std::string &str) {
 
-	return (str == "+inff" || str == "-inff" || isFloatNumber(str));
+	return (str == "+inff" || str == "inff" || str == "-inff" || isFloatNumber(str));
 }
 
 bool	ScalarConverter::isDouble(const std::string &str) {
-	return (str == "+inf" || str == "-inf" ||  isFloat(str));
+	return (str == "+inf" || str == "inf" || str == "-inf" ||  isFloat(str));
 }
 
 template<typename T>T ScalarConverter::FromString(const std::string& str)
@@ -77,7 +77,7 @@ template<typename T>T ScalarConverter::FromString(const std::string& str)
 
 	ss >> ret;
 	if (ss.fail()) {
-		if (str == "+inf" || str == "+inff")
+		if (str == "+inf" || str == "+inff" || str == "inf" || str == "inff")
 			ret = std::numeric_limits<T>::infinity();
 		else if (str == "-inf" || str == "-inff")
 			ret = -std::numeric_limits<T>::infinity();
@@ -96,6 +96,11 @@ U ScalarConverter::getConversion(const std::string &str) {
 	if (typeid(T) == typeid(char))
 	{
 		if (result < 0 || result > 127)
+			throw ScalarConverter::ImpossibleConversionException();
+	}
+	if (typeid(T) == typeid(int))
+	{
+		if (result == std::numeric_limits<U>::infinity() || result == -std::numeric_limits<U>::infinity())
 			throw ScalarConverter::ImpossibleConversionException();
 	}
 	return (result);

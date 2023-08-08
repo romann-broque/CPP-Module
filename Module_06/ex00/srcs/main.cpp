@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/08 14:36:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:26:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,19 @@ void	printthis(const int nb) {
 
 void	printthis(const float nb) {
 
-	if (nb == std::numeric_limits<float>::infinity()
-		|| nb == -std::numeric_limits<float>::infinity())
-		std::cout << nb;
-	else
-	{
-		std::cout << nb;
-		(nb - floor(nb)) > 0.0f ? std::cout << "f" : std::cout << ".0f";
-	}
-	std::cout << std::endl;
+	std::cout << nb;
+	if (nb != std::numeric_limits<float>::infinity() && nb != -std::numeric_limits<float>::infinity()
+		&& (nb - floor(nb)) <= 0.0f)
+			std::cout << ".0";
+	std::cout << "f" << std::endl;
 }
 
 void	printthis(const double nb) {
 
-	if (nb == std::numeric_limits<double>::infinity())
-		std::cout << nb;
-	else
-	{
-		std::cout << nb;
-		if ((nb - floor(nb)) <= 0.0f)
+	std::cout << nb;
+	if (nb != std::numeric_limits<double>::infinity() && nb != -std::numeric_limits<double>::infinity()
+		&& (nb - floor(nb)) <= 0.0f)
 			std::cout << ".0";
-	}
 	std::cout << std::endl;
 }
 
