@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/08 12:11:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:37:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	ScalarConverter::isFloat(const std::string &str) {
 
 	size_t	i;
 
-	i = 0;
+	i = isSigned(str[0]);
 	while (str[i] && isdigit(str[i])){++i;}
 	if (str[i] != '.')
 		return false;

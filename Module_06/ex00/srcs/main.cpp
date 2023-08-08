@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/08 12:22:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:23:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	main(int ac, char **av)
 		printChar(arg);
 		printInt(arg);
 		printFloat(arg);
+		// printDouble(arg);
 		ret_val = EXIT_SUCCESS;
 	}
 	return (ret_val);
