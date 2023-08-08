@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/08 12:52:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 13:12:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ bool	ScalarConverter::isInt(const std::string &str) {
 
 bool	ScalarConverter::isFloat(const std::string &str) {
 
-	size_t	i;
+	const bool	sign = isSigned(str[0]);
+	size_t		i;
 
-	i = isSigned(str[0]);
+	i = sign;
 	while (str[i] && isdigit(str[i])){++i;}
-	if (i > 0 && str[i] != '.')
+	if (i - sign == 0 || str[i] != '.')
 		return false;
 	++i;
 	while (str[i])
