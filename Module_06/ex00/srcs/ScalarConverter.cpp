@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/07 08:21:58 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:11:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ bool	ScalarConverter::isFloat(const std::string &str) {
 	while (str[i])
 	{
 		if (!isdigit(str[i]))
-			return false;
+			break ;
 		++i;
 	}
-	return true;
+	return ((str[i] == 'f')? str[i + 1] == '\0': str[i] == '\0');
 }
 
 template<typename T>T ScalarConverter::FromString(const std::string& str)

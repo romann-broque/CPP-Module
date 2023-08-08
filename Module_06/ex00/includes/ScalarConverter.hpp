@@ -6,13 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/07 08:31:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/07 08:55:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <cstdlib>
+#include <cstdio>
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -20,6 +21,7 @@
 #include <sstream>
 #include <typeinfo>
 #include <iomanip>
+#include <limits>
 
 #define EXPECTED_ARG_COUNT	2
 
