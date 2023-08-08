@@ -51,7 +51,7 @@ ifneq ($(no_error), true)
 endif
 
 ifeq ($(debug), true)
-	CFLAGS	+= -fsanitize=undefined
+	CFLAGS	+= -fsanitize=address,undefined -g3
 endif
 
 ifeq ($(print_debug), false)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:36:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/08 12:22:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 13:23:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ class ScalarConverter{
 	private:
 	
 	// Type Checker
-		static bool isChar(const std::string &str);
 		static bool isSigned(const char c);
+		static bool isChar(const std::string &str);
 		static bool isInt(const std::string &str);
 		static bool isFloat(const std::string &str);
+		static bool isDouble(const std::string &str);
 	// Type Getter
 		template<typename T>
 		static T FromString(const std::string& str);

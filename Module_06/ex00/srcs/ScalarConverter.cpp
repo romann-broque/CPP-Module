@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/08 13:12:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 13:25:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ bool	ScalarConverter::isFloat(const std::string &str) {
 		++i;
 	}
 	return ((str[i] == 'f')? str[i + 1] == '\0': str[i] == '\0');
+}
+
+bool	ScalarConverter::isDouble(const std::string &str) {
+	return (isFloat(str));
 }
 
 template<typename T>T ScalarConverter::FromString(const std::string& str)
@@ -114,16 +118,13 @@ T ScalarConverter::convert(const std::string &str)
 		catch(const std::exception& e) { throw ImpossibleConversionException(); }
 		return (result);
 	}
-	// if (std::is_same<T, double>::value)
-	// {
-	// 	double r;
-	// 	try { r = std::stod(str); }
-	// 	catch(const std::exception& e) { return (-1); }
-	// 	return (r);
-	// }
+	if (isDouble(str))
+	{
+		try {result = getConversion<T, double>(str);}
+		catch(const std::exception& e) { throw ImpossibleConversionException(); }
+		return (result);
+	}
 	throw ImpossibleConversionException();
-	result = -1;
-	return result;
 }
 
 // Exceptions
