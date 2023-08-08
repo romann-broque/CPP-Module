@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/08 12:54:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/08 14:36:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,27 @@ void	printthis(const int nb) {
 
 void	printthis(const float nb) {
 
-	std::cout << nb;
-	(nb - floor(nb)) > 0.0f ? std::cout << "f" : std::cout << ".0f";
+	if (nb == std::numeric_limits<float>::infinity()
+		|| nb == -std::numeric_limits<float>::infinity())
+		std::cout << nb;
+	else
+	{
+		std::cout << nb;
+		(nb - floor(nb)) > 0.0f ? std::cout << "f" : std::cout << ".0f";
+	}
 	std::cout << std::endl;
 }
 
 void	printthis(const double nb) {
 
-	std::cout << nb;
-	if ((nb - floor(nb)) <= 0.0f)
-		std::cout << ".0";
+	if (nb == std::numeric_limits<double>::infinity())
+		std::cout << nb;
+	else
+	{
+		std::cout << nb;
+		if ((nb - floor(nb)) <= 0.0f)
+			std::cout << ".0";
+	}
 	std::cout << std::endl;
 }
 
