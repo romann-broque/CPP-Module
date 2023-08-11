@@ -14,6 +14,7 @@ PATH_SRCS	+= srcs/
 
 SRCS		+= main.cpp
 SRCS		+= ScalarConverter.cpp
+SRCS		+= PrintNumber.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -31,6 +32,7 @@ OBJS		+= $(patsubst %.cpp, $(PATH_OBJS)/%.o, $(SRCS))
 PATH_INC	+= includes/
 
 HEADERS		+= ScalarConverter.hpp
+HEADERS		+= PrintNumber.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
