@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/08 15:30:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/11 13:10:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,11 @@ bool	ScalarConverter::isInt(const std::string &str) {
 }
 
 bool	ScalarConverter::isFloat(const std::string &str) {
-
-	return (str == "+inff" || str == "inff" || str == "-inff" || isFloatNumber(str));
+	return (str == "nanf" || str == "+inff" || str == "inff" || str == "-inff" || isFloatNumber(str));
 }
 
 bool	ScalarConverter::isDouble(const std::string &str) {
-	return (str == "+inf" || str == "inf" || str == "-inf" ||  isFloat(str));
+	return (str == "nan" || str == "+inf" || str == "inf" || str == "-inf" ||  isFloat(str));
 }
 
 template<typename T>T ScalarConverter::FromString(const std::string& str)
@@ -81,6 +80,8 @@ template<typename T>T ScalarConverter::FromString(const std::string& str)
 			ret = std::numeric_limits<T>::infinity();
 		else if (str == "-inf" || str == "-inff")
 			ret = -std::numeric_limits<T>::infinity();
+		else if (str == "nan" || str == "nanf")
+			ret = std::numeric_limits<T>::quiet_NaN();
 		else
 			throw ImpossibleConversionException();
 	}
@@ -95,12 +96,12 @@ U ScalarConverter::getConversion(const std::string &str) {
 	result = FromString<U>(str);
 	if (typeid(T) == typeid(char))
 	{
-		if (result < 0 || result > 127)
+		if (result < 0 || result > 127 || std::isnan(result))
 			throw ScalarConverter::ImpossibleConversionException();
 	}
-	if (typeid(T) == typeid(int))
+	else if (typeid(T) == typeid(int))
 	{
-		if (result == std::numeric_limits<U>::infinity() || result == -std::numeric_limits<U>::infinity())
+		if (result == std::numeric_limits<U>::infinity() || result == -std::numeric_limits<U>::infinity() || std::isnan(result))
 			throw ScalarConverter::ImpossibleConversionException();
 	}
 	return (result);
