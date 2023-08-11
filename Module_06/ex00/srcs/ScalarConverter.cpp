@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:04:26 by aeryilma          #+#    #+#             */
-/*   Updated: 2023/08/11 13:10:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/11 13:17:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,15 @@ U ScalarConverter::getConversion(const std::string &str) {
 	return (result);
 }
 
+template<typename T, typename U>
+U ScalarConverter::tryConversion(const std::string &str){
+	U	result;
+
+	try {result = getConversion<T, U>(str);}
+	catch(const std::exception& e) { throw ImpossibleConversionException();}
+	return (result);
+}
+
 //		PUBLIC		//
 
 // Convert
@@ -117,30 +126,16 @@ T ScalarConverter::convert(const std::string &str)
 	T result;
 
 	if (isChar(str))
-	{
-		try {result = getConversion<T, char>(str);}
-		catch(const std::exception& e) { throw ImpossibleConversionException();}
-		return (result);
-	}
-	if (isInt(str))
-	{
-		try {result = getConversion<T, int>(str);}
-		catch(const std::exception& e) { throw ImpossibleConversionException();}
-		return (result);
-	}
-	if (isFloat(str))
-	{
-		try {result = getConversion<T, float>(str);}
-		catch(const std::exception& e) { throw ImpossibleConversionException();}
-		return (result);
-	}
-	if (isDouble(str))
-	{
-		try {result = getConversion<T, double>(str);}
-		catch(const std::exception& e) { throw ImpossibleConversionException();}
-		return (result);
-	}
-	throw ImpossibleConversionException();
+		result = tryConversion<T, char>(str);
+	else if (isInt(str))
+		result = tryConversion<T, int>(str);
+	else if (isFloat(str))
+		result = tryConversion<T, float>(str);
+	else if (isDouble(str))
+		result = tryConversion<T, double>(str);
+	else
+		throw ImpossibleConversionException();
+	return (result);
 }
 
 // Exceptions
