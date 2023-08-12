@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 08:24:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/12 09:09:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/12 09:17:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ class Serializer {
 
 		static uintptr_t serialize(Data *ptr);
 		static Data *deserialize(uintptr_t raw);
-
 };
