@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/12 09:15:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/12 09:16:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	main(void)
 	Data *data_recovered2 = Serializer::deserialize(ptr2);
 	std::cout << "Data Recovered -> name = " << data_recovered2->name
 		<< "; id = " << data_recovered2->id << std::endl;
+	
+	uintptr_t ptr3 = Serializer::serialize(data_recovered2);
+	std::cout << "Ptr -> " << ptr3 << std::endl;
 
 	return (EXIT_SUCCESS);
 }
