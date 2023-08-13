@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/13 12:21:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/13 12:25:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "B.hpp"
 #include "C.hpp"
 
-static	int	randNumber(size_t min, size_t max)
+static	int	randNumber(const size_t min, const size_t max)
 {
 	srand(time(NULL));
 	return ((rand() % max) + min);
