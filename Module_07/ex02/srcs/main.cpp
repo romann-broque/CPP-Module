@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 15:29:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:41:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(void) {
 	Array<int>	array1;
 	Array<int>	array2(5);
 	Array<int>	array3(array2);
-
 
 	// Array 2 //
 	std::cout << "Array 2" << std::endl;
@@ -35,7 +34,11 @@ int main(void) {
 		try {std::cout << array3[i] << std::endl;}
 		catch (std::exception &e) {std::cout << e.what() << std::endl;}
 	}
+	std::cout << "Array 1 size: " << array1.size()  << std::endl;
+	std::cout << "Array 2 size: " << array2.size()  << std::endl;
+	std::cout << "Array 3 size: " << array3.size()  << std::endl;
 	array3 = array1;
-	std::cout << "over!" << std::endl;
+	std::cout << "Array 3 size: " << array3.size()  << std::endl;
+	std::cout << "It's over!" << std::endl;
 	return 0;
 }

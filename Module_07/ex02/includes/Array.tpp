@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:41:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 15:27:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:38:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,13 @@ const T &Array<T>::operator[](const unsigned int index) const {
 	if (index >= _size)
 		throw InvalidIndexException();
 	return _dataArray[index];
+}
+
+// Member function
+
+template <typename T>
+unsigned int Array<T>::size() const {
+	return _size;
 }
 
 // Destructor

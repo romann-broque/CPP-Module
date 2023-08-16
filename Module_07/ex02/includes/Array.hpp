@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:33:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 15:20:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:39:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ class Array {
 		// Overload access operator
 			T &operator[](const unsigned int index);
 			const T &operator[](const unsigned int index) const;
+		// Member function
+			unsigned int size() const;
 		// Destructor
 			~Array();
 		// Exceptions
