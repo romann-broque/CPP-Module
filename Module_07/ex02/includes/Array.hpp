@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:33:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 13:21:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:20:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,16 @@ class Array {
 			Array(Array &array);
 		// Overload assignement operator
 			Array &operator=(Array &array);
+		// Overload access operator
+			T &operator[](const unsigned int index);
+			const T &operator[](const unsigned int index) const;
 		// Destructor
 			~Array();
+		// Exceptions
+			class InvalidIndexException: public std::exception {
+				public:
+					virtual const char* what() const throw();
+			};
 };
 
 #include "Array.tpp"
