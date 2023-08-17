@@ -6,13 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:33:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 15:39:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:48:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <cstring>
 
 #define RED		"\033[0;31m"
 #define GREEN	"\033[0;32m"

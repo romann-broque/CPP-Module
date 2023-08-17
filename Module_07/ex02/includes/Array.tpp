@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:41:20 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/16 15:38:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/17 06:52:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ Array<T>::Array(): _dataArray(new T[0]), _size(0) {
 template <typename T>
 Array<T>::Array(const unsigned int n): _dataArray(new T[n]), _size(n) {
 
-	for (unsigned int i = 0; i < _size; ++i)
-		_dataArray[i] = 0;
+	bzero(_dataArray, _size * sizeof(T));
 	if (PRINT_DEBUG) {
 		std::cout << "An Array has been " <<
 		GREEN << "created (set)" << NC << std::endl;
