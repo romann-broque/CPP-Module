@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:03:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 10:11:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ Span &Span::operator=(Span &span) {
 // Member function
 
 void Span::addNumber(const long nb) {
-	if (_setValue < _N) {
+	if (_setValue >= _N) {
+		throw CantAddNumber();
+	} else {
 		_numbers[_setValue] = nb;
 		++_setValue;
-	} else {
-		std::cout << "Error !" << std::endl;
 	}
 }
 
@@ -84,6 +84,11 @@ Span::~Span() {
 	}
 }
 
+// Exceptions
+
+const char *Span::CantAddNumber::what() const throw() {
+	return "Cannot add number: Array is full";
+}
 
 /////////////////// TO REMOVE //////////////////////
 
