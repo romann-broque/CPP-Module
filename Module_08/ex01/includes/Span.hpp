@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:44:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 10:54:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ class Span {
 			~Span();
 		// Exceptions
 			class CantAddNumber: public std::exception {
+				const char *what() const throw();
+			};
+			class ArrayTooSmall: public std::exception {
 				const char *what() const throw();
 			};
 };

@@ -6,13 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:48:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 11:00:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
 int main(void) {
+
+	// Classic Tests
 
 	Span span1(4);
 
@@ -27,6 +29,40 @@ int main(void) {
 		std::cout << e.what() << std::endl;
 	}
 	span1.displaySpan();
-	std::cout << "Shortest Span is : " << span1.shortestSpan() << std::endl;
+
+	// Shortest Span
+
+	Span span2(42);
+
+	try {
+		size_t shortestSpan = span2.shortestSpan();
+		std::cout << "Shortest Span is : " << shortestSpan << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	span2.addNumber(-1);
+	try {
+		size_t shortestSpan = span2.shortestSpan();
+		std::cout << "Shortest Span is : " << shortestSpan << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	span2.addNumber(80);
+	try {
+		size_t shortestSpan = span2.shortestSpan();
+		std::cout << "Shortest Span is : " << shortestSpan << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+	
+	Span span3(42);
+
+	span3.addNumber(std::numeric_limits<long>::min());
+	span3.addNumber(std::numeric_limits<long>::max());
+	std::cout << span3.shortestSpan() << std::endl;
+	
 	return 0;
 }

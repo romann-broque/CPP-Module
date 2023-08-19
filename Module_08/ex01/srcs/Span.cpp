@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:47:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 10:55:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void Span::addNumber(const long nb) {
 
 size_t Span::shortestSpan(void) {
 
+	if (_numbers.size() < 2) {
+		throw ArrayTooSmall();
+	}
 	std::vector<long> sortNumbers = _numbers;
 	size_t shortestSpan;
 
@@ -94,6 +97,10 @@ Span::~Span() {
 
 const char *Span::CantAddNumber::what() const throw() {
 	return "Cannot add number: Array is full";
+}
+
+const char *Span::ArrayTooSmall::what() const throw() {
+	return "Cannot find the shortest span: Array is too small";
 }
 
 /////////////////// TO REMOVE //////////////////////
