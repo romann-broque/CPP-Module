@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 11:00:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 11:04:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ int main(void) {
 	span3.addNumber(std::numeric_limits<long>::min());
 	span3.addNumber(std::numeric_limits<long>::max());
 	std::cout << span3.shortestSpan() << std::endl;
+	span3.addNumber(std::numeric_limits<long>::min());
+	std::cout << span3.shortestSpan() << std::endl;
 	
+	// Longest Span
+
+	std::cout << span3.longestSpan() << std::endl;
+
 	return 0;
 }

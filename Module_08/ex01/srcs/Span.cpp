@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:55:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 11:03:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,25 @@ size_t Span::shortestSpan(void) {
 	return shortestSpan;
 }
 
+size_t Span::longestSpan(void) {
+
+	if (_numbers.size() < 2) {
+		throw ArrayTooSmall();
+	}
+	std::vector<long> sortNumbers = _numbers;
+	size_t longestSpan;
+
+	std::sort(sortNumbers.begin(), sortNumbers.end());
+	longestSpan = std::numeric_limits<long>::min();
+	for (size_t i = 1; i < _numbers.size(); ++i) {
+
+		size_t span = sortNumbers[i] - sortNumbers[i - 1];
+		if (span > longestSpan)
+			longestSpan = span;
+	}
+	return longestSpan;
+}
+
 // Destructor
 
 Span::~Span() {
@@ -100,7 +119,7 @@ const char *Span::CantAddNumber::what() const throw() {
 }
 
 const char *Span::ArrayTooSmall::what() const throw() {
-	return "Cannot find the shortest span: Array is too small";
+	return "Cannot find a span: Array is too small";
 }
 
 /////////////////// TO REMOVE //////////////////////
