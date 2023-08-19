@@ -6,14 +6,17 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:08:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 10:44:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <algorithm>
 #include <cstring>
+#include <vector>
+#include <limits>
 
 #define NC		"\033[0m"
 #define GREEN	"\033[0;32m"
@@ -27,9 +30,8 @@ class Span {
 
 	private:
 
-		size_t	_N;
-		size_t	_setValue;
-		long	*_numbers;
+		size_t			_N;
+		std::vector<long> _numbers;
 
 	public:
 
