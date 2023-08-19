@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 09:42:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/19 10:03:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 // Constructors
 
-Span::Span(): _N(0) {
+Span::Span(): _N(0), _setValue(0), _numbers(new long(_N)) {
 
 	if (PRINT_DEBUG) {
 		std::cout << "Span of " << _N
-		<< "numbers has been " <<
-		GREEN << "created" << std::endl;
+		<< " numbers has been " <<
+		GREEN << "created" << NC << std::endl;
 	}
+	bzero(_numbers, _N * sizeof(long));
 }
 
-Span::Span(const size_t N): _N(N) {
+Span::Span(const size_t N): _N(N), _setValue(0), _numbers(new long(_N)) {
 
 	if (PRINT_DEBUG) {
 		std::cout << "Span of " << _N
-		<< "numbers has been " <<
-		GREEN << "created" << std::endl;
+		<< " numbers has been " <<
+		GREEN << "created" << NC << std::endl;
 	}
+	memset(_numbers, 1, _N * sizeof(long));
 }
 
 Span::Span(Span &span) {
@@ -37,8 +39,8 @@ Span::Span(Span &span) {
 	*this = span;
 	if (PRINT_DEBUG) {
 		std::cout << "Span of " << _N
-		<< "numbers has been " <<
-		GREEN << "created (copy)" << std::endl;
+		<< " numbers has been " <<
+		GREEN << "created (copy)" << NC << std::endl;
 	}
 }
 
@@ -46,16 +48,49 @@ Span::Span(Span &span) {
 
 Span &Span::operator=(Span &span) {
 
+	if (this != &span) {
+		delete []_numbers;
+		_N = span._N;
+		_setValue = span._setValue;
+		_numbers = new long(_N);
+		for (size_t i = 0; i < _N; ++i) {
+			// add Number
+			_numbers[i] = span._numbers[i];
+		}
+	}
 	return span;
+}
+
+// Member function
+
+void Span::addNumber(const long nb) {
+	if (_setValue < _N) {
+		_numbers[_setValue] = nb;
+		++_setValue;
+	} else {
+		std::cout << "Error !" << std::endl;
+	}
 }
 
 // Destructor
 
 Span::~Span() {
 
+	delete _numbers;
 	if (PRINT_DEBUG) {
 		std::cout << "Span of " << _N
-		<< "numbers has been " <<
-		RED << "deleted" << std::endl;
+		<< " numbers has been " <<
+		RED << "deleted" << NC << std::endl;
 	}
 }
+
+
+/////////////////// TO REMOVE //////////////////////
+
+void Span::displaySpan(void) {
+	for (size_t i = 0; i < _setValue; ++i) {
+		std::cout << _numbers[i] << std::endl;
+	}
+}
+
+////////////////////////////////////////////////////
