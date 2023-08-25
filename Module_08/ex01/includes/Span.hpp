@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 10:54:33 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:38:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include <algorithm>
 #include <cstring>
 #include <vector>
 #include <limits>
@@ -30,8 +29,11 @@ class Span {
 
 	private:
 
-		size_t			_N;
-		std::vector<long> _numbers;
+		// Attributes
+			size_t			_N;
+			std::vector<long> _numbers;
+		// Private member functions
+			size_t getSpan(const long nb1, const long nb2);
 
 	public:
 

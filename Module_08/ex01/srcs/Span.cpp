@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 11:03:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:42:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,18 @@ void Span::addNumber(const long nb) {
 	}
 }
 
+
 size_t Span::shortestSpan(void) {
 
 	if (_numbers.size() < 2) {
 		throw ArrayTooSmall();
 	}
-	std::vector<long> sortNumbers = _numbers;
 	size_t shortestSpan;
 
-	std::sort(sortNumbers.begin(), sortNumbers.end());
-	shortestSpan = std::numeric_limits<long>::max();
+	shortestSpan = std::numeric_limits<unsigned long>::max();
 	for (size_t i = 1; i < _numbers.size(); ++i) {
 
-		size_t span = sortNumbers[i] - sortNumbers[i - 1];
+		size_t	span = getSpan(_numbers[i], _numbers[i - 1]);
 		if (span < shortestSpan)
 			shortestSpan = span;
 	}
@@ -87,14 +86,12 @@ size_t Span::longestSpan(void) {
 	if (_numbers.size() < 2) {
 		throw ArrayTooSmall();
 	}
-	std::vector<long> sortNumbers = _numbers;
 	size_t longestSpan;
 
-	std::sort(sortNumbers.begin(), sortNumbers.end());
-	longestSpan = std::numeric_limits<long>::min();
+	longestSpan = 0;
 	for (size_t i = 1; i < _numbers.size(); ++i) {
 
-		size_t span = sortNumbers[i] - sortNumbers[i - 1];
+		size_t	span = getSpan(_numbers[i], _numbers[i - 1]);
 		if (span > longestSpan)
 			longestSpan = span;
 	}
@@ -122,13 +119,20 @@ const char *Span::ArrayTooSmall::what() const throw() {
 	return "Cannot find a span: Array is too small";
 }
 
-/////////////////// TO REMOVE //////////////////////
+// Private member functions
 
-void Span::displaySpan(void) {
+size_t Span::getSpan(const long nb1, const long nb2) {
 
-	for (size_t i = 0; i < _numbers.size(); ++i) {
-		std::cout << _numbers[i] << std::endl;
+	if ((nb1 > 0 && nb2 > 0)
+		|| (nb1 < 0 && nb2 < 0)) {
+
+		if (nb1 - nb2 > 0)
+			return nb1 - nb2;
+		return nb2 - nb1;
+	} else {
+
+		if (nb1 > 0)
+			return nb1 - nb2;
+		return nb2 - nb1;
 	}
 }
-
-////////////////////////////////////////////////////

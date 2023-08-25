@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/19 11:04:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:43:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main(void) {
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-	span1.displaySpan();
 
 	// Shortest Span
 
@@ -65,10 +64,34 @@ int main(void) {
 	std::cout << span3.shortestSpan() << std::endl;
 	span3.addNumber(std::numeric_limits<long>::min());
 	std::cout << span3.shortestSpan() << std::endl;
+	span3.addNumber(0);
+	std::cout << span3.shortestSpan() << std::endl;
 	
 	// Longest Span
 
+	span3.addNumber(std::numeric_limits<long>::max() - 1);
 	std::cout << span3.longestSpan() << std::endl;
+
+	// Both
+
+	Span span4(8);
+
+	span4.addNumber(5);
+	span4.addNumber(4);
+	span4.addNumber(3);
+	span4.addNumber(2);
+	span4.addNumber(1);
+	std::cout << span4.shortestSpan() << std::endl;
+	std::cout << span4.longestSpan() << std::endl;
+	span4.addNumber(5);
+	std::cout << span4.shortestSpan() << std::endl;
+	std::cout << span4.longestSpan() << std::endl;
+	span4.addNumber(-2);
+	std::cout << span4.shortestSpan() << std::endl;
+	std::cout << span4.longestSpan() << std::endl;
+	span4.addNumber(9);
+	std::cout << span4.shortestSpan() << std::endl;
+	std::cout << span4.longestSpan() << std::endl;
 
 	return 0;
 }
