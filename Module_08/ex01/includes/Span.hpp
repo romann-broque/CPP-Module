@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/25 14:38:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:50:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ class Span {
 			Span(const size_t N);
 			Span(Span &span);
 		// Overload assignment operator
-			Span &operator=(Span &span);
+			Span const &operator=(Span const &span);
 		// Member functions
 			void addNumber(const long nb);
 			size_t shortestSpan(void);
 			size_t longestSpan(void);
-			void displaySpan(void);
 		// Destructor
 			~Span();
 		// Exceptions

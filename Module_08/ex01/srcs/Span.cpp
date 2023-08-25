@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/25 14:42:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:50:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Span::Span(Span &span) {
 
 // Overload assignment operator
 
-Span &Span::operator=(Span &span) {
+Span const &Span::operator=(Span const &span) {
 
 	if (this != &span) {
 		_N = span._N;
