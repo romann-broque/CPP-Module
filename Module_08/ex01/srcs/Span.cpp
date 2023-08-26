@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/25 14:50:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/26 08:21:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ Span const &Span::operator=(Span const &span) {
 
 // Member function
 
+void Span::addNumber(std::vector<long>::iterator pos, const long nb) {
+	if (_numbers.size() >= _N) {
+		throw CantAddNumber();
+	} else {
+		std::cout << "Inserting !" << std::endl;
+		_numbers.insert(pos, nb);
+	}
+}
+
 void Span::addNumber(const long nb) {
 	if (_numbers.size() >= _N) {
 		throw CantAddNumber();
@@ -63,6 +72,17 @@ void Span::addNumber(const long nb) {
 	}
 }
 
+void Span::insertNumber(
+	std::vector<long>::iterator &begin,
+	const size_t size,
+	const long nb) {
+
+	for (size_t i = 0; i < size; ++i)
+	{
+		addNumber(begin, nb);
+		++begin;
+	}
+}
 
 size_t Span::shortestSpan(void) {
 
@@ -96,6 +116,14 @@ size_t Span::longestSpan(void) {
 			longestSpan = span;
 	}
 	return longestSpan;
+}
+
+std::vector<long>::iterator Span::begin() {
+	return _numbers.begin();
+}
+
+std::vector<long>::iterator Span::end() {
+	return _numbers.end();
 }
 
 // Destructor

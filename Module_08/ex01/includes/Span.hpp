@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/25 14:50:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/26 08:14:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Span {
 	private:
 
 		// Attributes
-			size_t			_N;
-			std::vector<long> _numbers;
+			size_t				_N;
+			std::vector<long>	_numbers;
 		// Private member functions
 			size_t getSpan(const long nb1, const long nb2);
 
@@ -44,9 +44,16 @@ class Span {
 		// Overload assignment operator
 			Span const &operator=(Span const &span);
 		// Member functions
+			void addNumber(std::vector<long>::iterator pos, const long nb);
 			void addNumber(const long nb);
+			void insertNumber(
+					std::vector<long>::iterator &begin,
+					const size_t size,
+					const long nb);
 			size_t shortestSpan(void);
 			size_t longestSpan(void);
+			std::vector<long>::iterator begin();
+			std::vector<long>::iterator end();
 		// Destructor
 			~Span();
 		// Exceptions
