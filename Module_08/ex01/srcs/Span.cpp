@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 08:53:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 09:00:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void Span::addNumber(const long nb) {
 //	Insert methods	//
 
 void Span::insert(
-	std::vector<long>::iterator &begin,
+	const std::vector<long>::iterator &begin,
 	const long nb) {
 
 	addNumber(begin, nb);
 }
 
-void Span::insert(
-	std::vector<long>::iterator &begin,
+void Span::insertBySize(
+	const std::vector<long>::iterator &begin,
 	const size_t size,
 	const long nb) {
 
@@ -77,7 +77,7 @@ void Span::insert(
 }
 
 void Span::insertByRange(
-	std::vector<long>::iterator &begin,
+	const std::vector<long>::iterator &begin,
 	const long startNb,
 	const long endNb) {
 
@@ -204,7 +204,7 @@ size_t Span::getSpan(const long nb1, const long nb2) {
 	}
 }
 
-void	Span::checkInsertionParameters(std::vector<long>::iterator pos, const size_t size) {
+void	Span::checkInsertionParameters(const std::vector<long>::iterator pos, const size_t size) {
 	if (pos < begin() || pos > end()) {
 		throw InvalidIndex();
 	}
@@ -214,13 +214,13 @@ void	Span::checkInsertionParameters(std::vector<long>::iterator pos, const size_
 }
 
 void Span::addNumber(
-	std::vector<long>::iterator pos,
+	const std::vector<long>::iterator pos,
 	const long nb) {
 	addNumber(pos, 1, nb);
 }
 
 void Span::addNumber(
-	std::vector<long>::iterator pos,
+	const std::vector<long>::iterator pos,
 	const size_t size,
 	const long nb) {
 

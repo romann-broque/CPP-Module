@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 08:53:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 08:59:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ class Span {
 			std::vector<long>	_numbers;
 		// Private member functions
 			size_t getSpan(const long nb1, const long nb2);
-			void checkInsertionParameters(std::vector<long>::iterator pos, const size_t size);
-			void addNumber(std::vector<long>::iterator pos, const long nb);
-			void addNumber(std::vector<long>::iterator pos, const size_t size, const long nb);
+			void checkInsertionParameters(const std::vector<long>::iterator pos, const size_t size);
+			void addNumber(const std::vector<long>::iterator pos, const long nb);
+			void addNumber(const std::vector<long>::iterator pos, const size_t size, const long nb);
 
 	public:
 
@@ -49,13 +49,13 @@ class Span {
 			Span const &operator=(Span const &span);
 		// Member functions
 			void addNumber(const long nb);
-			void insert(std::vector<long>::iterator &begin, const long nb);
-			void insert(
-					std::vector<long>::iterator &begin,
+			void insert(const std::vector<long>::iterator &begin, const long nb);
+			void insertBySize(
+					const std::vector<long>::iterator &begin,
 					const size_t size,
 					const long nb);
 			void insertByRange(
-					std::vector<long>::iterator &begin,
+					const std::vector<long>::iterator &begin,
 					const long startNb,
 					const long endNb);
 			size_t shortestSpan(void);
