@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 07:36:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 08:53:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class Span {
 			std::vector<long>	_numbers;
 		// Private member functions
 			size_t getSpan(const long nb1, const long nb2);
+			void checkInsertionParameters(std::vector<long>::iterator pos, const size_t size);
 			void addNumber(std::vector<long>::iterator pos, const long nb);
 			void addNumber(std::vector<long>::iterator pos, const size_t size, const long nb);
 
@@ -53,6 +54,10 @@ class Span {
 					std::vector<long>::iterator &begin,
 					const size_t size,
 					const long nb);
+			void insertByRange(
+					std::vector<long>::iterator &begin,
+					const long startNb,
+					const long endNb);
 			size_t shortestSpan(void);
 			size_t longestSpan(void);
 			std::vector<long>::iterator begin();

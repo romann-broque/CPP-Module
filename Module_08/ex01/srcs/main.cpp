@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 07:37:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 08:57:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,24 +101,45 @@ int main(void) {
 	std::cout << span4.shortestSpan() << std::endl;
 	std::cout << span4.longestSpan() << std::endl;
 
-	// Big Test
+	// Insertion
 
-	std::cout << BLUE << "BIG TESTS" << NC << std::endl;
+	std::cout << BLUE << "Insertion TESTS" << NC << std::endl;
 	Span span5(100000);
 
 	std::vector<long>::iterator begin = span5.begin();
-	span5.insert(begin, 10, 42);
+	span5.insert(begin, 5, 42);
 	span5.display();
-	std::vector<long>::iterator it2 = span5.begin() + 5;
-	span5.insert(it2, 10, 21);
+	std::vector<long>::iterator it2 = span5.begin() + 3;
+	span5.insert(it2, 5, 21);
 	span5.display();
 	try {
 		std::vector<long>::iterator big_begin = span5.begin() + 1000000000;
-		span5.insert(big_begin, 5 , 6);
+		span5.insert(big_begin, 5, 6);
 	}
 	catch (std::exception &e) {std::cout << e.what() << std::endl;}
+
+	std::vector<long>::iterator begin2 = span5.end();
+	span5.insert(begin2, 5, 6);
+	span5.display();
 	std::cout << span5.shortestSpan() << std::endl;
 	std::cout << span5.longestSpan() << std::endl;
+	
+	std::vector<long>::iterator begin3 = span5.end();
+	span5.insertByRange(begin3, -4, 5);
+	span5.display();
+
+	std::vector<long>::iterator begin4 = span5.begin() + 12;
+	span5.insertByRange(begin4, 6, 1);
+	span5.display();
+	
+	std::vector<long>::iterator begin5 = span5.begin() + 5;
+	span5.insertByRange(begin5, 0, 0);
+	span5.display();
+
+	std::vector<long>::iterator begin6 = span5.begin();
+	span5.insertByRange(begin6, -42, -36);
+	span5.display();
+	
 	return 0;
 }
 
