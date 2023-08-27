@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 07:26:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 07:36:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,10 @@ const char *Span::ArrayTooSmall::what() const throw() {
 	return "Cannot find a span: Array is too small";
 }
 
+const char *Span::InvalidIndex::what() const throw() {
+	return "Invalid Index";
+}
+
 // Private member functions
 
 size_t Span::getSpan(const long nb1, const long nb2) {
@@ -183,6 +187,10 @@ void Span::addNumber(
 	std::vector<long>::iterator pos,
 	const size_t size,
 	const long nb) {
+	
+	if (pos < begin() || pos > end()) {
+		throw InvalidIndex();
+	}
 	if (_numbers.size() >= _N || _numbers.size() + size > _N) {
 		throw CantAddNumber();
 	}

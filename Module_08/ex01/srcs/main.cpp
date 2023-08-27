@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 07:29:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 07:37:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,11 @@ int main(void) {
 	std::vector<long>::iterator it2 = span5.begin() + 5;
 	span5.insert(it2, 10, 21);
 	span5.display();
-	std::vector<long>::iterator big_begin = span5.begin() + 1000000000;
-	span5.insert(big_begin, 5 , 6);
+	try {
+		std::vector<long>::iterator big_begin = span5.begin() + 1000000000;
+		span5.insert(big_begin, 5 , 6);
+	}
+	catch (std::exception &e) {std::cout << e.what() << std::endl;}
 	std::cout << span5.shortestSpan() << std::endl;
 	std::cout << span5.longestSpan() << std::endl;
 	return 0;

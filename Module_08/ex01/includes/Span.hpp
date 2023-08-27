@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 07:26:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 07:36:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ class Span {
 				const char *what() const throw();
 			};
 			class ArrayTooSmall: public std::exception {
+				const char *what() const throw();
+			};
+			class InvalidIndex: public std::exception {
 				const char *what() const throw();
 			};
 };
