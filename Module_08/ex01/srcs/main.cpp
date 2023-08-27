@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/26 08:14:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 07:29:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main(void) {
 
 	// Classic Tests
+
+	std::cout << BLUE << "CLASSIC TESTS" << NC << std::endl;
 
 	Span span1(4);
 
@@ -30,6 +32,8 @@ int main(void) {
 	}
 
 	// Shortest Span
+	
+	std::cout << BLUE << "SHORTEST SPAN" << NC << std::endl;
 
 	Span span2(42);
 
@@ -68,11 +72,15 @@ int main(void) {
 	std::cout << span3.shortestSpan() << std::endl;
 	
 	// Longest Span
+	
+	std::cout << BLUE << "LONGEST SPAN" << NC << std::endl;
 
 	span3.addNumber(std::numeric_limits<long>::max() - 1);
 	std::cout << span3.longestSpan() << std::endl;
 
 	// Both
+
+	std::cout << BLUE << "BOTH" << NC << std::endl;
 
 	Span span4(8);
 
@@ -95,23 +103,19 @@ int main(void) {
 
 	// Big Test
 
+	std::cout << BLUE << "BIG TESTS" << NC << std::endl;
 	Span span5(100000);
 
 	std::vector<long>::iterator begin = span5.begin();
-	span5.insertNumber(begin, 10, 42);
-
-	// std::vector<long> numbers;
-	// std::vector<long>::iterator begin = numbers.begin();
-
-	// for (std::vector<long>::iterator it = begin; it != begin + 5; ++it) {
-	// 	std::cout << "Test Insertion" << std::endl;
-	// 	numbers.insert(it, 56);
-	// }
-
-	// std::vector<long>::iterator big_end = begin + 1000000000;
-	// span5.insertNumber(begin, big_end, 42);
-	// std::cout << span5.shortestSpan() << std::endl;
-	// std::cout << span5.longestSpan() << std::endl;
+	span5.insert(begin, 10, 42);
+	span5.display();
+	std::vector<long>::iterator it2 = span5.begin() + 5;
+	span5.insert(it2, 10, 21);
+	span5.display();
+	std::vector<long>::iterator big_begin = span5.begin() + 1000000000;
+	span5.insert(big_begin, 5 , 6);
+	std::cout << span5.shortestSpan() << std::endl;
+	std::cout << span5.longestSpan() << std::endl;
 	return 0;
 }
 

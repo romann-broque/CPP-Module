@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/26 08:21:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/27 07:26:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,34 +55,28 @@ Span const &Span::operator=(Span const &span) {
 
 // Member function
 
-void Span::addNumber(std::vector<long>::iterator pos, const long nb) {
-	if (_numbers.size() >= _N) {
-		throw CantAddNumber();
-	} else {
-		std::cout << "Inserting !" << std::endl;
-		_numbers.insert(pos, nb);
-	}
-}
-
 void Span::addNumber(const long nb) {
-	if (_numbers.size() >= _N) {
-		throw CantAddNumber();
-	} else {
-		_numbers.push_back(nb);
-	}
+	return addNumber(end(), nb);
 }
 
-void Span::insertNumber(
+//	Insert methods	//
+
+void Span::insert(
+	std::vector<long>::iterator &begin,
+	const long nb) {
+
+	addNumber(begin, nb);
+}
+
+void Span::insert(
 	std::vector<long>::iterator &begin,
 	const size_t size,
 	const long nb) {
 
-	for (size_t i = 0; i < size; ++i)
-	{
-		addNumber(begin, nb);
-		++begin;
-	}
+	addNumber(begin, size, nb);
 }
+
+//					//
 
 size_t Span::shortestSpan(void) {
 
@@ -126,6 +120,20 @@ std::vector<long>::iterator Span::end() {
 	return _numbers.end();
 }
 
+void Span::display() {
+
+	const size_t size = _numbers.size();
+
+	for (size_t i = 0; i < size; ++i) {
+		std::cout << _numbers[i];
+		if (i + 1 < size) {
+			std::cout << "-";
+		} else {
+			std::cout << std::endl;
+		}
+	}
+}
+
 // Destructor
 
 Span::~Span() {
@@ -163,4 +171,20 @@ size_t Span::getSpan(const long nb1, const long nb2) {
 			return nb1 - nb2;
 		return nb2 - nb1;
 	}
+}
+
+void Span::addNumber(
+	std::vector<long>::iterator pos,
+	const long nb) {
+	addNumber(pos, 1, nb);
+}
+
+void Span::addNumber(
+	std::vector<long>::iterator pos,
+	const size_t size,
+	const long nb) {
+	if (_numbers.size() >= _N || _numbers.size() + size > _N) {
+		throw CantAddNumber();
+	}
+	_numbers.insert(pos, size, nb);
 }
