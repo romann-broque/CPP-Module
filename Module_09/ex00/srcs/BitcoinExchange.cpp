@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 14:22:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 14:24:22 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void BitcoinExchange::displayFile(void) {
 // Destructor
 
 BitcoinExchange::~BitcoinExchange() {
+
+	_file.close();
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
 		RED << "destroyed" << std::endl;
@@ -92,5 +94,6 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 		throw BitcoinExchange::InvalidFileError();
 	}
 	file.close();
+	_fileName = fileName;
 	_file.open(fileName);
 }
