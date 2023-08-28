@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 13:04:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 14:21:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	main(int ac, char **av)
 {
-	BitcoinExchange bitcoin;
-
 	try {
-		bitcoin.checkFileArgument(ac, av);
-		bitcoin.displayFile(av[1]);
+		BitcoinExchange bitcoin(ac, av[1]);
+		bitcoin.displayFile();
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;

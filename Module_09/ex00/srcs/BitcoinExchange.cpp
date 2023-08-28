@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 13:04:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 14:22:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 // Constructors
 
+// Cannot be used
 BitcoinExchange::BitcoinExchange() {
+	if (PRINT_DEBUG) {
+		std::cout << "BitcoinExchange has been " <<
+		GREEN << "created (empty)" << NC << std::endl;
+	}
+}
+
+BitcoinExchange::BitcoinExchange(const int argCount, const char *filename) {
+
+	initFile(argCount, filename);
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
 		GREEN << "created (default)" << NC << std::endl;
@@ -39,17 +49,11 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
 
 // Member
 
-void BitcoinExchange::displayFile(const std::string fileName) const {
-	std::cout << "The file is " << fileName << std::endl;
-}
-
-void BitcoinExchange::checkFileArgument(const int argCount, char **arguments) {
-
-	if (argCount < EXPECTED_ARG_COUNT)
-		throw BitcoinExchange::MissingArgumentError();
-	if (argCount > EXPECTED_ARG_COUNT)
-		throw BitcoinExchange::TooManyArgumentError();
-	(void)arguments;
+void BitcoinExchange::displayFile(void) {
+	std::string line;
+	while (std::getline(_file, line)) {
+		std::cout << "Line: " << line << std::endl;
+	}
 }
 
 // Destructor
@@ -69,4 +73,24 @@ const char *BitcoinExchange::MissingArgumentError::what() const throw() {
 
 const char *BitcoinExchange::TooManyArgumentError::what() const throw() {
 	return "Too many given arguments";
+}
+
+const char *BitcoinExchange::InvalidFileError::what() const throw() {
+	return "Invalid File";
+}
+
+// Private methods
+
+void BitcoinExchange::initFile(const int argCount, const char *fileName) {
+
+	if (argCount < EXPECTED_ARG_COUNT)
+		throw BitcoinExchange::MissingArgumentError();
+	if (argCount > EXPECTED_ARG_COUNT)
+		throw BitcoinExchange::TooManyArgumentError();
+	std::ifstream file(fileName);
+	if (!file.is_open()) {
+		throw BitcoinExchange::InvalidFileError();
+	}
+	file.close();
+	_file.open(fileName);
 }

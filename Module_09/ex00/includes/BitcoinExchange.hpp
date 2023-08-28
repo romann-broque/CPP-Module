@@ -6,13 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 13:06:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 14:21:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <map>
@@ -29,16 +30,23 @@
 
 class BitcoinExchange {
 
+	private:
+
+		// Attributes
+			std::ifstream _file;
+		// Methods
+			BitcoinExchange(); // Cannot be used
+			void initFile(const int argCount, const char *fileName);
+
 	public:
 
 		// Constructors
-			BitcoinExchange();
+			BitcoinExchange(const int argCount, const char *fileName);
 			BitcoinExchange(const BitcoinExchange &bigcoinExchange);
 		// Overload assignment operator
 			BitcoinExchange &operator=(const BitcoinExchange &bigcoinExchange);
 		// Member
-			void displayFile(const std::string fileName) const;
-			void checkFileArgument(const int argCount, char **arguments);
+			void displayFile(void);
 		// Destructor
 			~BitcoinExchange();
 		// Exceptions
@@ -47,6 +55,10 @@ class BitcoinExchange {
 					const char *what() const throw();
 			};
 			class TooManyArgumentError: public std::exception {
+				public:
+					const char *what() const throw();
+			};
+			class InvalidFileError: public std::exception {
 				public:
 					const char *what() const throw();
 			};
