@@ -5,68 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 09:22:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 06:47:11 by rbroque          ###   ########.fr       */
+/*   Created: 2022/02/20 03:00:39 by dpoveda-          #+#    #+#             */
+/*   Updated: 2023/08/28 07:59:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include <stack>
-#include <vector>
+#include <deque>
+#include <iostream>
 
 #define NC		"\033[0m"
 #define GREEN	"\033[0;32m"
 #define RED		"\033[0;31m"
-#define BLUE	"\033[0;36m"
+#define BLUE	"\033[0;34m"
 
 #ifndef PRINT_DEBUG
-# define PRINT_DEBUG true
+# define PRINT_DEBUG false
 #endif
 
-template <typename T>
-class MutantStack {
+// MutantStack is a class which herits from the stack class
+// where its elements are stored into another Container (here a double-ended-queue (deque))
 
-	private:
-
-		// Attributes
-			std::stack<T> _stack;
-			std::vector<T> _container;
-
+template <typename T, typename Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container> {
 	public:
 
 		// Constructors
 			MutantStack();
-			MutantStack(MutantStack &mutantStack);
+			MutantStack(const MutantStack& mutantStack);
 		// Overload assignment operator
-			MutantStack &operator=(MutantStack &mutantStack);
-		// Member
-			void push(const T &value);
-			void pop();
-			T &top();
-			const T &top() const;
-			bool empty() const;
-			size_t size() const;
+			MutantStack& operator=(const MutantStack& other);
 		// Destructor
 			~MutantStack();
-
-		class iterator {
-
-			private:
-
-				typename std::vector<T>::iterator _iter;
-
-			public:
-				
-				iterator(typename std::vector<T>::iterator it);
-				T &operator*();
-				iterator &operator++();
-				iterator &operator--();
-				bool operator!=(const iterator& other);
-		};
-
-		// Iterator methods
+		// Iterator
+			typedef typename std::stack<T, Container>::container_type::iterator iterator;
 			iterator begin();
 			iterator end();
 };

@@ -6,12 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 06:50:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 07:59:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
+#include <iostream>
 
 // template <typename T>
 // std::ostream &operator<<(std::ostream &out, MutantStack<T> mutantStack){

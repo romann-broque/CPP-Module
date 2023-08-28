@@ -1,21 +1,21 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   MutantStack.tpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/27 09:22:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 06:49:00 by rbroque          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   MutantStack.tpp                                    :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2023/08/27 09:22:33 by rbroque           #+#    #+#             */
+// /*   Updated: 2023/08/28 06:49:00 by rbroque          ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 
 // Constructors
 
-template<typename T>
-MutantStack<T>::MutantStack() {
+template <typename T, typename Container>
+MutantStack<T, Container>::MutantStack() {
 
 	if (PRINT_DEBUG) {
 		std::cout << "MutantStack has been "
@@ -23,65 +23,30 @@ MutantStack<T>::MutantStack() {
 	}
 };
 
-template<typename T>
-MutantStack<T>::MutantStack(MutantStack &mutantStack) {
+template <typename T, typename Container>
+MutantStack<T, Container>::MutantStack(const MutantStack<T, Container> &mutantStack): std::stack<T, Container>(mutantStack) {
 
 	*this = mutantStack;
 	if (PRINT_DEBUG) {
 		std::cout << "MutantStack has been "
 		<< GREEN << "created (copy)" << NC << std::endl;
 	}
-};
+}
 
 // Overload assignment operator
 
-template<typename T>
-MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> &mutantStack) {
+template <typename T, typename Container>
+MutantStack<T, Container> &MutantStack<T, Container>::operator=(const MutantStack<T, Container> &mutantStack) {
 
-	if (this != &mutantStack) {
-		_stack = mutantStack._stack;
-	}
+	if (this == &mutantStack)
+		this->std::stack<T, Container>::operator=(mutantStack);
 	return *this;
-}
-
-// Member
-
-template<typename T>
-void MutantStack<T>::push(const T &value) {
-	_stack.push(value);
-	_container.push_back(value);
-}
-
-template<typename T>
-void MutantStack<T>::pop() {
-	_stack.pop();
-	_container.pop_back();
-}
-
-template<typename T>
-T &MutantStack<T>::top() {
-	return _stack.top();
-}
-
-template<typename T>
-const T &MutantStack<T>::top() const {
-	return _stack.top();
-}
-
-template<typename T>
-bool MutantStack<T>::empty() const {
-	return _stack.empty();
-}
-
-template<typename T>
-size_t MutantStack<T>::size() const {
-	return _stack.size();
 }
 
 // Destructor
 
-template<typename T>
-MutantStack<T>::~MutantStack() {
+template <typename T, typename Container>
+MutantStack<T, Container>::~MutantStack() {
 	if (PRINT_DEBUG) {
 		std::cout << "MutantStack has been "
 		<< RED << "destroyed" << NC << std::endl;
@@ -90,39 +55,12 @@ MutantStack<T>::~MutantStack() {
 
 // Iterator
 
-template<typename T>
-MutantStack<T>::iterator::iterator(typename std::vector<T>::iterator it) : _iter(it) {};
-
-template<typename T>
-T &MutantStack<T>::iterator::operator*() {
-	return *_iter;
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::begin() {
+	return std::stack<T, Container>::c.begin();
 }
 
-template<typename T>
-typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator++() {
-	++_iter;
-	return *this;
-}
-
-template<typename T>
-typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator--() {
-	--_iter;
-	return *this;
-}
-
-template<typename T>
-bool MutantStack<T>::iterator::operator!=(const iterator& other) {
-	return _iter != other._iter;
-}
-
-// Iterator methods
-
-template<typename T>
-typename MutantStack<T>::iterator MutantStack<T>::begin() {
-	return iterator(_container.begin());
-}
-
-template<typename T>
-typename MutantStack<T>::iterator MutantStack<T>::end() {
-	return iterator(_container.end());
+template <typename T, typename Container>
+typename MutantStack<T, Container>::iterator MutantStack<T, Container>::end() {
+	return std::stack<T, Container>::c.end();
 }
