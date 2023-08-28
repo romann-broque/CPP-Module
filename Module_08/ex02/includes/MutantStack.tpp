@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 09:22:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 06:03:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 06:49:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ MutantStack<T> &MutantStack<T>::operator=(MutantStack<T> &mutantStack) {
 template<typename T>
 void MutantStack<T>::push(const T &value) {
 	_stack.push(value);
+	_container.push_back(value);
 }
 
 template<typename T>
 void MutantStack<T>::pop() {
 	_stack.pop();
+	_container.pop_back();
 }
 
 template<typename T>
@@ -89,28 +91,28 @@ MutantStack<T>::~MutantStack() {
 // Iterator
 
 template<typename T>
-MutantStack<T>::iterator::iterator(typename ContainerType::iterator it) : iter(it) {};
+MutantStack<T>::iterator::iterator(typename std::vector<T>::iterator it) : _iter(it) {};
 
 template<typename T>
 T &MutantStack<T>::iterator::operator*() {
-	return *iter;
+	return *_iter;
 }
 
 template<typename T>
 typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator++() {
-	++iter;
+	++_iter;
 	return *this;
 }
 
 template<typename T>
 typename MutantStack<T>::iterator &MutantStack<T>::iterator::operator--() {
-	--iter;
+	--_iter;
 	return *this;
 }
 
 template<typename T>
 bool MutantStack<T>::iterator::operator!=(const iterator& other) {
-	return iter != other.iter;
+	return _iter != other._iter;
 }
 
 // Iterator methods

@@ -6,34 +6,34 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 06:13:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 06:50:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <list>
 
-template <typename T>
-std::ostream &operator<<(std::ostream &out, MutantStack<T> mutantStack){
+// template <typename T>
+// std::ostream &operator<<(std::ostream &out, MutantStack<T> mutantStack){
 
-	out << "Size: " << mutantStack.size() << std::endl;
-	while (!mutantStack.empty()) {
-		out << mutantStack.top() << std::endl;
-		mutantStack.pop();
-	}
-	return out;
-}
+// 	out << "Size: " << mutantStack.size() << std::endl;
+// 	while (!mutantStack.empty()) {
+// 		out << mutantStack.top() << std::endl;
+// 		mutantStack.pop();
+// 	}
+// 	return out;
+// }
 
-template <typename T>
-std::ostream &operator<<(std::ostream &out, std::stack<T> stack){
+// template <typename T>
+// std::ostream &operator<<(std::ostream &out, std::stack<T> stack){
 
-	out << "Size: " << stack.size() << std::endl;
-	while (!stack.empty()) {
-		out << stack.top() << std::endl;
-		stack.pop();
-	}
-	return out;
-}
+// 	out << "Size: " << stack.size() << std::endl;
+// 	while (!stack.empty()) {
+// 		out << stack.top() << std::endl;
+// 		stack.pop();
+// 	}
+// 	return out;
+// }
 
 // int main(void) {
 
@@ -89,8 +89,8 @@ int main()
 	--itList;
 	while (itList != iteList)
 	{
-	std::cout << *itList << std::endl;
-	++itList;
+		std::cout << *itList << std::endl;
+		++itList;
 	}
 	// std::stack<int> s(mstack);
 	
@@ -106,14 +106,15 @@ int main()
 	mstack.push(5);
 	mstack.push(737);
 	mstack.push(0);
+
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
 	while (it != ite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cout << *it << std::endl;
+		++it;
 	}
 	// std::stack<int> s(mstack);
 	return 0;

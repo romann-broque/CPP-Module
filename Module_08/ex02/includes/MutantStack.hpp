@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 09:22:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 05:53:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 06:47:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <stack>
+#include <vector>
 
 #define NC		"\033[0m"
 #define GREEN	"\033[0;32m"
@@ -31,8 +32,7 @@ class MutantStack {
 
 		// Attributes
 			std::stack<T> _stack;
-			typedef typename std::stack<T>::container_type ContainerType;
-			ContainerType _container;
+			std::vector<T> _container;
 
 	public:
 
@@ -55,11 +55,11 @@ class MutantStack {
 
 			private:
 
-				typename ContainerType::iterator iter;
+				typename std::vector<T>::iterator _iter;
 
 			public:
 				
-				iterator(typename ContainerType::iterator it);
+				iterator(typename std::vector<T>::iterator it);
 				T &operator*();
 				iterator &operator++();
 				iterator &operator--();
