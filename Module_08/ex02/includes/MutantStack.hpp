@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 09:22:40 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 12:07:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/28 05:53:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class MutantStack {
 
 		// Attributes
 			std::stack<T> _stack;
+			typedef typename std::stack<T>::container_type ContainerType;
+			ContainerType _container;
 
 	public:
 
@@ -48,6 +50,25 @@ class MutantStack {
 			size_t size() const;
 		// Destructor
 			~MutantStack();
+
+		class iterator {
+
+			private:
+
+				typename ContainerType::iterator iter;
+
+			public:
+				
+				iterator(typename ContainerType::iterator it);
+				T &operator*();
+				iterator &operator++();
+				iterator &operator--();
+				bool operator!=(const iterator& other);
+		};
+
+		// Iterator methods
+			iterator begin();
+			iterator end();
 };
 
 #include "MutantStack.tpp"
