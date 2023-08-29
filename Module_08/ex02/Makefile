@@ -55,8 +55,8 @@ ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=address,undefined -g3
 endif
 
-ifeq ($(print_debug), false)
-	CFLAGS	+= -D PRINT_DEBUG=false
+ifeq ($(print_debug), true)
+	CFLAGS	+= -D PRINT_DEBUG=true
 endif
 
 ##############
