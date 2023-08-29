@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 08:14:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 08:16:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void BitcoinExchange::initDataBase() {
 
 	std::ifstream file(DB_NAME);
 	if (!file.is_open()) {
-		throw BitcoinExchange::InvalidFileError();
+		throw BitcoinExchange::InvalidDatabaseError();
 	}
 	file.close();
 	_database.open(DB_NAME);
