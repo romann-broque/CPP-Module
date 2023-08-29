@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 08:33:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 09:36:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static std::string removeWhiteSpaces(const std::string str) {
 		}
 	}
 	return newStr;
+}
+
+static std::string findClosestKey(std::map<std::string, float>& myMap, const std::string& inputKey) {
+	std::string closestKey = "";  // Initialize with an empty key
+	for (std::map<std::string, float>::const_iterator it = myMap.begin(); it != myMap.end(); ++it) {
+		if (it->first < inputKey) {
+			closestKey = it->first;
+		} else {
+			// Since the keys are sorted, we break as soon as we find a key greater than the input
+			break;
+		}
+	}
+	return closestKey;
 }
 
 // Constructors
@@ -137,6 +150,8 @@ const char *BitcoinExchange::BadInputError::what() const throw() {
 
 // Private methods
 
+// Init Methods //
+
 void BitcoinExchange::initDataBase() {
 
 	std::ifstream file(DB_NAME);
@@ -163,6 +178,8 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 	_file.open(fileName);
 }
 
+// Fill Methods //
+
 void BitcoinExchange::fillDate(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
@@ -182,6 +199,16 @@ void BitcoinExchange::fillDate(const std::string line) {
 	else {throw InvalidDatabaseError();}
 }
 
+void BitcoinExchange::fillDatabase() {
+
+	std::string	line;
+
+	while (std::getline(_database, line)) {
+		fillDate(line);
+	}
+	resetFile(_database);
+}
+
 void BitcoinExchange::exchange(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
@@ -194,19 +221,13 @@ void BitcoinExchange::exchange(const std::string line) {
 		std::istringstream valueStream(valuePart);
 		float value;
 		if (valueStream >> value) {
-			std::cout << datePart << " => " << value << " = " << value * _dataMap[datePart] << std::endl;
-			return;
+			std::string closestDate = findClosestKey(_dataMap, datePart);
+			if (!closestDate.empty()) {
+				std::cout << closestDate << " => " << value << " = " << value * _dataMap[closestDate] << std::endl;
+				return;
+			} else {
+				std::cout << "No closest key found." << std::endl;
+			}
 		}
-	}
-	else {throw BadInputError(line);}
-}
-
-void BitcoinExchange::fillDatabase() {
-
-	std::string	line;
-
-	while (std::getline(_database, line)) {
-		fillDate(line);
-	}
-	resetFile(_database);
+	} else {throw BadInputError(line);}
 }
