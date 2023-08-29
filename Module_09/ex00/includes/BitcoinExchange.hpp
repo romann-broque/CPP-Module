@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 07:21:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 07:47:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 #define EXPECTED_ARG_COUNT	2
 #define SEPARATORS			",;|"
+#define DB_NAME				"data.csv"
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
@@ -38,12 +39,11 @@ class BitcoinExchange {
 
 		// Attributes
 			std::ifstream			_file;
+			std::ifstream			_database;
 			const char				*_fileName;
-			std::list<std::string>	_dateList;
-			std::list<float>		_valueList;	
-			std::list<double>		_resultList;	
-			std::list<std::string>	_errorList;	
+
 		// Methods
+			void initDataBase();
 			void initFile(const int argCount, const char *fileName);
 			void initConversion(std::string line);
 			BitcoinExchange(); // Cannot be used
@@ -56,8 +56,8 @@ class BitcoinExchange {
 		// Overload assignment operator
 			BitcoinExchange &operator=(const BitcoinExchange &bigcoinExchange);
 		// Member
-			void displayFile(void);
 			void displayConversion(void);
+			void displayFile(std::ifstream &file);
 		// Destructor
 			~BitcoinExchange();
 		// Exceptions

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 07:22:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 07:48:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 // Cannot be used
 BitcoinExchange::BitcoinExchange() {
+	
+	initDataBase();
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
 		GREEN << "created (empty)" << NC << std::endl;
@@ -24,6 +26,7 @@ BitcoinExchange::BitcoinExchange() {
 
 BitcoinExchange::BitcoinExchange(const int argCount, const char *filename) {
 
+	initDataBase();
 	initFile(argCount, filename);
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
@@ -49,30 +52,19 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
 
 // Member
 
-void BitcoinExchange::displayFile(void) {
+void BitcoinExchange::displayConversion(void) {
 	std::string line;
 	while (std::getline(_file, line)) {
 		initConversion(line);
 	}
-	displayConversion();
+	displayFile(_database);
 }
 
-void BitcoinExchange::displayConversion(void) {
-
-	std::list<std::string>::iterator itDate = _dateList.begin();
-	std::list<float>::iterator itValue = _valueList.begin();
-	// std::list<double>::iterator itResult = _resultList.begin();
-	std::list<std::string>::iterator itError = _errorList.begin();
-	for (; itDate != _dateList.end(); ++itDate, ++itValue){
-		// , ++itResult) {
-		
-		if (std::isnan(*itValue)){
-			std::cout << *itError;
-			++itError;
-		} else {
-			std::cout << *itDate << " => " << *itValue << " = ";// << *itResult;
-		}
-		std::cout << std::endl;
+void BitcoinExchange::displayFile(std::ifstream &file) {
+	
+	std::string	line;
+	while (std::getline(file, line)) {
+		std::cout << line << std::endl;
 	}
 }
 
@@ -81,6 +73,7 @@ void BitcoinExchange::displayConversion(void) {
 BitcoinExchange::~BitcoinExchange() {
 
 	_file.close();
+	_database.close();
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
 		RED << "destroyed" << std::endl;
@@ -103,6 +96,16 @@ const char *BitcoinExchange::InvalidFileError::what() const throw() {
 
 // Private methods
 
+void BitcoinExchange::initDataBase() {
+
+	std::ifstream file(DB_NAME);
+	if (!file.is_open()) {
+		throw BitcoinExchange::InvalidFileError();
+	}
+	file.close();
+	_database.open(DB_NAME);
+}
+
 void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 
 	if (argCount < EXPECTED_ARG_COUNT)
@@ -118,37 +121,28 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 	_file.open(fileName);
 }
 
-static std::string removeWhiteSpaces(std::string line) {
-
-	std::string str;
-
-	for (std::string::iterator it = line.begin(); it != line.end(); ++it) {
-		if (!std::isspace(*it))
-			str += *it;
-	}
-	return str;
-}
-
 void BitcoinExchange::initConversion(const std::string line) {
-	
-	std::string lineWithoutSpaces = removeWhiteSpaces(line);
 
-	std::size_t separatorPos = line.find_first_of(SEPARATORS);
-	if (separatorPos != std::string::npos) {
-		std::string datePart = line.substr(0, separatorPos);
-		std::string valuePart = line.substr(separatorPos + 1);
+	(void)line;	
+	// std::string lineWithoutSpaces = removeWhiteSpaces(line);
 
-		std::istringstream valueStream(valuePart);
-		float value;
-		if (valueStream >> value) {
-			_dateList.push_back(datePart);
-			_valueList.push_back(value);
-			return;
-		}
-	}
-	else {
-		_errorList.push_back("Error: bad input => " + line);
-		_dateList.push_back(line); // Assuming the whole line is the date
-		_valueList.push_back(std::numeric_limits<float>::quiet_NaN());
-	}
+	// std::size_t separatorPos = line.find_first_of(SEPARATORS);
+	// if (separatorPos != std::string::npos) {
+	// 	std::string datePart = line.substr(0, separatorPos);
+	// 	std::string valuePart = line.substr(separatorPos + 1);
+
+	// 	std::istringstream valueStream(valuePart);
+	// 	float value;
+	// 	if (valueStream >> value) {
+	// 		_dateList.push_back(datePart);
+	// 		_valueList.push_back(value);
+	// 		_resultList.push_back(value * );
+	// 		return;
+	// 	}
+	// }
+	// else {
+	// 	_errorList.push_back("Error: bad input => " + line);
+	// 	_dateList.push_back(line); // Assuming the whole line is the date
+	// 	_valueList.push_back(std::numeric_limits<float>::quiet_NaN());
+	// }
 }
