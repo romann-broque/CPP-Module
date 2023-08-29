@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 08:16:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 08:33:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,14 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
 void BitcoinExchange::displayConversion(void) {
 	std::string line;
 
-	displayFile(_database);
 	std::cout << "This is " << _fileName << std::endl;
 	while (std::getline(_file, line)) {
-		std::cout << line << std::endl;
+		try {
+			exchange(line);
+		}
+		catch (std::exception &e) {
+			std::cout << "Error: " << e.what() << std::endl;
+		}
 	}
 }
 
@@ -119,6 +123,16 @@ const char *BitcoinExchange::InvalidFileError::what() const throw() {
 
 const char *BitcoinExchange::InvalidDatabaseError::what() const throw() {
 	return "Invalid Database";
+}
+
+BitcoinExchange::BadInputError::BadInputError(const std::string &message) {
+	_errorMessage = "bad input => " + message;
+}
+
+BitcoinExchange::BadInputError::~BadInputError() throw() {}
+
+const char *BitcoinExchange::BadInputError::what() const throw() {
+	return _errorMessage.c_str();
 }
 
 // Private methods
@@ -166,6 +180,25 @@ void BitcoinExchange::fillDate(const std::string line) {
 		}
 	}
 	else {throw InvalidDatabaseError();}
+}
+
+void BitcoinExchange::exchange(const std::string line) {
+	
+	std::string lineWithoutSpaces = removeWhiteSpaces(line);
+	std::size_t separatorPos = line.find_first_of(SEPARATORS);
+
+	if (separatorPos != std::string::npos) {
+		std::string datePart = line.substr(0, separatorPos);
+		std::string valuePart = line.substr(separatorPos + 1);
+
+		std::istringstream valueStream(valuePart);
+		float value;
+		if (valueStream >> value) {
+			std::cout << datePart << " => " << value << " = " << value * _dataMap[datePart] << std::endl;
+			return;
+		}
+	}
+	else {throw BadInputError(line);}
 }
 
 void BitcoinExchange::fillDatabase() {
