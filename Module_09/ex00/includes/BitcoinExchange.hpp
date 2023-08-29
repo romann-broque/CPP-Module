@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/28 14:25:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 07:21:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
-#include <map>
+#include <list>
+#include <limits>
+#include <cmath>
 
 #define NC		"\033[0m"
 #define RED		"\033[0;31m"
 #define GREEN	"\033[0;32m"
 
-#define EXPECTED_ARG_COUNT 2
+#define EXPECTED_ARG_COUNT	2
+#define SEPARATORS			",;|"
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
@@ -33,10 +37,15 @@ class BitcoinExchange {
 	private:
 
 		// Attributes
-			std::ifstream	_file;
-			const char		*_fileName;
+			std::ifstream			_file;
+			const char				*_fileName;
+			std::list<std::string>	_dateList;
+			std::list<float>		_valueList;	
+			std::list<double>		_resultList;	
+			std::list<std::string>	_errorList;	
 		// Methods
 			void initFile(const int argCount, const char *fileName);
+			void initConversion(std::string line);
 			BitcoinExchange(); // Cannot be used
 
 	public:
@@ -48,6 +57,7 @@ class BitcoinExchange {
 			BitcoinExchange &operator=(const BitcoinExchange &bigcoinExchange);
 		// Member
 			void displayFile(void);
+			void displayConversion(void);
 		// Destructor
 			~BitcoinExchange();
 		// Exceptions
