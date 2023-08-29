@@ -6,11 +6,31 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 07:48:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/29 08:14:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+// Static methods
+
+static void	resetFile(std::ifstream &file) {
+
+	file.clear();
+	file.seekg(0);
+}
+
+static std::string removeWhiteSpaces(const std::string str) {
+
+	std::string	newStr;
+
+	for (size_t i = 0; i < str.size(); ++i) {
+		if (!std::isspace(str[i])) {
+			newStr += str[i];
+		}
+	}
+	return newStr;
+}
 
 // Constructors
 
@@ -54,10 +74,12 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
 
 void BitcoinExchange::displayConversion(void) {
 	std::string line;
-	while (std::getline(_file, line)) {
-		initConversion(line);
-	}
+
 	displayFile(_database);
+	std::cout << "This is " << _fileName << std::endl;
+	while (std::getline(_file, line)) {
+		std::cout << line << std::endl;
+	}
 }
 
 void BitcoinExchange::displayFile(std::ifstream &file) {
@@ -66,6 +88,7 @@ void BitcoinExchange::displayFile(std::ifstream &file) {
 	while (std::getline(file, line)) {
 		std::cout << line << std::endl;
 	}
+	resetFile(file);
 }
 
 // Destructor
@@ -94,6 +117,10 @@ const char *BitcoinExchange::InvalidFileError::what() const throw() {
 	return "Invalid File";
 }
 
+const char *BitcoinExchange::InvalidDatabaseError::what() const throw() {
+	return "Invalid Database";
+}
+
 // Private methods
 
 void BitcoinExchange::initDataBase() {
@@ -104,6 +131,7 @@ void BitcoinExchange::initDataBase() {
 	}
 	file.close();
 	_database.open(DB_NAME);
+	fillDatabase();
 }
 
 void BitcoinExchange::initFile(const int argCount, const char *fileName) {
@@ -121,28 +149,31 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 	_file.open(fileName);
 }
 
-void BitcoinExchange::initConversion(const std::string line) {
+void BitcoinExchange::fillDate(const std::string line) {
+	
+	std::string lineWithoutSpaces = removeWhiteSpaces(line);
+	std::size_t separatorPos = line.find_first_of(SEPARATORS);
 
-	(void)line;	
-	// std::string lineWithoutSpaces = removeWhiteSpaces(line);
+	if (separatorPos != std::string::npos) {
+		std::string datePart = line.substr(0, separatorPos);
+		std::string valuePart = line.substr(separatorPos + 1);
 
-	// std::size_t separatorPos = line.find_first_of(SEPARATORS);
-	// if (separatorPos != std::string::npos) {
-	// 	std::string datePart = line.substr(0, separatorPos);
-	// 	std::string valuePart = line.substr(separatorPos + 1);
+		std::istringstream valueStream(valuePart);
+		float value;
+		if (valueStream >> value) {
+			_dataMap[datePart] = value;
+			return;
+		}
+	}
+	else {throw InvalidDatabaseError();}
+}
 
-	// 	std::istringstream valueStream(valuePart);
-	// 	float value;
-	// 	if (valueStream >> value) {
-	// 		_dateList.push_back(datePart);
-	// 		_valueList.push_back(value);
-	// 		_resultList.push_back(value * );
-	// 		return;
-	// 	}
-	// }
-	// else {
-	// 	_errorList.push_back("Error: bad input => " + line);
-	// 	_dateList.push_back(line); // Assuming the whole line is the date
-	// 	_valueList.push_back(std::numeric_limits<float>::quiet_NaN());
-	// }
+void BitcoinExchange::fillDatabase() {
+
+	std::string	line;
+
+	while (std::getline(_database, line)) {
+		fillDate(line);
+	}
+	resetFile(_database);
 }
