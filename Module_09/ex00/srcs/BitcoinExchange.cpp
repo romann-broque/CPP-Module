@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:55:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 08:42:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,9 @@ static std::string findClosestKey(std::map<std::string, float>& myMap, const std
 }
 
 static bool isValidDateFormat(const std::string& date) {
-	// Check the length of the date string
-	if (date.length() != 10) {
-		return false;
-	}
 
 	// Check the format: YYYY-MM-DD
-	if (date[4] != '-' || date[7] != '-') {
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-') {
 		return false;
 	}
 
@@ -64,7 +60,6 @@ static bool isValidDateFormat(const std::string& date) {
 			return false;
 		}
 	}
-
 	return true;
 }
 
@@ -243,8 +238,8 @@ void BitcoinExchange::fillDate(const std::string line) {
 	std::size_t separatorPos = line.find_first_of(DB_SEPARATORS);
 
 	if (separatorPos != std::string::npos) {
-		std::string datePart = line.substr(0, separatorPos);
-		std::string valuePart = line.substr(separatorPos + 1);
+		std::string datePart = lineWithoutSpaces.substr(0, separatorPos);
+		std::string valuePart = lineWithoutSpaces.substr(separatorPos + 1);
 
 		std::istringstream valueStream(valuePart);
 		float value;
