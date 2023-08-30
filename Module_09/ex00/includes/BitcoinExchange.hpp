@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:20:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:41:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 #define NEGATIVE_ERROR_M		"not a positive number."
 #define TOO_LARGE_ERROR_M		"too large a number."
 #define BAD_INPUT_ERROR_M		"bad input => "
+#define INVALID_DATE_ERROR_M	"bad date format => "
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
@@ -59,6 +60,7 @@ class BitcoinExchange {
 			void initFile(const int argCount, const char *fileName);
 			void fillDate(const std::string line);
 			void fillDatabase();
+			void checkDateFormat(const std::string &date);
 			void checkValueRequirements(const float value);
 			void exchange(const std::string line);
 			BitcoinExchange(); // Cannot be used
@@ -108,5 +110,14 @@ class BitcoinExchange {
 					BadInputError(const std::string &message);
 					const char *what() const throw();
 					~BadInputError() throw();
+			};
+			class InvalidDateFormatError: public std::exception {
+				private:
+					std::string _errorMessage;
+
+				public:
+					InvalidDateFormatError(const std::string &message);
+					const char *what() const throw();
+					~InvalidDateFormatError() throw();
 			};
 };

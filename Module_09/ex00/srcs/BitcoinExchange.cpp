@@ -6,13 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:19:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:45:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-// Static methods
+////////////////////
+// Static methods //
+////////////////////
 
 static void	resetFile(std::ifstream &file) {
 
@@ -45,7 +47,30 @@ static std::string findClosestKey(std::map<std::string, float>& myMap, const std
 	return closestKey;
 }
 
-// Constructors
+static bool isValidDateFormat(const std::string& date) {
+	// Check the length of the date string
+	if (date.length() != 10) {
+		return false;
+	}
+
+	// Check the format: YYYY-MM-DD
+	if (date[4] != '-' || date[7] != '-') {
+		return false;
+	}
+
+	// Check if each character is a digit
+	for (int i = 0; i < 10; ++i) {
+		if (i != 4 && i != 7 && !isdigit(date[i])) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+//////////////////
+// Constructors //
+//////////////////
 
 // Cannot be used
 BitcoinExchange::BitcoinExchange() {
@@ -76,14 +101,18 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &bitcoinExchange) {
 	}
 }
 
-// Overload assignment operator
+//////////////////////////////////
+// Overload assignment operator //
+//////////////////////////////////
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchange) {
 	(void)bitcoinExchange;
 	return *this;
 }
 
-// Member
+////////////
+// Member //
+////////////
 
 void BitcoinExchange::displayConversion(void) {
 	std::string line;
@@ -108,7 +137,9 @@ void BitcoinExchange::displayFile(std::ifstream &file) {
 	resetFile(file);
 }
 
-// Destructor
+////////////////
+// Destructor //
+////////////////
 
 BitcoinExchange::~BitcoinExchange() {
 
@@ -120,7 +151,9 @@ BitcoinExchange::~BitcoinExchange() {
 	}
 }
 
-// Exceptions
+////////////////
+// Exceptions //
+////////////////
 
 const char *BitcoinExchange::MissingArgumentError::what() const throw() {
 	return MISSING_ARG_ERROR_M;
@@ -156,7 +189,19 @@ const char *BitcoinExchange::BadInputError::what() const throw() {
 	return _errorMessage.c_str();
 }
 
-// Private methods
+BitcoinExchange::InvalidDateFormatError::InvalidDateFormatError(const std::string &message) {
+	_errorMessage = INVALID_DATE_ERROR_M + message;
+}
+
+BitcoinExchange::InvalidDateFormatError::~InvalidDateFormatError() throw() {}
+
+const char *BitcoinExchange::InvalidDateFormatError::what() const throw() {
+	return _errorMessage.c_str();
+}
+
+/////////////////////
+// Private methods //
+/////////////////////
 
 // Init Methods //
 
@@ -200,6 +245,7 @@ void BitcoinExchange::fillDate(const std::string line) {
 		std::istringstream valueStream(valuePart);
 		float value;
 		if (valueStream >> value) {
+			checkDateFormat(datePart);
 			_dataMap[datePart] = value;
 			return;
 		}
@@ -215,6 +261,12 @@ void BitcoinExchange::fillDatabase() {
 		fillDate(line);
 	}
 	resetFile(_database);
+}
+
+void BitcoinExchange::checkDateFormat(const std::string &date) {
+
+	if (!isValidDateFormat(date))
+		throw InvalidDateFormatError(date);
 }
 
 void BitcoinExchange::checkValueRequirements(const float value) {
@@ -236,12 +288,11 @@ void BitcoinExchange::exchange(const std::string line) {
 		std::istringstream valueStream(valuePart);
 		float value;
 		if (valueStream >> value) {
+			checkDateFormat(datePart);
 			checkValueRequirements(value);
 			std::string closestDate = findClosestKey(_dataMap, datePart);
-			if (!closestDate.empty()) {
-				std::cout << closestDate << " => " << value
-					<< " = " << value * _dataMap[closestDate] << std::endl;
-			}
+			std::cout << closestDate << " => " << value
+				<< " = " << value * _dataMap[closestDate] << std::endl;
 		}
 	} else {throw BadInputError(line);}
 }
