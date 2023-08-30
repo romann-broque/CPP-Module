@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 06:47:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:19:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,31 +123,31 @@ BitcoinExchange::~BitcoinExchange() {
 // Exceptions
 
 const char *BitcoinExchange::MissingArgumentError::what() const throw() {
-	return "File name is missing";
+	return MISSING_ARG_ERROR_M;
 }
 
 const char *BitcoinExchange::TooManyArgumentError::what() const throw() {
-	return "Too many given arguments";
+	return TOO_MANY_ARG_ERROR_M;
 }
 
 const char *BitcoinExchange::InvalidFileError::what() const throw() {
-	return "Invalid File";
+	return INVALID_FILE_ERROR_M;
 }
 
 const char *BitcoinExchange::InvalidDatabaseError::what() const throw() {
-	return "Invalid Database";
+	return INVALID_DB_ERROR_M;
 }
 
 const char *BitcoinExchange::NegativeValueError::what() const throw() {
-	return "not a positive number.";
+	return NEGATIVE_ERROR_M;
 }
 
 const char *BitcoinExchange::TooLargeValueError::what() const throw() {
-	return "too large a number.";
+	return TOO_LARGE_ERROR_M;
 }
 
 BitcoinExchange::BadInputError::BadInputError(const std::string &message) {
-	_errorMessage = "bad input => " + message;
+	_errorMessage = BAD_INPUT_ERROR_M + message;
 }
 
 BitcoinExchange::BadInputError::~BadInputError() throw() {}
@@ -191,7 +191,7 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 void BitcoinExchange::fillDate(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
-	std::size_t separatorPos = line.find_first_of(SEPARATORS);
+	std::size_t separatorPos = line.find_first_of(DB_SEPARATORS);
 
 	if (separatorPos != std::string::npos) {
 		std::string datePart = line.substr(0, separatorPos);
@@ -227,11 +227,11 @@ void BitcoinExchange::checkValueRequirements(const float value) {
 void BitcoinExchange::exchange(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
-	std::size_t separatorPos = line.find_first_of(SEPARATORS);
+	std::size_t separatorPos = lineWithoutSpaces.find_first_of(SEPARATORS);
 
 	if (separatorPos != std::string::npos) {
-		std::string datePart = line.substr(0, separatorPos);
-		std::string valuePart = line.substr(separatorPos + 1);
+		std::string datePart = lineWithoutSpaces.substr(0, separatorPos);
+		std::string valuePart = lineWithoutSpaces.substr(separatorPos + 1);
 
 		std::istringstream valueStream(valuePart);
 		float value;
@@ -239,10 +239,8 @@ void BitcoinExchange::exchange(const std::string line) {
 			checkValueRequirements(value);
 			std::string closestDate = findClosestKey(_dataMap, datePart);
 			if (!closestDate.empty()) {
-				std::cout << closestDate << " => " << value << " = " << value * _dataMap[closestDate] << std::endl;
-				return;
-			} else {
-				std::cout << "No closest key found." << std::endl;
+				std::cout << closestDate << " => " << value
+					<< " = " << value * _dataMap[closestDate] << std::endl;
 			}
 		}
 	} else {throw BadInputError(line);}

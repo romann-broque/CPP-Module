@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 06:46:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:20:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,26 @@
 #include <string>
 #include <map>
 
+#define EXPECTED_ARG_COUNT	2
+#define DB_SEPARATORS		","
+#define SEPARATORS			"|"
+#define DB_NAME				"data.csv"
+
+// Colors
 
 #define NC		"\033[0m"
 #define RED		"\033[0;31m"
 #define GREEN	"\033[0;32m"
 
-#define EXPECTED_ARG_COUNT	2
-#define SEPARATORS			",;|"
-#define DB_NAME				"data.csv"
+// Error Messages
+
+#define MISSING_ARG_ERROR_M		"could not open file."
+#define TOO_MANY_ARG_ERROR_M	"too many given arguments."
+#define INVALID_FILE_ERROR_M	"could not open file."
+#define INVALID_DB_ERROR_M		"invalid database."
+#define NEGATIVE_ERROR_M		"not a positive number."
+#define TOO_LARGE_ERROR_M		"too large a number."
+#define BAD_INPUT_ERROR_M		"bad input => "
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
