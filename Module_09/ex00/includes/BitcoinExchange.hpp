@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:41:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:56:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 #define TOO_LARGE_ERROR_M		"too large a number."
 #define BAD_INPUT_ERROR_M		"bad input => "
 #define INVALID_DATE_ERROR_M	"bad date format => "
+#define TOO_EARLY_ERROR_M		"Bitcoin didn't exist at this time"
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
@@ -62,6 +63,7 @@ class BitcoinExchange {
 			void fillDatabase();
 			void checkDateFormat(const std::string &date);
 			void checkValueRequirements(const float value);
+			std::string findClosestDate(std::map<std::string, float>& myMap, const std::string& input);
 			void exchange(const std::string line);
 			BitcoinExchange(); // Cannot be used
 
@@ -119,5 +121,9 @@ class BitcoinExchange {
 					InvalidDateFormatError(const std::string &message);
 					const char *what() const throw();
 					~InvalidDateFormatError() throw();
+			};
+			class TooEarlyDateError: public std::exception {
+				public:
+					const char *what() const throw();
 			};
 };

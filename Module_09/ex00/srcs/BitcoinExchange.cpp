@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:45:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 07:55:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,10 @@ const char *BitcoinExchange::InvalidDateFormatError::what() const throw() {
 	return _errorMessage.c_str();
 }
 
+const char *BitcoinExchange::TooEarlyDateError::what() const throw() {
+	return TOO_EARLY_ERROR_M;
+}
+
 /////////////////////
 // Private methods //
 /////////////////////
@@ -276,6 +280,14 @@ void BitcoinExchange::checkValueRequirements(const float value) {
 		throw TooLargeValueError();
 }
 
+std::string BitcoinExchange::findClosestDate(std::map<std::string, float>& myMap, const std::string& input) {
+	std::string closestDate = findClosestKey(myMap, input);
+
+	if (closestDate.empty())
+		throw TooEarlyDateError();
+	return closestDate;
+}
+
 void BitcoinExchange::exchange(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
@@ -290,7 +302,7 @@ void BitcoinExchange::exchange(const std::string line) {
 		if (valueStream >> value) {
 			checkDateFormat(datePart);
 			checkValueRequirements(value);
-			std::string closestDate = findClosestKey(_dataMap, datePart);
+			std::string closestDate = findClosestDate(_dataMap, datePart);
 			std::cout << closestDate << " => " << value
 				<< " = " << value * _dataMap[closestDate] << std::endl;
 		}
