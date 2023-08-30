@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 09:08:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 13:05:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &bitcoinExchan
 void BitcoinExchange::displayConversion(void) {
 	std::string line;
 
-	std::cout << "This is " << _fileName << std::endl;
 	while (std::getline(_file, line)) {
 		try {
 			exchange(line);
