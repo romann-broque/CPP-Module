@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 09:33:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 06:46:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ class BitcoinExchange {
 			void initFile(const int argCount, const char *fileName);
 			void fillDate(const std::string line);
 			void fillDatabase();
+			void checkValueRequirements(const float value);
 			void exchange(const std::string line);
 			BitcoinExchange(); // Cannot be used
 
@@ -76,6 +77,14 @@ class BitcoinExchange {
 					const char *what() const throw();
 			};
 			class InvalidDatabaseError: public std::exception {
+				public:
+					const char *what() const throw();
+			};
+			class NegativeValueError: public std::exception {
+				public:
+					const char *what() const throw();
+			};
+			class TooLargeValueError: public std::exception {
 				public:
 					const char *what() const throw();
 			};

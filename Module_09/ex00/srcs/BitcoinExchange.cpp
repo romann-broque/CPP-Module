@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/29 09:36:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 06:47:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,14 @@ const char *BitcoinExchange::InvalidDatabaseError::what() const throw() {
 	return "Invalid Database";
 }
 
+const char *BitcoinExchange::NegativeValueError::what() const throw() {
+	return "not a positive number.";
+}
+
+const char *BitcoinExchange::TooLargeValueError::what() const throw() {
+	return "too large a number.";
+}
+
 BitcoinExchange::BadInputError::BadInputError(const std::string &message) {
 	_errorMessage = "bad input => " + message;
 }
@@ -209,6 +217,13 @@ void BitcoinExchange::fillDatabase() {
 	resetFile(_database);
 }
 
+void BitcoinExchange::checkValueRequirements(const float value) {
+	if (value < 0)
+		throw NegativeValueError();
+	if (value > 100)
+		throw TooLargeValueError();
+}
+
 void BitcoinExchange::exchange(const std::string line) {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
@@ -221,6 +236,7 @@ void BitcoinExchange::exchange(const std::string line) {
 		std::istringstream valueStream(valuePart);
 		float value;
 		if (valueStream >> value) {
+			checkValueRequirements(value);
 			std::string closestDate = findClosestKey(_dataMap, datePart);
 			if (!closestDate.empty()) {
 				std::cout << closestDate << " => " << value << " = " << value * _dataMap[closestDate] << std::endl;
