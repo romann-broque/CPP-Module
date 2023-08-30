@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 07:56:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 09:08:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ class BitcoinExchange {
 			void initFile(const int argCount, const char *fileName);
 			void fillDate(const std::string line);
 			void fillDatabase();
-			void checkDateFormat(const std::string &date);
-			void checkValueRequirements(const float value);
-			std::string findClosestDate(std::map<std::string, float>& myMap, const std::string& input);
-			void exchange(const std::string line);
+			void displayFile(std::ifstream &file) const;
+			void checkDateFormat(const std::string &date) const;
+			void checkValueRequirements(const float value) const;
+			std::string findClosestDate(const std::map<std::string, float>& myMap, const std::string& input) const;
+			void exchange(const std::string line) const;
 			BitcoinExchange(); // Cannot be used
 
 	public:
@@ -76,7 +77,6 @@ class BitcoinExchange {
 			BitcoinExchange &operator=(const BitcoinExchange &bigcoinExchange);
 		// Member
 			void displayConversion();
-			void displayFile(std::ifstream &file);
 		// Destructor
 			~BitcoinExchange();
 		// Exceptions

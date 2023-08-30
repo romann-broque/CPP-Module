@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 08:42:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/30 09:08:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static std::string removeWhiteSpaces(const std::string str) {
 	return newStr;
 }
 
-static std::string findClosestKey(std::map<std::string, float>& myMap, const std::string& inputKey) {
+static std::string findClosestKey(const std::map<std::string, float>& myMap, const std::string& inputKey) {
 	std::string closestKey = "";  // Initialize with an empty key
 	for (std::map<std::string, float>::const_iterator it = myMap.begin(); it != myMap.end(); ++it) {
 		if (it->first < inputKey) {
@@ -121,15 +121,6 @@ void BitcoinExchange::displayConversion(void) {
 			std::cout << "Error: " << e.what() << std::endl;
 		}
 	}
-}
-
-void BitcoinExchange::displayFile(std::ifstream &file) {
-	
-	std::string	line;
-	while (std::getline(file, line)) {
-		std::cout << line << std::endl;
-	}
-	resetFile(file);
 }
 
 ////////////////
@@ -262,20 +253,29 @@ void BitcoinExchange::fillDatabase() {
 	resetFile(_database);
 }
 
-void BitcoinExchange::checkDateFormat(const std::string &date) {
+void BitcoinExchange::displayFile(std::ifstream &file) const {
+	
+	std::string	line;
+	while (std::getline(file, line)) {
+		std::cout << line << std::endl;
+	}
+	resetFile(file);
+}
+
+void BitcoinExchange::checkDateFormat(const std::string &date) const {
 
 	if (!isValidDateFormat(date))
 		throw InvalidDateFormatError(date);
 }
 
-void BitcoinExchange::checkValueRequirements(const float value) {
+void BitcoinExchange::checkValueRequirements(const float value) const {
 	if (value < 0)
 		throw NegativeValueError();
 	if (value > 100)
 		throw TooLargeValueError();
 }
 
-std::string BitcoinExchange::findClosestDate(std::map<std::string, float>& myMap, const std::string& input) {
+std::string BitcoinExchange::findClosestDate(const std::map<std::string, float>& myMap, const std::string& input) const {
 	std::string closestDate = findClosestKey(myMap, input);
 
 	if (closestDate.empty())
@@ -283,7 +283,7 @@ std::string BitcoinExchange::findClosestDate(std::map<std::string, float>& myMap
 	return closestDate;
 }
 
-void BitcoinExchange::exchange(const std::string line) {
+void BitcoinExchange::exchange(const std::string line) const {
 	
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
 	std::size_t separatorPos = lineWithoutSpaces.find_first_of(SEPARATORS);
@@ -299,7 +299,7 @@ void BitcoinExchange::exchange(const std::string line) {
 			checkValueRequirements(value);
 			std::string closestDate = findClosestDate(_dataMap, datePart);
 			std::cout << closestDate << " => " << value
-				<< " = " << value * _dataMap[closestDate] << std::endl;
+				<< " = " << value * _dataMap.at(closestDate) << std::endl;
 		}
 	} else {throw BadInputError(line);}
 }
