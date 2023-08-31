@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 16:12:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:23:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,29 @@
 // Static methods //
 ////////////////////
 
-bool isOperator(const std::string &token) {
+static bool isOperator(const std::string &token) {
 	return token.size() == 1 && token.find_first_of(OPERATORS) != std::string::npos;
 }
 
-int addition(const int nb1, const int nb2) {
+static int addition(const int nb1, const int nb2) {
 	return (nb1 + nb2);
 }
 
-int substraction(const int nb1, const int nb2) {
+static int substraction(const int nb1, const int nb2) {
 	return (nb1 - nb2);
 }
 
-int multiplication(const int nb1, const int nb2) {
+static int multiplication(const int nb1, const int nb2) {
 	return (nb1 * nb2);
 }
 
-int division(const int nb1, const int nb2) {
+static int division(const int nb1, const int nb2) {
 	if (nb2 == 0)
 		throw RPN::DivisionByZeroError();
 	return (nb1 / nb2); // protect against division by 0
 }
 
-int performOperation(const int nb1, const int nb2, const std::string &op) {
+static int performOperation(const int nb1, const int nb2, const std::string &op) {
 
 	static int (*operations[])(const int, const int) = {
 		addition,
@@ -50,7 +50,7 @@ int performOperation(const int nb1, const int nb2, const std::string &op) {
 	return operations[operators.find(op)](nb1, nb2);
 }
 
-int getOperand(const std::string &op) {
+static int getOperand(const std::string &op) {
 	if (op.size() == 1 && isdigit(op[0]))
 		return op[0] - ASCII_NB_SHIFT;
 	throw RPN::UnexpectedTokenError();
@@ -101,28 +101,10 @@ RPN &RPN::operator=(const RPN &other) {
 // Member //
 ////////////
 
-void	RPN::displayResult() {
+void	RPN::displayResult() const {
 
-	std::stack<int>		operands;
-	std::istringstream	iss(_operationString);
-	std::string			token;
-	while (iss >> token) {
-
-		if (isOperator(token)) {
-			if (operands.size() < 2) {
-				throw InsufficientOperandsError();
-			}
-			const int operand1 = operands.top();
-			operands.pop();
-			const int	operand2 = operands.top();
-			operands.pop();
-			const int result = performOperation(operand2, operand1, token);
-			operands.push(result);
-		} else {
-			const int operand = getOperand(token);
-			operands.push(operand);
-		}
-	}
+	std::stack<int> operands;
+	processStack(operands);
 	if (operands.size() > 1)
 		throw TooManyOperandsError();
 	std::cout << operands.top() << std::endl;
@@ -166,3 +148,30 @@ const char *RPN::UnexpectedTokenError::what() const throw() {
 const char *RPN::DivisionByZeroError::what() const throw() {
 	return DIVISION_BY_ZERO_ERROR_M;
 }
+
+/////////////
+// Private //
+/////////////
+
+void RPN::processStack(std::stack<int> &operands) const {
+	std::istringstream	iss(_operationString);
+	std::string			token;
+	while (iss >> token) {
+
+		if (isOperator(token)) {
+			if (operands.size() < 2) {
+				throw InsufficientOperandsError();
+			}
+			const int operand1 = operands.top();
+			operands.pop();
+			const int	operand2 = operands.top();
+			operands.pop();
+			const int result = performOperation(operand2, operand1, token);
+			operands.push(result);
+		} else {
+			const int operand = getOperand(token);
+			operands.push(operand);
+		}
+	}
+}
+ 

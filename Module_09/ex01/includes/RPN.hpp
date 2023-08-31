@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 16:13:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:23:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ class RPN {
 			std::string _operationString;
 		// Methods
 			RPN(); // Cannot be used
+			void processStack(std::stack<int> &operands) const;
 
 	public:
 
@@ -58,7 +59,7 @@ class RPN {
 		// Overload assignment constructor
 			RPN &operator=(const RPN &other);
 		// Member
-			void displayResult();
+			void displayResult() const;
 		// Destructor
 			~RPN();
 		// Exceptions
