@@ -6,13 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 16:23:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:20:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <cstdlib>
+#include <climits>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -26,6 +27,7 @@
 #define TOO_MANY_OPERANDS_ERROR_M		"too many operands"
 #define UNEXPECTED_TOK_ERROR_M			"unexpected token"
 #define DIVISION_BY_ZERO_ERROR_M		"division by zero"
+#define OVERFLOW_ERROR_M				"int overflow"
 
 // Colors
 
@@ -84,6 +86,10 @@ class RPN {
 					const char *what() const throw();
 			};
 			class DivisionByZeroError: public std::exception {
+				public :
+					const char *what() const throw();
+			};
+			class OverflowError: public std::exception {
 				public :
 					const char *what() const throw();
 			};
