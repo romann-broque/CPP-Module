@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 12:13:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:11:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int	main(int ac, char **av)
 		rpn.displayResult();
 	}
 	catch (std::exception &e) {
-		std::cout << "Error: " << e.what() << std::endl;
+		if (PRINT_DEBUG) {
+			std::cout << "Error: " << e.what() << std::endl;
+		} else {
+			std::cout << "Error" << std::endl;
+		}
 		return EXIT_FAILURE;
 	}
 	return EXIT_SUCCESS;

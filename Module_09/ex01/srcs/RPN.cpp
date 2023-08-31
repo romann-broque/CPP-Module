@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 14:58:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:12:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int multiplication(const int nb1, const int nb2) {
 }
 
 int division(const int nb1, const int nb2) {
+	if (nb2 == 0)
+		throw RPN::DivisionByZeroError();
 	return (nb1 / nb2); // protect against division by 0
 }
 
@@ -51,13 +53,14 @@ int performOperation(const int nb1, const int nb2, const std::string &op) {
 int getOperand(const std::string &op) {
 	if (op.size() == 1 && isdigit(op[0]))
 		return op[0] - ASCII_NB_SHIFT;
-	throw RPN::UnexpectedCharacterError();
+	throw RPN::UnexpectedTokenError();
 }
 
 //////////////////
 // Constructors //
 //////////////////
 
+// Cannot be used
 RPN::RPN() {
 	if (PRINT_DEBUG) {
 		std::cout << "RPN has been " <<
@@ -79,6 +82,10 @@ RPN::RPN(const int argCount, const char *operationString) {
 	if (argCount > EXPECTED_ARG_COUNT)
 		throw TooManyArgumentError();
 	_operationString = operationString;
+	if (PRINT_DEBUG) {
+		std::cout << "RPN has been " <<
+		GREEN << "created (set)" << NC << std::endl;
+	}
 }
 
 //////////////////////////////////
@@ -105,11 +112,11 @@ void	RPN::displayResult() {
 			if (operands.size() < 2) {
 				throw InsufficientOperandsError();
 			}
-			int operand1 = operands.top();
+			const int operand1 = operands.top();
 			operands.pop();
-			int	operand2 = operands.top();
+			const int	operand2 = operands.top();
 			operands.pop();
-			int result = performOperation(operand1, operand2, token);
+			const int result = performOperation(operand2, operand1, token);
 			operands.push(result);
 		} else {
 			const int operand = getOperand(token);
@@ -152,6 +159,10 @@ const char *RPN::TooManyOperandsError::what() const throw() {
 	return TOO_MANY_OPERANDS_ERROR_M;
 }
 
-const char *RPN::UnexpectedCharacterError::what() const throw() {
-	return UNEXPECTED_CHAR_ERROR_M;
+const char *RPN::UnexpectedTokenError::what() const throw() {
+	return UNEXPECTED_TOK_ERROR_M;
+}
+
+const char *RPN::DivisionByZeroError::what() const throw() {
+	return DIVISION_BY_ZERO_ERROR_M;
 }
