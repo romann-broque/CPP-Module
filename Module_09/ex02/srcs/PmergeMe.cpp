@@ -6,11 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:22:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/01 07:44:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+/////////////////////
+// Static methods //
+///////////////////
 
 static int toInt(const int nb, const int added) {
 	if (added > INT_MAX - 10 * nb)
@@ -36,7 +40,25 @@ static int getIntFromStr(const std::string &str) {
 	return nb;
 }
 
-// Constructors
+template <typename T>
+static void displaySequence(const T &sequence) {
+	const size_t size = sequence.size();
+	typename T::const_iterator it = sequence.begin();
+	for (size_t i = 0; i < size; ++i) {
+		std::cout << *it;
+		if (i + 1 < size) {
+			std::cout << SPACE;
+		}
+		++it;
+	}
+	std::cout << std::endl;
+}
+
+///////////////////
+// Constructors //
+/////////////////
+
+// Cannot be used
 
 PmergeMe::PmergeMe() {
 	if (PRINT_DEBUG) {
@@ -70,7 +92,9 @@ PmergeMe::PmergeMe(char **sequence) {
 	}
 }
 
-// Overload assignment operator
+///////////////////////////////////
+// Overload assignment operator //
+/////////////////////////////////
 
 PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 	_vectorSeq = other._vectorSeq;
@@ -78,7 +102,20 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 	return *this;
 }
 
-// Destructor
+/////////////
+// Member //
+///////////
+
+void PmergeMe::sort() {
+
+	displayContainers("Before");
+
+	displayContainers("After ");
+}
+
+/////////////////
+// Destructor //
+///////////////
 
 PmergeMe::~PmergeMe() {
 	if (PRINT_DEBUG) {
@@ -87,7 +124,9 @@ PmergeMe::~PmergeMe() {
 	}
 }
 
-// Exceptions
+/////////////////
+// Exceptions //
+///////////////
 
 const char *PmergeMe::MissingArgError::what() const throw() {
 	return MISSING_ARG_ERROR_M;
@@ -103,4 +142,15 @@ const char *PmergeMe::OverflowError::what() const throw() {
 
 const char *PmergeMe::NegativeNumberError::what() const throw() {
 	return NEGATIVE_NB_ERROR_M;
+}
+
+//////////////
+// Private //
+////////////
+
+void PmergeMe::displayContainers(const std::string &prefix) {
+	std::cout << prefix << VECTOR_DISPLAY;
+	displaySequence(_vectorSeq);
+	std::cout << prefix << LIST_DISPLAY;
+	displaySequence(_listSeq);
 }
