@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:44:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/01 07:47:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,13 @@ PmergeMe::PmergeMe(PmergeMe const &other) {
 
 PmergeMe::PmergeMe(char **sequence) {
 	
-	if (*sequence == NULL || **sequence == '\0')
+	if (*sequence == NULL)
 		throw MissingArgError();
 	while (*sequence) {
-		const int nb = getIntFromStr(*sequence);
+		const std::string nbString = *sequence;
+		if (nbString.empty())
+			throw EmptyArgError();
+		const int nb = getIntFromStr(nbString);
 		_vectorSeq.push_back(nb);
 		_listSeq.push_back(nb);
 		++sequence;
@@ -142,6 +145,10 @@ const char *PmergeMe::OverflowError::what() const throw() {
 
 const char *PmergeMe::NegativeNumberError::what() const throw() {
 	return NEGATIVE_NB_ERROR_M;
+}
+
+const char *PmergeMe::EmptyArgError::what() const throw() {
+	return EMPTY_ARG_ERROR_M;
 }
 
 //////////////

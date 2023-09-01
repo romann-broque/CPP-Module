@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:44:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/01 07:50:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #define UNEXPECTED_CHAR_ERROR_M	"unexpected character"
 #define OVERFLOW_ERROR_M		"overflow"
 #define NEGATIVE_NB_ERROR_M		"negative number"
+#define EMPTY_ARG_ERROR_M		"empty argument"
 
 // Display
 
@@ -82,6 +83,10 @@ class PmergeMe {
 					const char *what() const throw();
 			};
 			class NegativeNumberError: public std::exception {
+				public:
+					const char *what() const throw();
+			};
+			class EmptyArgError: public std::exception {
 				public:
 					const char *what() const throw();
 			};
