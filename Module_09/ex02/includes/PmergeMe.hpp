@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:50:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/01 07:56:50 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ class PmergeMe {
 			std::list<int>		_listSeq;
 		// Methods
 			void displayContainers(const std::string &prefix);
+			void sortVectorSeq();
 			PmergeMe(); // Cannot be used
 
 	public:

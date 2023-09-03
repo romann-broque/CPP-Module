@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:47:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/03 13:42:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 void PmergeMe::sort() {
 
 	displayContainers("Before");
-
+	sortVectorSeq();
+	// sortListSeq(_listSeq);
 	displayContainers("After ");
 }
 
@@ -160,4 +161,60 @@ void PmergeMe::displayContainers(const std::string &prefix) {
 	displaySequence(_vectorSeq);
 	std::cout << prefix << LIST_DISPLAY;
 	displaySequence(_listSeq);
+}
+
+static void insertionSort(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
+
+	for (size_t i = beginIndex; i < endIndex; ++i) {
+		const int tmpValue = sequence[i + 1];
+		size_t j = i + 1;
+		while (j > beginIndex && sequence[j - 1] > tmpValue) {
+			sequence[j] = sequence[j - 1];
+			--j;
+		}
+		sequence[j] = tmpValue;
+	}
+}
+
+static void merge(std::vector<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
+
+	const size_t		index1 = subSize - beginIndex + 1;
+	const size_t		index2 = endIndex - subSize;
+	size_t				leftIndex = 0;
+	size_t				rightIndex = 0;
+	std::vector<int>	left(sequence.begin() + beginIndex, sequence.begin() + subSize + 1);
+	std::vector<int>	right(sequence.begin() + subSize + 1, sequence.begin() + endIndex + 1);
+	std::vector<int>	mergedContainer(left);
+
+	for (size_t i = beginIndex; i < endIndex - beginIndex + 1; ++i) {
+		if (rightIndex == index2) {
+			sequence[i] = left[leftIndex];
+			++leftIndex;
+		} else if (leftIndex == index1) {
+			sequence[i] = right[rightIndex];
+			++rightIndex;
+		} else if (right[rightIndex] > left[leftIndex]) {
+			sequence[i] = left[leftIndex];
+			++leftIndex;
+		} else {
+			sequence[i] = right[rightIndex];
+			++rightIndex;
+		}
+	}
+}
+
+static void sortNumbers(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
+	if (endIndex - beginIndex > 2) {
+		const size_t subSize = (beginIndex + endIndex) / 2;
+		sortNumbers(sequence, beginIndex, subSize);
+		sortNumbers(sequence, subSize + 1, endIndex);
+		merge(sequence, beginIndex, subSize, endIndex);
+	} else {
+		insertionSort(sequence, beginIndex, endIndex);
+	}
+}
+
+void PmergeMe::sortVectorSeq() {
+
+	sortNumbers(_vectorSeq, 0, _vectorSeq.size() - 1);
 }
