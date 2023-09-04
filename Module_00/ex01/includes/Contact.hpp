@@ -6,22 +6,22 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:59:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 09:03:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:15:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include <iostream>
-# include <cstdlib>
-# include <string>
-# include "utils.hpp"
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include "utils.hpp"
 
-# ifndef PRINT_DEBUG
-#  define PRINT_DEBUG	false
-# endif
+#ifndef PRINT_DEBUG
+# define PRINT_DEBUG	false
+#endif
 
-# define LIMIT_LINE		"<------------------------------------------------------------->"
+#define LIMIT_LINE		"<------------------------------------------------------------->"
 
 class	Contact
 {

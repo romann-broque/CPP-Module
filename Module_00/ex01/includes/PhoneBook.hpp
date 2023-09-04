@@ -6,25 +6,24 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:18:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 09:07:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:16:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#pragma once
 
-# include "Contact.hpp"
-# include <iomanip>
-# include <sstream>
+#include "Contact.hpp"
+#include <iomanip>
+#include <sstream>
 
-# ifndef PRINT_DEBUG
-#  define PRINT_DEBUG	false
-# endif
+#ifndef PRINT_DEBUG
+# define PRINT_DEBUG	false
+#endif
 
-# define WIDTH			10
-# define CONTACT_MAX	8
-# define ROW_SEP		" | "
-# define ROW_NB			4
+#define WIDTH			10
+#define CONTACT_MAX		8
+#define ROW_SEP			" | "
+#define ROW_NB			4
 
 class	PhoneBook
 {
@@ -45,5 +44,3 @@ class	PhoneBook
 		void	printField(std::string str)const ;
 
 };
-
-#endif
