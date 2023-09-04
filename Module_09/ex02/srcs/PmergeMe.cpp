@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/03 13:42:24 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 06:52:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ PmergeMe::PmergeMe(char **sequence) {
 			throw EmptyArgError();
 		const int nb = getIntFromStr(nbString);
 		_vectorSeq.push_back(nb);
-		_listSeq.push_back(nb);
+		_dequeSeq.push_back(nb);
 		++sequence;
 	}
 	if (PRINT_DEBUG) {
@@ -101,7 +101,7 @@ PmergeMe::PmergeMe(char **sequence) {
 
 PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 	_vectorSeq = other._vectorSeq;
-	_listSeq = other._listSeq;
+	_dequeSeq = other._dequeSeq;
 	return *this;
 }
 
@@ -113,7 +113,7 @@ void PmergeMe::sort() {
 
 	displayContainers("Before");
 	sortVectorSeq();
-	// sortListSeq(_listSeq);
+	sortDequeSeq();
 	displayContainers("After ");
 }
 
@@ -160,10 +160,11 @@ void PmergeMe::displayContainers(const std::string &prefix) {
 	std::cout << prefix << VECTOR_DISPLAY;
 	displaySequence(_vectorSeq);
 	std::cout << prefix << LIST_DISPLAY;
-	displaySequence(_listSeq);
+	displaySequence(_dequeSeq);
 }
 
-static void insertionSort(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
+template <typename T>
+static void insertionSort(T &sequence, const size_t beginIndex, const size_t endIndex) {
 
 	for (size_t i = beginIndex; i < endIndex; ++i) {
 		const int tmpValue = sequence[i + 1];
@@ -176,7 +177,8 @@ static void insertionSort(std::vector<int> &sequence, const size_t beginIndex, c
 	}
 }
 
-static void merge(std::vector<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
+template <typename T>
+static void merge(T &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
 
 	const size_t		index1 = subSize - beginIndex + 1;
 	const size_t		index2 = endIndex - subSize;
@@ -203,7 +205,8 @@ static void merge(std::vector<int> &sequence, const size_t beginIndex, const siz
 	}
 }
 
-static void sortNumbers(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
+template <typename T>
+static void sortNumbers(T &sequence, const size_t beginIndex, const size_t endIndex) {
 	if (endIndex - beginIndex > 2) {
 		const size_t subSize = (beginIndex + endIndex) / 2;
 		sortNumbers(sequence, beginIndex, subSize);
@@ -217,4 +220,9 @@ static void sortNumbers(std::vector<int> &sequence, const size_t beginIndex, con
 void PmergeMe::sortVectorSeq() {
 
 	sortNumbers(_vectorSeq, 0, _vectorSeq.size() - 1);
+}
+
+void PmergeMe::sortDequeSeq() {
+
+	sortNumbers(_dequeSeq, 0, _dequeSeq.size() - 1);
 }

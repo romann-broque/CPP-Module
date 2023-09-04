@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/01 07:56:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 06:42:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
-#include <list>
+#include <deque>
 
 // Error messages
 
@@ -32,7 +32,7 @@
 #define BEFORE_PATTERN			"Before "
 #define AFTER_PATTERN			"After  "
 #define VECTOR_DISPLAY			"(vector): "
-#define LIST_DISPLAY			"(list):   "
+#define LIST_DISPLAY			"(deque):  "
 
 // Colors
 
@@ -53,10 +53,11 @@ class PmergeMe {
 
 		// Attributes
 			std::vector<int>	_vectorSeq;
-			std::list<int>		_listSeq;
+			std::deque<int>		_dequeSeq;
 		// Methods
 			void displayContainers(const std::string &prefix);
 			void sortVectorSeq();
+			void sortDequeSeq();
 			PmergeMe(); // Cannot be used
 
 	public:
