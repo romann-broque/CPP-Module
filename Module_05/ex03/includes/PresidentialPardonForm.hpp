@@ -6,19 +6,18 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 09:09:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 09:23:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 13:41:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#pragma once
 
-# include "AForm.hpp"
+#include "AForm.hpp"
 
-# define PRESIDENTIAL_NAME			"PresidentialPardonForm"
-# define DEFAULT_PRESIDENT_TARGET	"Default_citizen"
-# define PRESIDENT_SIGN_GRADE		25
-# define PRESIDENT_EXEC_GRADE		5
+#define PRESIDENTIAL_NAME			"PresidentialPardonForm"
+#define DEFAULT_PRESIDENT_TARGET	"Default_citizen"
+#define PRESIDENT_SIGN_GRADE		25
+#define PRESIDENT_EXEC_GRADE		5
 
 class PresidentialPardonForm: public virtual AForm {
 
@@ -38,5 +37,3 @@ class PresidentialPardonForm: public virtual AForm {
 		// Destructor
 			~PresidentialPardonForm();
 };
-
-#endif
