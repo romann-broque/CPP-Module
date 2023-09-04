@@ -6,16 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 13:55:47 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 15:20:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:37:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#pragma once
 
-# include "ClapTrap.hpp"
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 class	DiamondTrap: public ScavTrap, public FragTrap
 {
@@ -37,5 +36,3 @@ class	DiamondTrap: public ScavTrap, public FragTrap
 		// Attributes
 		std::string	_name;
 };
-
-#endif

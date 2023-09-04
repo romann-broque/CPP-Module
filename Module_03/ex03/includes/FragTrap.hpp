@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:33:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 14:16:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:37:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#pragma once
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class	FragTrap: virtual public ClapTrap
 {
@@ -30,5 +29,3 @@ class	FragTrap: virtual public ClapTrap
 		// Destructor
 			~FragTrap();
 };
-
-#endif
