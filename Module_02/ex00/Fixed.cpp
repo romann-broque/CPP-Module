@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 12:05:05 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/21 15:19:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:37:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ Fixed::Fixed(): _nb(0)
 			<< NC << " called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &fixed)
+Fixed::Fixed(Fixed const &fixed)
 {
+	*this = fixed;
 	if (PRINT_DEBUG)
 		std::cout << GREEN << "Copy constructor"
 			<< NC << " called" << std::endl;
-	*this = fixed;
 }
 
 Fixed::~Fixed()
@@ -34,7 +34,7 @@ Fixed::~Fixed()
 			<< NC << " called" << std::endl;
 }
 
-Fixed&	Fixed::operator=(Fixed &fixed)
+Fixed&	Fixed::operator=(Fixed const &fixed)
 {
 	if (PRINT_DEBUG)
 		std::cout << BLUE << "Copy assignment operator"
