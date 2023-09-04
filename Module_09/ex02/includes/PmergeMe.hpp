@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 06:42:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 08:17:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 #include <cstdlib>
 #include <vector>
 #include <deque>
+#include <ctime>
+#include <iomanip>
+#include <typeinfo>
 
 // Error messages
 
@@ -40,8 +43,9 @@
 #define RED		"\033[0;31m"
 #define GREEN	"\033[0;32m"
 
-#define ASCII_NB_SHIFT	48
-#define SPACE			" "
+#define ASCII_NB_SHIFT		48
+#define DOUBLE_PRECISION	5
+#define SPACE				" "
 
 #ifndef PRINT_DEBUG
 # define PRINT_DEBUG false
@@ -54,10 +58,14 @@ class PmergeMe {
 		// Attributes
 			std::vector<int>	_vectorSeq;
 			std::deque<int>		_dequeSeq;
+			double				_vectSortTime;
+			double				_dequeSortTime;
 		// Methods
-			void displayContainers(const std::string &prefix);
 			void sortVectorSeq();
 			void sortDequeSeq();
+			void displayContainers(const std::string &prefix);
+			template <typename T>
+			void displayTime(const T &container);
 			PmergeMe(); // Cannot be used
 
 	public:
