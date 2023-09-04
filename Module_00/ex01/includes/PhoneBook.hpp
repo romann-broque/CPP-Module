@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 00:18:27 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/18 00:58:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:07:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ class	PhoneBook
 	
 	private:
 
-		Contact	l_contactList[CONTACT_MAX];
-		size_t	l_contactCount;
-		size_t	l_contactLastIndex;
+		Contact	_contactList[CONTACT_MAX];
+		size_t	_contactCount;
+		size_t	_contactLastIndex;
 		void	printField(std::string str)const ;
 
 };
