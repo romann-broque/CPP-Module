@@ -6,15 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:33:49 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/26 14:58:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:44:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#pragma once
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
 class	Dog: public Animal
 {
@@ -35,5 +34,3 @@ class	Dog: public Animal
 		// Attributes
 			Brain	*_brain;
 };
-
-#endif

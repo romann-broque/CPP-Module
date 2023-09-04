@@ -6,15 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:21:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/26 15:02:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:44:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#pragma once
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+#include "Animal.hpp"
+#include "Brain.hpp"
 
 class	Cat: public Animal
 {
@@ -35,5 +34,3 @@ class	Cat: public Animal
 		// Attributes
 			Brain	*_brain;
 };
-
-#endif
