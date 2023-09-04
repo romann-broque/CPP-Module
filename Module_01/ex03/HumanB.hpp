@@ -6,12 +6,11 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:25:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/20 13:55:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:21:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#pragma once
 
 # include "Weapon.hpp"
 
@@ -26,5 +25,3 @@ class HumanB
 		std::string	_name;
 		Weapon		*_weapon;
 };
-
-#endif

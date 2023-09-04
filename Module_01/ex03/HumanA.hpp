@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 13:26:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/20 13:47:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:21:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#pragma once
 
-# include "Weapon.hpp"
+#include "Weapon.hpp"
 
 class HumanA
 {
@@ -25,5 +24,3 @@ class HumanA
 		std::string	_name;
 		Weapon		*_weapon;
 };
-
-#endif
