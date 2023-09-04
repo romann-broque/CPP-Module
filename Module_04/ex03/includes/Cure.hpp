@@ -6,15 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:28:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 16:25:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:51:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#pragma once
 
-# include "AMateria.hpp"
-# include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Cure: public AMateria
 {
@@ -34,5 +33,3 @@ class Cure: public AMateria
 		// Destructor
 			~Cure();
 };
-
-#endif

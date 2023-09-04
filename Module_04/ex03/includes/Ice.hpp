@@ -6,15 +6,14 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:02:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 16:25:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:52:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#pragma once
 
-# include "AMateria.hpp"
-# include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Ice: public AMateria
 {
@@ -34,5 +33,3 @@ class Ice: public AMateria
 		// Destructor
 			~Ice();
 };
-
-#endif

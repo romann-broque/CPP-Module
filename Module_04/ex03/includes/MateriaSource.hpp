@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 00:33:32 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 00:59:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:52:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIASOURCE_HPP
-# define MATERIASOURCE_HPP
+#pragma once
 
-# include "IMateriaSource.hpp"
+#include "IMateriaSource.hpp"
 
 class	MateriaSource: public IMateriaSource
 {
@@ -34,5 +33,3 @@ class	MateriaSource: public IMateriaSource
 		// Destructor
 			~MateriaSource();
 };
-
-#endif

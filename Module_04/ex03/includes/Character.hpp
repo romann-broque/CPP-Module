@@ -6,17 +6,16 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 15:54:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/27 17:15:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:51:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+#pragma once
 
-# include "ICharacter.hpp"
-# include "AMateria.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-# define INVENTORY_SIZE	4
+#define INVENTORY_SIZE	4
 
 class Character: public ICharacter
 {
@@ -43,5 +42,3 @@ class Character: public ICharacter
 		// Destructor
 			~Character();
 };
-
-#endif
