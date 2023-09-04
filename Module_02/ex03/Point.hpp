@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:59:01 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/23 14:55:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:49:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_HPP
-# define POINT_HPP
+#pragma once
 
-# include "Fixed.hpp"
+#include "Fixed.hpp"
 
 class	Point
 {
@@ -22,7 +21,7 @@ class	Point
 	// Constructors
 		Point();
 		Point(const float x_init, const float y_init);
-		Point(Point &point);
+		Point(const Point &point);
 	// Overload assignment operator
 		Point&	operator=(const Point &point);
 	// Member functions
@@ -33,8 +32,6 @@ class	Point
 
 	private:
 
-	const Fixed x;
-	const Fixed y;
+		const Fixed x;
+		const Fixed y;
 };
-
-#endif

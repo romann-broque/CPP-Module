@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:59:15 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/23 15:52:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 09:49:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Point::Point(const float x_init, const float y_init): x(x_init), y(y_init)
 		NC << " called" << std::endl;
 }
 
-Point::Point(Point &point): x(point.x), y(point.y)
+Point::Point(const Point &point): x(point.x), y(point.y)
 {
 	if (PRINT_DEBUG)
 		std::cout << GREEN << "Point copy constructor"
