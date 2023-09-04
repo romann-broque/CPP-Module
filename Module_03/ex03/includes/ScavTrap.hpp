@@ -6,14 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 10:00:00 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 14:16:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:37:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#pragma once
 
-# include "ClapTrap.hpp"
+#include "ClapTrap.hpp"
 
 class	ScavTrap: virtual public ClapTrap
 {
@@ -31,5 +30,3 @@ class	ScavTrap: virtual public ClapTrap
 		// Destructor
 			~ScavTrap();
 };
-
-#endif

@@ -6,28 +6,27 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 15:33:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/25 12:27:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/04 12:37:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#pragma once
 
-# include <cstdlib>
-# include <string>
-# include <iostream>
+#include <cstdlib>
+#include <string>
+#include <iostream>
 
-# define RED		"\033[0;31m"
-# define GREEN		"\033[0;32m"
-# define YELLOW		"\033[0;33m"
-# define BLUE		"\033[0;34m"
-# define MAGENTA	"\033[0;35m"
-# define CYAN		"\033[0;36m"
-# define NC			"\033[0m"
+#define RED			"\033[0;31m"
+#define GREEN		"\033[0;32m"
+#define YELLOW		"\033[0;33m"
+#define BLUE		"\033[0;34m"
+#define MAGENTA		"\033[0;35m"
+#define CYAN		"\033[0;36m"
+#define NC			"\033[0m"
 
-# ifndef PRINT_DEBUG
-#  define PRINT_DEBUG true
-# endif
+#ifndef PRINT_DEBUG
+# define PRINT_DEBUG true
+#endif
 
 class	ClapTrap
 {
@@ -54,5 +53,3 @@ class	ClapTrap
 			size_t		_energyPoints;
 			size_t		_attackDamage;
 };
-
-#endif
