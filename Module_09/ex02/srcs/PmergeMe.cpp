@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/05 06:43:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/05 06:45:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,13 +283,13 @@ void PmergeMe::sortListSeq() {
 	_listSortTime = elapsed_secs;
 }
 
-void PmergeMe::displayContainers(const std::string &prefix) {
+void PmergeMe::displayContainers(const std::string &prefix) const {
 	std::cout << prefix;
 	displaySequence(_vectorSeq);
 }
 
 template <typename T>
-void PmergeMe::displayTime(const T &container) {
+void PmergeMe::displayTime(const T &container) const {
 
 	double time;
 	std::cout << "Time to process a range of " << container.size() << " elements with ";

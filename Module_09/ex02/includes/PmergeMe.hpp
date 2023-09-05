@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/05 06:39:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/05 06:45:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ class PmergeMe {
 		// Methods
 			void sortVectorSeq();
 			void sortListSeq();
-			void displayContainers(const std::string &prefix);
+			void displayContainers(const std::string &prefix) const;
 			template <typename T>
-			void displayTime(const T &container);
+			void displayTime(const T &container) const;
 			PmergeMe(); // Cannot be used
 
 	public:
