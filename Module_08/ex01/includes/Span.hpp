@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:34:55 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 08:59:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:26:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Span {
 		// Constructors
 			Span();
 			Span(const size_t N);
-			Span(Span &span);
+			Span(Span const &span);
 		// Overload assignment operator
 			Span const &operator=(Span const &span);
 		// Member functions

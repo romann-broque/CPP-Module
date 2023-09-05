@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 09:37:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/27 09:00:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/31 19:25:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Span::Span(const size_t N): _N(N) {
 	}
 }
 
-Span::Span(Span &span) {
+Span::Span(Span const &span) {
 
 	*this = span;
 	if (PRINT_DEBUG) {

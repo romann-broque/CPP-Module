@@ -13,6 +13,7 @@ PATH_SRCS	+= srcs/
 ### srcs/
 
 SRCS		+= main.cpp
+SRCS		+= RPN.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -29,8 +30,7 @@ OBJS		+= $(patsubst %.cpp, $(PATH_OBJS)/%.o, $(SRCS))
 
 PATH_INC	+= includes/
 
-HEADERS		+= MutantStack.hpp
-HEADERS		+= MutantStack.tpp
+HEADERS		+= RPN.hpp
 
 INCLUDES	+= -I $(PATH_INC)
 
@@ -63,7 +63,7 @@ endif
 #### NAME ####
 ##############
 
-NAME		+= ex02
+NAME		+= RPN
 
 #################
 #### DISPLAY ####
