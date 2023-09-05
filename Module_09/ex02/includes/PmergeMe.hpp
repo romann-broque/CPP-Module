@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 08:17:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/05 06:39:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
-#include <deque>
+#include <list>
 #include <ctime>
 #include <iomanip>
 #include <typeinfo>
@@ -32,10 +32,8 @@
 
 // Display
 
-#define BEFORE_PATTERN			"Before "
-#define AFTER_PATTERN			"After  "
-#define VECTOR_DISPLAY			"(vector): "
-#define LIST_DISPLAY			"(deque):  "
+#define BEFORE_PATTERN			"Before: "
+#define AFTER_PATTERN			"After:  "
 
 // Colors
 
@@ -57,12 +55,12 @@ class PmergeMe {
 
 		// Attributes
 			std::vector<int>	_vectorSeq;
-			std::deque<int>		_dequeSeq;
+			std::list<int>		_listSeq;
 			double				_vectSortTime;
-			double				_dequeSortTime;
+			double				_listSortTime;
 		// Methods
 			void sortVectorSeq();
-			void sortDequeSeq();
+			void sortListSeq();
 			void displayContainers(const std::string &prefix);
 			template <typename T>
 			void displayTime(const T &container);

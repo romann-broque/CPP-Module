@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 08:17:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/05 06:43:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,35 @@ static void displaySequence(const T &sequence) {
 	std::cout << std::endl;
 }
 
-template <typename T>
-static void insertionSort(T &sequence, const size_t beginIndex, const size_t endIndex) {
+static void swap(int &nb1, int &nb2) {
+	int tmp = nb1;
 
-	for (size_t i = beginIndex; i < endIndex; ++i) {
-		const int tmpValue = sequence[i + 1];
-		size_t j = i + 1;
-		while (j > beginIndex && sequence[j - 1] > tmpValue) {
-			sequence[j] = sequence[j - 1];
-			--j;
-		}
-		sequence[j] = tmpValue;
+	nb1 = nb2;
+	nb2 = tmp;
+}
+
+// Vector version
+
+static void insertionSort(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
+
+	std::vector<int>::iterator it1 = sequence.begin();
+	std::advance(it1, beginIndex);
+	std::vector<int>::iterator it2 = sequence.begin();
+	std::advance(it2, endIndex);
+
+	if (*it1 > *it2) {
+		swap(*it1, *it2);
 	}
 }
 
-template <typename T>
-static void merge(T &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
+static void merge(std::vector<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
 
 	const size_t index1 = subSize - beginIndex + 1;
 	const size_t index2 = endIndex - subSize;
 	size_t leftIndex = 0;
 	size_t rightIndex = 0;
-	std::vector<typename T::value_type> left(sequence.begin() + beginIndex, sequence.begin() + subSize + 1);
-	std::vector<typename T::value_type> right(sequence.begin() + subSize + 1, sequence.begin() + endIndex + 1);
+	std::vector<int> left(sequence.begin() + beginIndex, sequence.begin() + subSize + 1);
+	std::vector<int> right(sequence.begin() + subSize + 1, sequence.begin() + endIndex + 1);
 
 	for (size_t i = beginIndex; i <= endIndex; ++i) {
 		if (rightIndex == index2 || (leftIndex != index1 && left[leftIndex] <= right[rightIndex])) {
@@ -89,10 +95,60 @@ static void merge(T &sequence, const size_t beginIndex, const size_t subSize, co
 	}
 }
 
+// List version
+
+static std::list<int> extractList(std::list<int> &list, const size_t beginIndex, const size_t endIndex) {
+
+	size_t			i;
+	std::list<int>	newList;
+
+	i = 0;
+	for (std::list<int>::iterator it = list.begin(); it != list.end(); ++it) {
+		if (i >= beginIndex && i <= endIndex) {
+			newList.push_back(*it);
+		}
+		++i;
+	}
+	return newList;
+}
+
+static void insertionSort(std::list<int> &sequence, const size_t beginIndex, const size_t endIndex) { // need to be modified!
+	
+	std::list<int>::iterator it1 = sequence.begin();
+	std::list<int>::iterator it2 = sequence.begin();
+
+	std::advance(it1, beginIndex);
+	std::advance(it2, endIndex);
+	if (*it1 > *it2) {
+		swap(*it1, *it2);
+	}
+}
+
+static void merge(std::list<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
+	std::list<int> left = extractList(sequence, beginIndex, subSize);
+	std::list<int> right = extractList(sequence, subSize + 1, endIndex);
+	std::list<int>::iterator leftIter = left.begin();
+	std::list<int>::iterator rightIter = right.begin();
+	std::list<int>::iterator sequenceIter = sequence.begin();
+
+	std::advance(sequenceIter, beginIndex);
+	for (size_t i = beginIndex; i <= endIndex; ++i) {
+		if (rightIter == right.end() || (leftIter != left.end() && *leftIter <= *rightIter)) {
+			*sequenceIter = *leftIter;
+			++leftIter;
+		} else {
+			*sequenceIter = *rightIter;
+			++rightIter;
+		}
+		++sequenceIter;
+	}
+}
+
+
 template <typename T>
 static void sortNumbers(T &sequence, const size_t beginIndex, const size_t endIndex) {
 	if (endIndex > beginIndex) {
-		if (endIndex - beginIndex <= 2) {
+		if (endIndex - beginIndex < 2) {
 			insertionSort(sequence, beginIndex, endIndex);
 		} else {
 			const size_t subSize = (beginIndex + endIndex) / 2;
@@ -135,11 +191,11 @@ PmergeMe::PmergeMe(char **sequence) {
 			throw EmptyArgError();
 		const int nb = getIntFromStr(nbString);
 		_vectorSeq.push_back(nb);
-		_dequeSeq.push_back(nb);
+		_listSeq.push_back(nb);
 		++sequence;
 	}
 	_vectSortTime = 0;
-	_dequeSortTime = 0;
+	_listSortTime = 0;
 	if (PRINT_DEBUG) {
 		std::cout << "PmergeMe has been " <<
 		GREEN << "created (set)" << NC << std::endl;
@@ -152,7 +208,7 @@ PmergeMe::PmergeMe(char **sequence) {
 
 PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 	_vectorSeq = other._vectorSeq;
-	_dequeSeq = other._dequeSeq;
+	_listSeq = other._listSeq;
 	return *this;
 }
 
@@ -162,12 +218,12 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &other) {
 
 void PmergeMe::sort() {
 
-	displayContainers("Before");
+	displayContainers(BEFORE_PATTERN);
 	sortVectorSeq();
-	sortDequeSeq();
-	displayContainers("After ");
+	sortListSeq();
+	displayContainers(AFTER_PATTERN);
 	displayTime(_vectorSeq);
-	displayTime(_dequeSeq);
+	displayTime(_listSeq);
 }
 
 /////////////////
@@ -218,20 +274,18 @@ void PmergeMe::sortVectorSeq() {
 	_vectSortTime = elapsed_secs;
 }
 
-void PmergeMe::sortDequeSeq() {
+void PmergeMe::sortListSeq() {
 
 	clock_t	start = clock();
-	sortNumbers(_dequeSeq, 0, _dequeSeq.size() - 1);
+	sortNumbers(_listSeq, 0, _listSeq.size() - 1);
 	clock_t	end = clock();
 	double elapsed_secs = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-	_dequeSortTime = elapsed_secs;
+	_listSortTime = elapsed_secs;
 }
 
 void PmergeMe::displayContainers(const std::string &prefix) {
-	std::cout << prefix << VECTOR_DISPLAY;
+	std::cout << prefix;
 	displaySequence(_vectorSeq);
-	std::cout << prefix << LIST_DISPLAY;
-	displaySequence(_dequeSeq);
 }
 
 template <typename T>
@@ -244,10 +298,10 @@ void PmergeMe::displayTime(const T &container) {
 		std::cout << "std::vector : ";
 		time = _vectSortTime;
 	}
-	else if (typeid(container) == typeid(std::deque<int>))
+	else if (typeid(container) == typeid(std::list<int>))
 	{
-		std::cout << "std::deque : ";
-		time = _dequeSortTime;
+		std::cout << "std::list   : ";
+		time = _listSortTime;
 	}
-	std::cout << std::fixed << DOUBLE_PRECISION << time << std::endl;
+	std::cout << std::fixed << DOUBLE_PRECISION << time << " us" << std::endl;
 }
