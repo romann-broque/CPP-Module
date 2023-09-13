@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 15:09:54 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 09:03:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/13 11:00:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,12 @@ void	Contact::display() const
 
 void	Contact::set()
 {
-	std::cout << "First Name: ";
-	std::getline(std::cin, this->_firstName);
-	std::cout << "Last Name: ";
-	std::getline(std::cin, this->_lastName);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, this->_nickName);
-	std::cout << "Phone number: ";
-	std::getline(std::cin, this->_phoneNumber);
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, this->_darkestSecret);
+	if (!promptField("First Name: ", this->_firstName)
+		&& !promptField("Last Name: ", this->_lastName)
+		&& !promptField("Nickname: ", this->_nickName)
+		&& !promptField("Phone Number: ", this->_phoneNumber)
+		&& !promptField("Darkest secret: ", this->_darkestSecret))
+		return;
 }
 
 std::string	Contact::getFirstName() const
