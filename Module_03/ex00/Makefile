@@ -30,7 +30,7 @@ HEADERS		+= ClapTrap.hpp
 #### COMPILATION ####
 #####################
 
-CC			=	g++
+CC			=	c++
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra

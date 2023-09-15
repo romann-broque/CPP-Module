@@ -44,7 +44,7 @@ vpath %.hpp $(PATH_INC)
 #### COMPILATION ####
 #####################
 
-CC			=	g++
+CC			=	c++
 
 CFLAGS		+=	-Wall
 CFLAGS		+=	-Wextra
