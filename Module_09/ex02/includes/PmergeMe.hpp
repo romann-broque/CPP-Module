@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/30 07:46:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/30 08:54:19 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ class PmergeMe {
 			};
 };
 
-
 // Pair
 
 template <typename T>
@@ -121,9 +120,6 @@ class Pair {
 	// Getters
 		T*	first() const {return _a;};
 		T*	second() const {return _b;};
-	// Setters
-		void seta(T& a) {_a = &a;};
-		void setb(T& b) {_b = &b;};
 	// Overload operator
 		Pair<T>& operator=(const Pair<T>& other)
 		{
@@ -144,23 +140,26 @@ class Pair {
 		};
 };
 
-
 // Sort
 
 template <int N>
 class Sort {
 
+	private:
+	
+		template <typename T>
+		static std::vector<T> insertPairs(const std::vector<Pair<T> > &u, const T *stray);
+		template <typename T>
+		static typename std::vector<T>::iterator binary_search(
+			const typename std::vector<T>::iterator first,
+			const typename std::vector<T>::iterator last,
+			const T &val);
+		static size_t Jacobsthal_n(const size_t Jacobsthal_n_1, const size_t Jacobsthal_n_2);
+
 	public:
-	template <typename T>
-	static void fordJohnsonSort(std::vector<T> &sequence);
-	template <typename T>
-	static std::vector<T> insertPairs(std::vector<Pair<T> > &u, T *stray);
-	template <typename T>
-	static typename std::vector<T>::iterator binary_search(
-		const typename std::vector<T>::iterator first,
-		const typename std::vector<T>::iterator last,
-		const T &val);
-	static size_t Jacobsthal_n(const size_t Jacobsthal_n_1, const size_t Jacobsthal_n_2);
+	
+		template <typename T>
+		static void fordJohnsonSort(std::vector<T> &sequence);
 };
 
 template <>
