@@ -6,11 +6,120 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/30 07:12:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/30 07:46:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+//////////////////////////////////////////////////////////////////
+/////////////////////////////// Sort /////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+template <int N>
+template <typename T>
+void Sort<N>::fordJohnsonSort(std::vector<T> &sequence) {
+
+		const size_t size = sequence.size();
+		T	*stray = NULL;
+
+		if (size < 2 || N < 2)
+			return ;
+		// Make pairs (A, B) and identify highest value as A
+		std::vector<Pair<T> > u(size/ 2);
+		if (sequence.size() % 2) //stores stray value in case of an odd size
+			stray = &(*(--sequence.end()));
+		for (unsigned long i = 0; i < u.size(); i++)
+		{
+			u[i] = Pair<T>(sequence[2 * i], sequence[2 * i + 1]); //instantiate pairs
+			u[i].sort(); //sort pair (ie: set highest value as A)
+		}
+		// Sort list of pairs recursively
+		Sort<N - 1>::template fordJohnsonSort<Pair<T> >(u);
+
+		// Insert Bs in main chain with binary search
+		sequence = insertPairs(u, stray);
+}
+	
+template <int N>
+template <typename T>
+std::vector<T> Sort<N>::insertPairs(std::vector<Pair<T> > &u, T *stray) {
+
+		size_t J_upper = 1;
+		size_t J_lower = 1;
+		size_t tmp = J_lower;
+		typename std::vector<T>::iterator pos;
+		typename std::vector<T>::iterator last;
+		std::vector<T> mainChain;
+	
+		mainChain.push_back(*(u[0].second()));
+		mainChain.push_back(*(u[0].first()));
+		if (J_upper == u.size() && stray)
+		{
+			pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
+			mainChain.insert(pos, *stray);
+		}
+		while (J_upper < u.size())
+		{
+			// set Jacobsthal values
+			tmp = J_lower;
+			J_lower = J_upper;
+			J_upper = std::min(Jacobsthal_n(J_lower, tmp), u.size());
+
+			// First add all As to mainChain
+			for (size_t i = J_lower; i < J_upper; i++)
+				mainChain.push_back(*(u[i].first()));
+
+			// Than insert Bs
+				// first insert stray if it exists
+			if (J_upper == u.size() && stray)
+			{
+				pos = binary_search(mainChain.begin(), mainChain.end(), *stray);
+				mainChain.insert(pos, *stray);
+			}
+				// than add Bs
+			for (size_t i = J_upper - 1; i >= J_lower; i--)
+			{
+				if (J_upper == u.size())
+					last = mainChain.end();
+				else
+					last = mainChain.begin() + J_upper + J_lower - 1;
+				// binary search in a list of size (2^n)-1 = t_n + t_n-1 - 1 where t_n = Jacobstahl_n
+				pos = binary_search(mainChain.begin(), last, *(u[i].second()));
+				mainChain.insert(pos, *(u[i].second()));
+			}
+		}
+		return (mainChain);
+}
+
+template <int N>
+template <typename T>
+typename std::vector<T>::iterator Sort<N>::binary_search(const typename std::vector<T>::iterator first, const typename std::vector<T>::iterator last, const T &val)
+{
+	typename std::vector<T>::iterator middle;
+
+	// Stop condition
+	if (std::distance(first, last) < 2)
+	{
+		if (val < *first)
+			return (first);
+		else
+			return (last);
+	}
+	// Else
+	middle = first + std::distance(first, last) / 2;
+	if (val < *middle) 
+		return (binary_search(first, middle, val)); // calls binary_search on left part
+	else 
+		return (binary_search(middle, last, val)); // calls binary_search on right part
+}
+
+template <int N>
+size_t Sort<N>::Jacobsthal_n(const size_t Jacobsthal_n_1, const size_t Jacobsthal_n_2)
+{
+	// Jacobsthal suite : t_n = t_n-1 + 2*t_n-2
+	return (Jacobsthal_n_1 + 2 * Jacobsthal_n_2);
+}
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////// PMergeMe ////////////////////////////
