@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:15:59 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/04 08:57:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/29 12:18:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	(void)ac;
 	try {
-		PmergeMe	mergeMe(av + 1);
+		PmergeMe mergeMe(av + 1);
 		mergeMe.sort();
 	}
 	catch (std::exception &e) {

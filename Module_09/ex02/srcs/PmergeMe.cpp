@@ -6,11 +6,15 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:15:38 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/05 06:45:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/30 07:12:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////// PMergeMe ////////////////////////////
+//////////////////////////////////////////////////////////////////
 
 /////////////////////
 // Static methods //
@@ -52,111 +56,6 @@ static void displaySequence(const T &sequence) {
 		++it;
 	}
 	std::cout << std::endl;
-}
-
-static void swap(int &nb1, int &nb2) {
-	int tmp = nb1;
-
-	nb1 = nb2;
-	nb2 = tmp;
-}
-
-// Vector version
-
-static void insertionSort(std::vector<int> &sequence, const size_t beginIndex, const size_t endIndex) {
-
-	std::vector<int>::iterator it1 = sequence.begin();
-	std::advance(it1, beginIndex);
-	std::vector<int>::iterator it2 = sequence.begin();
-	std::advance(it2, endIndex);
-
-	if (*it1 > *it2) {
-		swap(*it1, *it2);
-	}
-}
-
-static void merge(std::vector<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
-
-	const size_t index1 = subSize - beginIndex + 1;
-	const size_t index2 = endIndex - subSize;
-	size_t leftIndex = 0;
-	size_t rightIndex = 0;
-	std::vector<int> left(sequence.begin() + beginIndex, sequence.begin() + subSize + 1);
-	std::vector<int> right(sequence.begin() + subSize + 1, sequence.begin() + endIndex + 1);
-
-	for (size_t i = beginIndex; i <= endIndex; ++i) {
-		if (rightIndex == index2 || (leftIndex != index1 && left[leftIndex] <= right[rightIndex])) {
-			sequence[i] = left[leftIndex];
-			++leftIndex;
-		} else {
-			sequence[i] = right[rightIndex];
-			++rightIndex;
-		}
-	}
-}
-
-// List version
-
-static std::list<int> extractList(std::list<int> &list, const size_t beginIndex, const size_t endIndex) {
-
-	size_t			i;
-	std::list<int>	newList;
-
-	i = 0;
-	for (std::list<int>::iterator it = list.begin(); it != list.end(); ++it) {
-		if (i >= beginIndex && i <= endIndex) {
-			newList.push_back(*it);
-		}
-		++i;
-	}
-	return newList;
-}
-
-static void insertionSort(std::list<int> &sequence, const size_t beginIndex, const size_t endIndex) { // need to be modified!
-	
-	std::list<int>::iterator it1 = sequence.begin();
-	std::list<int>::iterator it2 = sequence.begin();
-
-	std::advance(it1, beginIndex);
-	std::advance(it2, endIndex);
-	if (*it1 > *it2) {
-		swap(*it1, *it2);
-	}
-}
-
-static void merge(std::list<int> &sequence, const size_t beginIndex, const size_t subSize, const size_t endIndex) {
-	std::list<int> left = extractList(sequence, beginIndex, subSize);
-	std::list<int> right = extractList(sequence, subSize + 1, endIndex);
-	std::list<int>::iterator leftIter = left.begin();
-	std::list<int>::iterator rightIter = right.begin();
-	std::list<int>::iterator sequenceIter = sequence.begin();
-
-	std::advance(sequenceIter, beginIndex);
-	for (size_t i = beginIndex; i <= endIndex; ++i) {
-		if (rightIter == right.end() || (leftIter != left.end() && *leftIter <= *rightIter)) {
-			*sequenceIter = *leftIter;
-			++leftIter;
-		} else {
-			*sequenceIter = *rightIter;
-			++rightIter;
-		}
-		++sequenceIter;
-	}
-}
-
-
-template <typename T>
-static void sortNumbers(T &sequence, const size_t beginIndex, const size_t endIndex) {
-	if (endIndex > beginIndex) {
-		if (endIndex - beginIndex < 2) {
-			insertionSort(sequence, beginIndex, endIndex);
-		} else {
-			const size_t subSize = (beginIndex + endIndex) / 2;
-			sortNumbers(sequence, beginIndex, subSize);
-			sortNumbers(sequence, subSize + 1, endIndex);
-			merge(sequence, beginIndex, subSize, endIndex);
-		}
-	}
 }
 
 ///////////////////
@@ -268,7 +167,7 @@ const char *PmergeMe::EmptyArgError::what() const throw() {
 void PmergeMe::sortVectorSeq() {
 
 	clock_t	start = clock();
-	sortNumbers(_vectorSeq, 0, _vectorSeq.size() - 1);
+	Sort<32>::fordJohnsonSort<int>(_vectorSeq);
 	clock_t	end = clock();
 	double elapsed_secs = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 	_vectSortTime = elapsed_secs;
@@ -277,7 +176,7 @@ void PmergeMe::sortVectorSeq() {
 void PmergeMe::sortListSeq() {
 
 	clock_t	start = clock();
-	sortNumbers(_listSeq, 0, _listSeq.size() - 1);
+//	sortNumbers(_listSeq, 0, _listSeq.size() - 1);
 	clock_t	end = clock();
 	double elapsed_secs = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 	_listSortTime = elapsed_secs;
