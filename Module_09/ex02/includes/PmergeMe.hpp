@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 06:07:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/30 08:54:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/10/03 11:23:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
-#include <list>
+#include <deque>
 #include <ctime>
 #include <iomanip>
 #include <typeinfo>
@@ -55,12 +55,12 @@ class PmergeMe {
 
 		// Attributes
 			std::vector<int>	_vectorSeq;
-			std::list<int>		_listSeq;
+			std::deque<int>		_dequeSeq;
 			double				_vectSortTime;
-			double				_listSortTime;
+			double				_dequeSortTime;
 		// Methods
 			void sortVectorSeq();
-			void sortListSeq();
+			void sortDequeSeq();
 			void displayContainers(const std::string &prefix) const;
 			template <typename T>
 			void displayTime(const T &container) const;
@@ -127,10 +127,6 @@ class Pair {
 		};
 		bool	operator>(const Pair<T>& other) const {return (*_a > *other.first());};
 		bool	operator<(const Pair<T>& other) const {return (*_a < *other.first());};
-		bool	operator>=(const Pair<T>& other) const {return (*_a >= *other.first());};
-		bool	operator<=(const Pair<T>& other) const {return (*_a <= *other.first());};
-		bool	operator==(const Pair<T>& other) const {return (*_a == *other.first());};
-		bool	operator!=(const Pair<T>& other) const {return (*_a != *other.first());};
 		
 	// Methods
 		void sort()
@@ -150,9 +146,16 @@ class Sort {
 		template <typename T>
 		static std::vector<T> insertPairs(const std::vector<Pair<T> > &u, const T *stray);
 		template <typename T>
+		static std::deque<T> insertPairs(const std::deque<Pair<T> > &u, const T *stray);
+		template <typename T>
 		static typename std::vector<T>::iterator binary_search(
 			const typename std::vector<T>::iterator first,
 			const typename std::vector<T>::iterator last,
+			const T &val);
+		template <typename T>
+		static typename std::deque<T>::iterator binary_search(
+			const typename std::deque<T>::iterator first,
+			const typename std::deque<T>::iterator last,
 			const T &val);
 		static size_t Jacobsthal_n(const size_t Jacobsthal_n_1, const size_t Jacobsthal_n_2);
 
@@ -160,6 +163,8 @@ class Sort {
 	
 		template <typename T>
 		static void fordJohnsonSort(std::vector<T> &sequence);
+		template <typename T>
+		static void fordJohnsonSort(std::deque<T> &sequence);
 };
 
 template <>
@@ -169,4 +174,6 @@ class Sort<1> {
 
 	template <typename T>
 	static void fordJohnsonSort(std::vector<T> &sequence) {(void)sequence;};
+	template <typename T>
+	static void fordJohnsonSort(std::deque<T> &sequence) {(void)sequence;};
 };
