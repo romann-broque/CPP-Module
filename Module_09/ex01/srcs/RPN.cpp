@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/11/22 15:11:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:06:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int addition(const int nb1, const int nb2) {
 }
 
 static int substraction(const int nb1, const int nb2) {
+	if (nb1 < INT_MIN + nb2)
+		throw RPN::OverflowError();
 	return (nb1 - nb2);
 }
 
