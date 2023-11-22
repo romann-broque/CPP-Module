@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 19:20:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 15:11:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ static int getOperand(const std::string &op) {
 	throw RPN::UnexpectedTokenError();
 }
 
+static bool	isEmpty(const std::string &str) {
+
+	for (size_t	i = 0; i < str.length(); ++i) {
+		if (std::isspace(str[i]) == false)
+			return (false);
+	}
+	return (true);
+}
+
 //////////////////
 // Constructors //
 //////////////////
@@ -84,11 +93,13 @@ RPN::RPN(const RPN &other) {
 	}
 }
 
-RPN::RPN(const int argCount, const char *operationString) {
+RPN::RPN(const int argCount, const std::string operationString) {
 	if (argCount < EXPECTED_ARG_COUNT)
 		throw MissingArgumentError();
 	if (argCount > EXPECTED_ARG_COUNT)
 		throw TooManyArgumentError();
+	if (isEmpty(operationString))
+		throw EmptyStringError();
 	_operationString = operationString;
 	if (PRINT_DEBUG) {
 		std::cout << "RPN has been " <<
@@ -141,6 +152,10 @@ const char *RPN::TooManyArgumentError::what() const throw() {
 	return TOO_MANY_ARG_ERROR_M;
 }
 
+const char *RPN::EmptyStringError::what() const throw() {
+	return EMPTY_STRING_ERROR_M;
+}
+
 const char *RPN::InsufficientOperandsError::what() const throw() {
 	return INSUFFICIENT_OPERANDS_ERROR_M;
 }
@@ -186,4 +201,3 @@ void RPN::processStack(std::stack<int> &operands) const {
 		}
 	}
 }
- 

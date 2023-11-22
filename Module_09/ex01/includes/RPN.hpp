@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 08:53:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/31 19:20:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 15:03:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #define MISSING_ARG_ERROR_M				"missing argument"
 #define TOO_MANY_ARG_ERROR_M			"too many arguments"
 #define INSUFFICIENT_OPERANDS_ERROR_M	"insufficient operands"
+#define EMPTY_STRING_ERROR_M			"empty argument"
 #define TOO_MANY_OPERANDS_ERROR_M		"too many operands"
 #define UNEXPECTED_TOK_ERROR_M			"unexpected token"
 #define DIVISION_BY_ZERO_ERROR_M		"division by zero"
@@ -57,7 +58,7 @@ class RPN {
 
 		// Constructors
 			RPN(const RPN &other);
-			RPN(const int argCount, const char *operationString);
+			RPN(const int argCount, const std::string operationString);
 		// Overload assignment constructor
 			RPN &operator=(const RPN &other);
 		// Member
@@ -71,6 +72,10 @@ class RPN {
 			};
 			class TooManyArgumentError: public std::exception {
 				public :
+					const char *what() const throw();
+			};
+			class EmptyStringError: public std::exception {
+				public:
 					const char *what() const throw();
 			};
 			class InsufficientOperandsError: public std::exception {
