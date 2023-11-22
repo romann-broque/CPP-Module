@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 13:05:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:25:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,9 @@ static std::string removeWhiteSpaces(const std::string str) {
 }
 
 static std::string findClosestKey(const std::map<std::string, float>& myMap, const std::string& inputKey) {
-	std::string closestKey = "";  // Initialize with an empty key
-	for (std::map<std::string, float>::const_iterator it = myMap.begin(); it != myMap.end(); ++it) {
-		if (it->first < inputKey) {
-			closestKey = it->first;
-		} else {
-			// Since the keys are sorted, we break as soon as we find a key greater than the input
-			break;
-		}
-	}
-	return closestKey;
+
+	std::map<std::string, float>::const_iterator closestKey = myMap.upper_bound(inputKey);
+	return (--closestKey)->first;
 }
 
 static bool isValidDateFormat(const std::string& date) {
@@ -69,7 +62,7 @@ static bool isValidDateFormat(const std::string& date) {
 
 // Cannot be used
 BitcoinExchange::BitcoinExchange() {
-	
+
 	initDataBase();
 	if (PRINT_DEBUG) {
 		std::cout << "BitcoinExchange has been " <<
@@ -223,7 +216,7 @@ void BitcoinExchange::initFile(const int argCount, const char *fileName) {
 // Fill Methods //
 
 void BitcoinExchange::fillDate(const std::string line) {
-	
+
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
 	std::size_t separatorPos = line.find_first_of(DB_SEPARATORS);
 
@@ -253,7 +246,7 @@ void BitcoinExchange::fillDatabase() {
 }
 
 void BitcoinExchange::displayFile(std::ifstream &file) const {
-	
+
 	std::string	line;
 	while (std::getline(file, line)) {
 		std::cout << line << std::endl;
@@ -270,7 +263,7 @@ void BitcoinExchange::checkDateFormat(const std::string &date) const {
 void BitcoinExchange::checkValueRequirements(const float value) const {
 	if (value < 0)
 		throw NegativeValueError();
-	if (value > 100)
+	if (value > 1000)
 		throw TooLargeValueError();
 }
 
@@ -283,7 +276,7 @@ std::string BitcoinExchange::findClosestDate(const std::map<std::string, float>&
 }
 
 void BitcoinExchange::exchange(const std::string line) const {
-	
+
 	std::string lineWithoutSpaces = removeWhiteSpaces(line);
 	std::size_t separatorPos = lineWithoutSpaces.find_first_of(SEPARATORS);
 
