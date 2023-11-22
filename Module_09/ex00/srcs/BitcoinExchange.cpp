@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/11/22 16:25:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:49:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ static std::string removeWhiteSpaces(const std::string str) {
 		}
 	}
 	return newStr;
-}
-
-static std::string findClosestKey(const std::map<std::string, float>& myMap, const std::string& inputKey) {
-
-	std::map<std::string, float>::const_iterator closestKey = myMap.upper_bound(inputKey);
-	return (--closestKey)->first;
 }
 
 static bool isValidDateFormat(const std::string& date) {
@@ -267,11 +261,17 @@ void BitcoinExchange::checkValueRequirements(const float value) const {
 		throw TooLargeValueError();
 }
 
+std::string	BitcoinExchange::findClosestKey(const std::map<std::string, float>& myMap, const std::string& inputKey) const {
+
+	std::map<std::string, float>::const_iterator closestKey = myMap.upper_bound(inputKey);
+	if (closestKey == myMap.begin())
+		throw TooEarlyDateError();
+	return (--closestKey)->first;
+}
+
 std::string BitcoinExchange::findClosestDate(const std::map<std::string, float>& myMap, const std::string& input) const {
 	std::string closestDate = findClosestKey(myMap, input);
 
-	if (closestDate.empty())
-		throw TooEarlyDateError();
 	return closestDate;
 }
 

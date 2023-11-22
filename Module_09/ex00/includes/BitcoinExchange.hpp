@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/30 09:08:36 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/11/22 16:48:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ class BitcoinExchange {
 			void displayFile(std::ifstream &file) const;
 			void checkDateFormat(const std::string &date) const;
 			void checkValueRequirements(const float value) const;
+			std::string	findClosestKey(const std::map<std::string, float>& myMap, const std::string& inputKey) const;
 			std::string findClosestDate(const std::map<std::string, float>& myMap, const std::string& input) const;
 			void exchange(const std::string line) const;
 			BitcoinExchange(); // Cannot be used
