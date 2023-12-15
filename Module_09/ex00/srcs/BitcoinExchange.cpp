@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:35:36 by rbroque           #+#    #+#             */
-/*   Updated: 2023/11/22 16:49:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/12/15 11:52:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,29 @@ static std::string removeWhiteSpaces(const std::string str) {
 		}
 	}
 	return newStr;
+}
+
+static bool isLeapYear(const uint year) {
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+static bool isDateValid(const uint year, const uint month, const uint day) {
+	const uint dayCount[] = {
+		31, 28 + isLeapYear(year), 31, 30, 31, 30,
+		31, 31, 30, 31, 30, 31
+	};
+	return (year > 2000) && (month >= 1 && month <= 12) && (day >= 1 && day <= dayCount[month - 1]);
+}
+
+static bool isDateStrValid(const std::string &date) {
+	std::istringstream issYear(date);
+	std::istringstream issMonth(date.substr(5, date.length() - 1));
+	std::istringstream issDay(date.substr(8, date.length() - 1));
+	uint year, month, day;
+	issYear >> year;
+	issMonth >> month;
+	issDay >> day;
+	return isDateValid(year, month, day);
 }
 
 static bool isValidDateFormat(const std::string& date) {
@@ -250,8 +273,10 @@ void BitcoinExchange::displayFile(std::ifstream &file) const {
 
 void BitcoinExchange::checkDateFormat(const std::string &date) const {
 
-	if (!isValidDateFormat(date))
+	if (isValidDateFormat(date) == false)
 		throw InvalidDateFormatError(date);
+	if (isDateStrValid(date) == false)
+		throw BadInputError(date);
 }
 
 void BitcoinExchange::checkValueRequirements(const float value) const {
